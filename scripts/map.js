@@ -124,6 +124,14 @@ $(window).on('load', function () {
         }
 
         function zoomToFeature(e) {
+          var layer = e.target;
+          points.forEach(element => {
+            if (element.District.toLowerCase() == layer.feature.properties.DName2019.toLowerCase()) {
+              for (var attrname in element) { layer.feature.properties[attrname] = element[attrname]; }
+            }
+
+          });
+          info.update(layer.feature.properties);
           map.fitBounds(e.target.getBounds());
         }
 
@@ -155,17 +163,16 @@ $(window).on('load', function () {
 
       // method that we will use to update the control based on feature properties passed
       info.update = function (props) {
-        console.log(props)
         this._div.innerHTML = '<h4>Information</h4>' + (props ?
           '<b>' + props.DName2019 + '</b><br /> Region: ' + props.F15Regions + '<br />' +
-          '<h4>RDC - Information</h4>' +
-          '<b> RDC Name: ' + props["RDC Name"] + '</b><br />' +
-          '<b> RDC Tel Contact: ' + props["RDC Tel Contact"] + '</b><br />' +
-          '<b> RDC Email Contact: ' + props["RDC Email Contact"] + '</b><br />' +
-          '<h4>Deputy RDC - Information</h4>' +
-          '<b>Deputy RDC Name: ' + props["Deputy RDC Name"] + '</b><br />' +
-          '<b>Deputy RDC Tel Contact: ' + props["Deputy RDC Tel Contact"] + '</b><br />' +
-          '<b>Deputy RDC Email Contact: ' + props["Deputy RDC Email Contact"] + '</b><br />'
+          '<h4>DHO - Information</h4>' +
+          '<b> DHO Name: ' + props["DHO Name"] + '</b><br />' +
+          '<b> DHO Tel Contact: ' + props["DHO Tel Contact"] + '</b><br />' +
+          '<b> DHO Email Contact: ' + props["DHO Email Contact"] + '</b><br />' +
+          '<h4>DSFP - Information</h4>' +
+          '<b>DSFP Name: ' + props["DSFP Name"] + '</b><br />' +
+          '<b>DSFP Tel Contact: ' + props["DSFP Tel Contact"] + '</b><br />' +
+          '<b>DSFP Email Contact: ' + props["DSFP Email Contact"] + '</b><br />'
           : 'Hover over a district');
       };
 
