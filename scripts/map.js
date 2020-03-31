@@ -98,8 +98,9 @@ $(window).on('load', function () {
       $.getJSON('data/ugandaDistricts_wgs84_simple.geojson', function (data) {
         function highlightFeature(e) {
           var layer = e.target;
+          console.log(layer.feature.properties)
           points.forEach(element => {
-            if (element.District.toLowerCase() == layer.feature.properties.DName2019.toLowerCase()) {
+            if (element.District.toLowerCase() == layer.feature.properties.DName2016.toLowerCase()) {
               for (var attrname in element) { layer.feature.properties[attrname] = element[attrname]; }
             }
 
@@ -126,7 +127,7 @@ $(window).on('load', function () {
         function zoomToFeature(e) {
           var layer = e.target;
           points.forEach(element => {
-            if (element.District.toLowerCase() == layer.feature.properties.DName2019.toLowerCase()) {
+            if (element.District.toLowerCase() == layer.feature.properties.DName2016.toLowerCase()) {
               for (var attrname in element) { layer.feature.properties[attrname] = element[attrname]; }
             }
 
@@ -164,7 +165,7 @@ $(window).on('load', function () {
       // method that we will use to update the control based on feature properties passed
       info.update = function (props) {
         this._div.innerHTML = '<h4>Information</h4>' + (props ?
-          '<b>' + props.DName2019 + '</b><br /> Region: ' + props.F15Regions + '<br />' +
+          '<b> District Name in 2019: ' + props.DName2019 + '</b><br /> <b> District Name in 2016: ' + props.DName2016 + '</b> <br /> Region: ' + props.F15Regions + '<br />' +
           '<h4>DHO - Information</h4>' +
           '<b> DHO Name: ' + props["DHO Name"] + '</b><br />' +
           '<b> DHO Tel Contact: ' + props["DHO Tel Contact"] + '</b><br />' +
