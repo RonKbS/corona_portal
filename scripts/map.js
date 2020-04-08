@@ -95,7 +95,9 @@ $(window).on('load', function () {
 
       var geojson;
 
-      $.getJSON('data/ugandaDistricts_wgs84_simple.geojson', function (data) {
+      $.getJSON('data/All schools.geojson', function (data) {
+        console.log(data)
+        
         function highlightFeature(e) {
           var layer = e.target;
           console.log(layer.feature.properties)
@@ -164,6 +166,7 @@ $(window).on('load', function () {
 
       // method that we will use to update the control based on feature properties passed
       info.update = function (props) {
+       // console.log(props)
         this._div.innerHTML = '<h4>Information</h4>' + (props ?
           '<b> District Name in 2019: ' + props.DName2019 + '</b><br /> <b> District Name in 2016: ' + props.DName2016 + '</b> <br /> Region: ' + props.F15Regions + '<br />' +
           '<h4>DHO - Information</h4>' +
