@@ -8329,3 +8329,9 @@ a[data-toggle="collapse"] {
   left: 50;
   transform: translate(50%,);
 }
+
+.bottomLogo {
+  position: absolute;
+  right:10px;
+  bottom: 10px;
+}

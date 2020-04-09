@@ -1,0 +1,621 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <style>
+        #map {
+            width: 1360px;
+            height: 865px;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="data/people_per_vent_1.js"></script>
+        <script src="data/people_per_ICU_2.js"></script>
+        <script src="data/pop_density_3.js"></script>
+        <script src="data/africa_data_4.js"></script>
+        <script>
+        var highlightLayer;
+        function highlightFeature(e) {
+            highlightLayer = e.target;
+
+            if (e.target.feature.geometry.type === 'LineString') {
+              highlightLayer.setStyle({
+                color: '#ffff00',
+              });
+            } else {
+              highlightLayer.setStyle({
+                fillColor: '#ffff00',
+                fillOpacity: 1
+              });
+            }
+            highlightLayer.openPopup();
+        }
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        }).fitBounds([[-48.55269720556844,-64.34808299990613],[39.188239361747385,90.4093329998759]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+            map.setMaxBounds(map.getBounds());
+        }
+        var layer_Basemap_0 = L.tileLayer('https://cartodb-basemaps-a.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png', {
+            opacity: 1.0,
+            attribution: '',
+            minZoom: 1,
+            maxZoom: 28,
+            minNativeZoom: 0,
+            maxNativeZoom: 18
+        });
+        layer_Basemap_0;
+        map.addLayer(layer_Basemap_0);
+        function pop_people_per_vent_1(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ID'] !== null ? Autolinker.link(feature.properties['ID'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['CODE'] !== null ? Autolinker.link(feature.properties['CODE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">COUNTRY</th>\
+                        <td>' + (feature.properties['COUNTRY'] !== null ? Autolinker.link(feature.properties['COUNTRY'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['CASES'] !== null ? Autolinker.link(feature.properties['CASES'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">POP</th>\
+                        <td>' + (feature.properties['POP'] !== null ? Autolinker.link(feature.properties['POP'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['DENSITY'] !== null ? Autolinker.link(feature.properties['DENSITY'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Cases/pop'] !== null ? Autolinker.link(feature.properties['Cases/pop'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ICU'] !== null ? Autolinker.link(feature.properties['ICU'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['pple_per_I'] !== null ? Autolinker.link(feature.properties['pple_per_I'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ventilator'] !== null ? Autolinker.link(feature.properties['ventilator'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">pple_per_v</th>\
+                        <td>' + (feature.properties['pple_per_v'] !== null ? Autolinker.link(feature.properties['pple_per_v'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['deaths'] !== null ? Autolinker.link(feature.properties['deaths'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['death/pop'] !== null ? Autolinker.link(feature.properties['death/pop'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_people_per_vent_1_0(feature) {
+            if (feature.properties['pple_per_v'] >= 0.000000 && feature.properties['pple_per_v'] <= 794661.100000 ) {
+                return {
+                pane: 'pane_people_per_vent_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(241,238,246,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['pple_per_v'] >= 794661.100000 && feature.properties['pple_per_v'] <= 919277.500000 ) {
+                return {
+                pane: 'pane_people_per_vent_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(189,201,225,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['pple_per_v'] >= 919277.500000 && feature.properties['pple_per_v'] <= 4615169.666667 ) {
+                return {
+                pane: 'pane_people_per_vent_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(116,169,207,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['pple_per_v'] >= 4615169.666667 && feature.properties['pple_per_v'] <= 4615169.666667 ) {
+                return {
+                pane: 'pane_people_per_vent_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(43,140,190,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['pple_per_v'] >= 4615169.666667 && feature.properties['pple_per_v'] <= 21924630.000000 ) {
+                return {
+                pane: 'pane_people_per_vent_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(4,90,141,1.0)',
+                interactive: true,
+            }
+            }
+        }
+        map.createPane('pane_people_per_vent_1');
+        map.getPane('pane_people_per_vent_1').style.zIndex = 401;
+        map.getPane('pane_people_per_vent_1').style['mix-blend-mode'] = 'normal';
+        var layer_people_per_vent_1 = new L.geoJson(json_people_per_vent_1, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_people_per_vent_1',
+            layerName: 'layer_people_per_vent_1',
+            pane: 'pane_people_per_vent_1',
+            onEachFeature: pop_people_per_vent_1,
+            style: style_people_per_vent_1_0,
+        });
+        bounds_group.addLayer(layer_people_per_vent_1);
+        map.addLayer(layer_people_per_vent_1);
+        function pop_people_per_ICU_2(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ID'] !== null ? Autolinker.link(feature.properties['ID'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['CODE'] !== null ? Autolinker.link(feature.properties['CODE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['COUNTRY'] !== null ? Autolinker.link(feature.properties['COUNTRY'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['CASES'] !== null ? Autolinker.link(feature.properties['CASES'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['POP'] !== null ? Autolinker.link(feature.properties['POP'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['DENSITY'] !== null ? Autolinker.link(feature.properties['DENSITY'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Cases/pop'] !== null ? Autolinker.link(feature.properties['Cases/pop'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ICU'] !== null ? Autolinker.link(feature.properties['ICU'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['pple_per_I'] !== null ? Autolinker.link(feature.properties['pple_per_I'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ventilator'] !== null ? Autolinker.link(feature.properties['ventilator'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['pple_per_v'] !== null ? Autolinker.link(feature.properties['pple_per_v'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['deaths'] !== null ? Autolinker.link(feature.properties['deaths'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['death/pop'] !== null ? Autolinker.link(feature.properties['death/pop'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_people_per_ICU_2_0(feature) {
+            if (feature.properties['pple_per_I'] >= 0.000000 && feature.properties['pple_per_I'] <= 103805.590734 ) {
+                return {
+                pane: 'pane_people_per_ICU_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,255,212,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['pple_per_I'] >= 103805.590734 && feature.properties['pple_per_I'] <= 394046.777778 ) {
+                return {
+                pane: 'pane_people_per_ICU_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(254,217,142,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['pple_per_I'] >= 394046.777778 && feature.properties['pple_per_I'] <= 1026868.728831 ) {
+                return {
+                pane: 'pane_people_per_ICU_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(254,153,41,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['pple_per_I'] >= 1026868.728831 && feature.properties['pple_per_I'] <= 1730688.625000 ) {
+                return {
+                pane: 'pane_people_per_ICU_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(217,95,14,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['pple_per_I'] >= 1730688.625000 && feature.properties['pple_per_I'] <= 29853801.000000 ) {
+                return {
+                pane: 'pane_people_per_ICU_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(153,52,4,1.0)',
+                interactive: true,
+            }
+            }
+        }
+        map.createPane('pane_people_per_ICU_2');
+        map.getPane('pane_people_per_ICU_2').style.zIndex = 402;
+        map.getPane('pane_people_per_ICU_2').style['mix-blend-mode'] = 'normal';
+        var layer_people_per_ICU_2 = new L.geoJson(json_people_per_ICU_2, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_people_per_ICU_2',
+            layerName: 'layer_people_per_ICU_2',
+            pane: 'pane_people_per_ICU_2',
+            onEachFeature: pop_people_per_ICU_2,
+            style: style_people_per_ICU_2_0,
+        });
+        bounds_group.addLayer(layer_people_per_ICU_2);
+        function pop_pop_density_3(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ID'] !== null ? Autolinker.link(feature.properties['ID'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['CODE'] !== null ? Autolinker.link(feature.properties['CODE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">COUNTRY</th>\
+                        <td>' + (feature.properties['COUNTRY'] !== null ? Autolinker.link(feature.properties['COUNTRY'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['CASES'] !== null ? Autolinker.link(feature.properties['CASES'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['POP'] !== null ? Autolinker.link(feature.properties['POP'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">DENSITY</th>\
+                        <td>' + (feature.properties['DENSITY'] !== null ? Autolinker.link(feature.properties['DENSITY'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Cases/pop'] !== null ? Autolinker.link(feature.properties['Cases/pop'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ICU'] !== null ? Autolinker.link(feature.properties['ICU'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['pple_per_I'] !== null ? Autolinker.link(feature.properties['pple_per_I'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ventilator'] !== null ? Autolinker.link(feature.properties['ventilator'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['pple_per_v'] !== null ? Autolinker.link(feature.properties['pple_per_v'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['deaths'] !== null ? Autolinker.link(feature.properties['deaths'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['death/pop'] !== null ? Autolinker.link(feature.properties['death/pop'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_pop_density_3_0(feature) {
+            if (feature.properties['DENSITY'] >= 2.000000 && feature.properties['DENSITY'] <= 35.000000 ) {
+                return {
+                pane: 'pane_pop_density_3',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,255,255,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['DENSITY'] >= 35.000000 && feature.properties['DENSITY'] <= 48.000000 ) {
+                return {
+                pane: 'pane_pop_density_3',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,191,191,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['DENSITY'] >= 48.000000 && feature.properties['DENSITY'] <= 67.000000 ) {
+                return {
+                pane: 'pane_pop_density_3',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,128,128,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['DENSITY'] >= 67.000000 && feature.properties['DENSITY'] <= 103.000000 ) {
+                return {
+                pane: 'pane_pop_density_3',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,64,64,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['DENSITY'] >= 103.000000 && feature.properties['DENSITY'] <= 525.000000 ) {
+                return {
+                pane: 'pane_pop_density_3',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,0,0,1.0)',
+                interactive: true,
+            }
+            }
+        }
+        map.createPane('pane_pop_density_3');
+        map.getPane('pane_pop_density_3').style.zIndex = 403;
+        map.getPane('pane_pop_density_3').style['mix-blend-mode'] = 'normal';
+        var layer_pop_density_3 = new L.geoJson(json_pop_density_3, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_pop_density_3',
+            layerName: 'layer_pop_density_3',
+            pane: 'pane_pop_density_3',
+            onEachFeature: pop_pop_density_3,
+            style: style_pop_density_3_0,
+        });
+        bounds_group.addLayer(layer_pop_density_3);
+        function pop_africa_data_4(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ID'] !== null ? Autolinker.link(feature.properties['ID'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['CODE'] !== null ? Autolinker.link(feature.properties['CODE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">COUNTRY</th>\
+                        <td>' + (feature.properties['COUNTRY'] !== null ? Autolinker.link(feature.properties['COUNTRY'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['CASES'] !== null ? Autolinker.link(feature.properties['CASES'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">POP</th>\
+                        <td>' + (feature.properties['POP'] !== null ? Autolinker.link(feature.properties['POP'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['DENSITY'] !== null ? Autolinker.link(feature.properties['DENSITY'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Cases/pop'] !== null ? Autolinker.link(feature.properties['Cases/pop'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ICU'] !== null ? Autolinker.link(feature.properties['ICU'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['pple_per_I'] !== null ? Autolinker.link(feature.properties['pple_per_I'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ventilator'] !== null ? Autolinker.link(feature.properties['ventilator'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['pple_per_v'] !== null ? Autolinker.link(feature.properties['pple_per_v'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['deaths'] !== null ? Autolinker.link(feature.properties['deaths'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['death/pop'] !== null ? Autolinker.link(feature.properties['death/pop'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_africa_data_4_0() {
+            return {
+                pane: 'pane_africa_data_4',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(114,155,111,0.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_africa_data_4');
+        map.getPane('pane_africa_data_4').style.zIndex = 404;
+        map.getPane('pane_africa_data_4').style['mix-blend-mode'] = 'normal';
+        var layer_africa_data_4 = new L.geoJson(json_africa_data_4, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_africa_data_4',
+            layerName: 'layer_africa_data_4',
+            pane: 'pane_africa_data_4',
+            onEachFeature: pop_africa_data_4,
+            style: style_africa_data_4_0,
+        });
+        bounds_group.addLayer(layer_africa_data_4);
+        map.addLayer(layer_africa_data_4);
+        setBounds();
+        </script>
+    </body>
+</html>
