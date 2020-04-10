@@ -59,11 +59,21 @@
             </li>
             <li>
               <a href="#pageSubmenu2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Population</a>
+              <ul class= "list-unstyled" id="pageSubmenu2">
+                <li>
+                  <a style="color:#f8b739;" href="density.html">Population density</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Cases</a>
               <ul class="collapse list-unstyled" id="pageSubmenu2">
                 <li>
-                  <a href="density.html">Population density</a>
+                  <a href="cases_to_pop_map.html">Ratio: Cases to Population</a>
                 </li>
-
+                <li>
+                  <a href="">Ratio: Deaths to Population</a>
+                </li>
               </ul>
             </li>
           </ul>
@@ -83,23 +93,34 @@
           </button>
 
           <!-- The form -->
-        
+          <div class="wrap">
+            <form class="search" action="">
+              <input type="text" class="searchTerm" placeholder="Search Country">
+              <button type="submit" class="searchButton">
+                <i class="fa fa-search"></i>
+              </button>
+            </form>
+          </div>
         </div>
     </div>
     </nav>
-
     <div class="col-xs-12" id="map">
+      <div class="legend">
+        <img class="density" src="images/density_legend.png">
+      </div>
     </div>
-
-
-
   </div>
   </div>
-  <section>
-    <div  class="bottomLogo">
-      <img src="images/GG_Logo2.png" alt="GG_Logo2">
-    </div>
-  </section>
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('ul li a').click(function() {
+        $('li a').removeClass("active");
+        $(this).addClass("active");
+      });
+    });
+  </script>
+
   <script src="js/jquery.min.js"></script>
   <script src="js/popper.js"></script>
   <script src="js/bootstrap.min.js"></script>

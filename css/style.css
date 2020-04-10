@@ -8219,7 +8219,9 @@ h1, h2, h3, h4, h5,
   color: #fff;
   -webkit-transition: all 0.3s;
   -o-transition: all 0.3s;
-  transition: all 0.3s; }
+  transition: all 0.3s; 
+  z-index: 10000;
+}
   #sidebar.active {
     margin-left: -300px; }
   #sidebar .logo {
@@ -8328,10 +8330,4 @@ a[data-toggle="collapse"] {
   top: 50%;
   left: 50;
   transform: translate(50%,);
-}
-
-.bottomLogo {
-  position: absolute;
-  right:10px;
-  bottom: 10px;
 }

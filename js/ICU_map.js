@@ -1,6 +1,6 @@
 var map = L.map('map', {
   minZoom: 4
-}).setView([1.8, 22.24], 2);
+}).setView([1.8, 10.24], 2);
 
 
 function setParent(el, newParent) {

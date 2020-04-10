@@ -13,6 +13,14 @@
   <link rel="stylesheet" href="leaflet/leaflet.css" type="text/css" />
   <script src="leaflet/leaflet.js" charset="utf-8"></script>
   <link rel="stylesheet" href="css/africa_map.css" type="text/css" />
+  <link rel="stylesheet" href="js/ol3.8.2/ol.css" type="text/css" />
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script type="text/javascript" src="js/jquery-1.11.3.min.js" charset="UTF-8"></script>
+  <script src="js/axios.js"></script>
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+  <script src="js/jquery.csv.js"></script>
+
 
   <script src="data/africa_data.geojson" charset="utf-8"></script>
 
@@ -67,9 +75,9 @@
             </li>
             <li>
               <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Cases</a>
-              <ul class="collapse list-unstyled" id="pageSubmenu2">
+              <ul class="list-unstyled" id="pageSubmenu2">
                 <li>
-                  <a href="cases_to_pop_map.html">Ratio: Cases to Population</a>
+                  <a style="color:#f8b739;" href="cases_to_pop_map.html">Ratio: Cases to Population</a>
                 </li>
                 <li>
                   <a href="">Ratio: Deaths to Population</a>
@@ -104,20 +112,21 @@
         </div>
     </div>
     </nav>
-
     <div class="col-xs-12" id="map">
+      <div class="legend">
+        <img class="vent" src="images/vent_legend.png">
+      </div>
     </div>
-
-
-
   </div>
   </div>
 
-  <script src="js/jquery.min.js"></script>
+  <!-- <script src="js/jquery.min.js"></script> -->
   <script src="js/popper.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script src="js/main.js"></script>
-  <script type="text/javascript" src="js/africa_map.js"></script>
+  <script type="text/javascript" src="js/cases_to_pop_map.js"></script>
+  <script type="text/javascript" src="lib/ol3.8.2/ol-debug.js"></script>
+
 
 </body>
 

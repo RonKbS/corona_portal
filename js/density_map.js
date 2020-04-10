@@ -1,6 +1,6 @@
 var map = L.map('map', {
   minZoom: 4
-}).setView([1.8, 22.24], 2);
+}).setView([1.8, 10.24], 2);
 
 
 function setParent(el, newParent) {
@@ -37,7 +37,7 @@ function getColordensity(d) {
     d > 80 ? '#fe9929' :
     d > 50 ? '#fed98e' :
     d > 20 ? '#ffffd4' :
-    d > 0 ? '#fef0d9':
+    d > 0 ? '#fef0d9' :
     '#ffffff00';
 
 }
@@ -52,35 +52,3 @@ function styledensity(feature) {
     fillOpacity: 1
   };
 }
-
-// var densitylegend = L.control({
-//   position: 'bottomleft'
-// });
-// densitylegend.onAdd = function(map) {
-//
-//   var div = L.DomUtil.create('div', 'info legend'),
-//     densityGrades = [0, 20, 50, 80, 190, 730],
-//     densityLabels = [],
-//     from, to;
-//
-//   for (var i = 0; i < densityGrades.length; i++) {
-//     from = densityGrades[i];
-//     to = densityGrades[i + 1];
-//
-//     densityLabels.push(
-//       '<i style="background:' + getColordensity(from) + '"></i> ' +
-//       from + (to ? '&ndash;' + to : '+'));
-//
-//   }
-//
-//   div.innerHTML = densityLabels.join('<br>');
-//   return div;
-// };
-//
-// var legendFrom = $('.leaflet-top.leaflet-right');
-// var legendTo = $('#container1');
-// setParent(legendFrom[0], legendTo[0]);
-//
-// var legendFrom = $('.leaflet-bottom.leaflet-left');
-// var legendTo = $('#container2');
-// setParent(legendFrom[0], legendTo[0]);

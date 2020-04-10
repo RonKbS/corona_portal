@@ -1,6 +1,6 @@
 var map = L.map('map', {
   minZoom: 4
-}).setView([1.8, 22.24], 2);
+}).setView([1.8, 10.24], 2);
 
 
 function setParent(el, newParent) {
@@ -35,8 +35,8 @@ function getColorvents(d) {
   return d > 8000000 ? '#045a8d' :
     d > 1600000 ? '#2b8cbe' :
     d > 1000000 ? '#74a9cf' :
-    d > 800000 ? '#dbf8ff' :
-    d > 200000 ? '#bdc9e1' :
+    d > 800000 ? '#bdc9e1' :
+    d > 200000 ? '#dbf8ff' :
     d > 0 ? '#f1eef6' :
     '#ffffff00';
 }
