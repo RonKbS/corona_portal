@@ -17,3 +17,15 @@
   });
 
 })(jQuery);
+
+var body = document.getElementsByTagName('body')[0],
+    sidebar = document.getElementById('sidebar');
+
+// sidebar overflow hide
+sidebar.onmouseover = function() { 
+    body.style.overflow = 'hidden';
+}
+
+sidebar.onmouseout = function() { 
+    body.style.overflow = 'auto';
+}
