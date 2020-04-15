@@ -21,19 +21,19 @@
 <body>
 
   <div class="wrapper d-flex align-items-stretch">
-    <nav id="sidebar" class="sidenav">
+    <nav id="sidebar">
       <div>
         <a href="#" class="img logo rounded mb-30" style="background-image: url(images/logo10.jpeg);"></a>
         <div class="p-4 pt-5">
           <ul class="list-unstyled components mb-5">
             <li>
               <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Infrastructure</a>
-              <ul class="collapse list-unstyled" id="homeSubmenu">
+              <ul class=" list-unstyled" id="homeSubmenu">
                 <li>
                   <a href="ventilators_map.html">Ventilators</a>
                 </li>
                 <li>
-                  <a href="ICU_map.html">ICUs</a>
+                  <a style="color:#f8b739;" href="ICU_map.html">ICUs</a>
                 </li>
                 <li>
                   <a href="#">Health Centers</a>
@@ -84,25 +84,24 @@
     <!-- Page Content  -->
     <div id="content" class="p-2 p-md-1">
 
-      <nav class="navbar navbar-expand-lg navbar-light bg-light ">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
 
           <button type="button" id="sidebarCollapse" class="btn btn-primary">
             <i class="fa fa-bars"></i>
             <span class="sr-only">Toggle Menu</span>
-          </button> 
+          </button>
 
           <!-- The form -->
-        
+         
         </div>
     </div>
     </nav>
-
     <div class="col-xs-12" id="map">
+      <div class="legend">
+        <img class="ICU" src="images/ICU_legend.png">
+      </div>
     </div>
-
-
-
   </div>
   </div>
 
@@ -110,7 +109,7 @@
   <script src="js/popper.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script src="js/main.js"></script>
-  <script type="text/javascript" src="js/africa_map.js"></script>
+  <script type="text/javascript" src="js/ICU_map.js"></script>
 
 </body>
 
