@@ -8225,13 +8225,9 @@ h1, h2, h3, h4, h5,
   #sidebar.active {
     margin-left: -300px; }
   #sidebar .logo {
-    display: block;
-    width: 290px;
-    height: 69px;
-    margin: 0 auto;
-  margin-bottom: 60px;
-  margin-top: 5px;
- }
+    background: #e15b26;
+    height: 16em;
+   }
     #sidebar .logo span {
       display: block; }
   #sidebar ul.components {
@@ -8247,7 +8243,14 @@ h1, h2, h3, h4, h5,
       display: block;
       color: rgba(255, 255, 255, 0.8);
       border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
-      #sidebar ul li a:hover {
+      #tops ul li a:focus{
+        background-color: #4e4e4e;
+        box-shadow: 0 3px #fff;
+        color: #f8b739;
+        padding: 8px;
+        border-top-left-radius: 12px;
+        border-top-right-radius: 12px;      }
+        #sidebar ul li a:hover {
         color: #f8b739; }
     #sidebar ul li.active > a {
       background: transparent;

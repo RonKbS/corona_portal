@@ -16,115 +16,165 @@
 
   <script src="data/africa_data.geojson" charset="utf-8"></script>
 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
 </head>
 
 <body>
 
-      <div class="wrapper d-flex align-items-stretch">
-        <nav id="sidebar">
-          <div>
-            <a href="#" class="img logo rounded mb-30"></a>
-            <div class="p-4 pt-5" style="max-height: 85vh;overflow: auto;">
-              <ul class="list-unstyled components mb-5">
-                <li>
-                  <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Health</a>
-                  <ul class="collapse list-unstyled" id="homeSubmenu">
-                    <li>
-                      <a href="#">Health Center Coverage</a>
-                    </li>
-                  </ul>
-                </li>
-                <li>
-                  <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Action</a>
-                  <ul class="collapse list-unstyled" id="pageSubmenu">
-                    <li>
-                      <a href="#">Country Response Measures</a>
-                    </li>
-                    <li>
-                      <a href="#">Contact Map</a>
-                    </li>
-                    <li>
-                      <a href="#">Government Intervention</a>
-                    </li>
-                  </ul>
-                </li>
-                <li>
-                  <a href="#pageSubmenu2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Infrastructure</a>
-                  <ul class="collapse list-unstyled" id="pageSubmenu2">
-                    <h6><strong>Health Infrastructure</strong></h6>
-                    <li>
-                      <a href="#">Ventilators</a>
-                    </li>
-                    <li>
-                      <a href="#">ICUs</a>
-                    </li>
-                    <h6><strong>Vulnerability</strong></h6>
-                    <li>
-                      <a href="#">HIV/AIDS</a>
-                    </li>
-                    <li>
-                      <a href="#">TB</a>
-                    </li>
-                    <li>
-                      <a href="#">Elderly</a>
-                    </li>
-                    <li>
-                      <a href="#">Elderly with Cases</a>
-                    </li>
-                    <h6><strong>Population</strong></h6>
-                    <li>
-                      <a href="#">Population Density</a>
-                    </li>
-                    <h6><strong>Cases</strong></h6>
-                    <li>
-                      <a href="#">Ratio: Cases to Population</a>
-                    </li>
-                    <li>
-                      <a href="#">Ratio: Deaths to Population</a>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-            </div>
+  <div class="wrapper d-flex align-items-stretch">
+    <nav id="sidebar">
+      <div>
+        <div class="img logo rounded mb-30">
+          <a href="index.html">
+            <p style="font-size:6.6rem;color:white;text-align:center;top:-53px;position:relative;">PACA</p>
+            <p style="font-size:20px;color:white;top:-128px;position:relative;text-align:justify;left:4em;">Pan<br /> African<br /> COVID 19<br /> Analysis</p>
+          </a>
+        </div>
+        <div class="p-4 pt-5" style="max-height: 85vh;overflow: auto;">
+          <div id="tops">
+            <ul style="display:flex;" class="list-unstyled components mb-5">
+              <li id="Visualizebtn" style="margin-right:1em;">
+                <a href="#">Visualize</a>
+              </li>
+              <li id="Interrogatebtn" style="margin-right:1em;">
+                <a href="#">Interrogate</a>
+              </li>
+              <li id="Ugandabtn" style="margin-right:1em;">
+                <a href="#">Uganda </a>
+              </li>
+            </ul>
           </div>
-        </nav>
+          <div>
+            <ul class="list-unstyled components mb-5">
+              <li id="visualize" style="display:none">
+                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Health</a>
+                <ul class="collapse list-unstyled" id="homeSubmenu">
+                  <li>
+                    <a href="#">Health Center Coverage</a>
+                  </li>
+                </ul>
+              </li>
+              <li id="interrogate" style="display:none">
+                <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Response</a>
+                <ul class="collapse list-unstyled" id="pageSubmenu">
+                  <li>
+                    <a href="#">Country Response Measures</a>
+                  </li>
+                  <li>
+                    <a href="#">Contact Map</a>
+                  </li>
+                  <li>
+                    <a href="govt_map.html">Government Intervention</a>
+                  </li>
+                </ul>
+              </li>
+              <li id="uganda" style="display:none">
+                <a href="#pageSubmenu2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Infrastructure</a>
+                <ul class="collapse list-unstyled" id="pageSubmenu2">
+                  <h6><strong>Health Infrastructure</strong></h6>
+                  <li>
+                    <a href="#">Ventilators</a>
+                  </li>
+                  <li>
+                    <a href="#">ICUs</a>
+                  </li>
+                  <h6><strong>Vulnerability</strong></h6>
+                  <li>
+                    <a href="#">HIV/AIDS</a>
+                  </li>
+                  <li>
+                    <a href="#">TB</a>
+                  </li>
+                  <li>
+                    <a href="#">Elderly</a>
+                  </li>
+                  <li>
+                    <a href="#">Elderly with Cases</a>
+                  </li>
+                  <h6><strong>Population</strong></h6>
+                  <li>
+                    <a href="#">Population Density</a>
+                  </li>
+                  <h6><strong>Cases</strong></h6>
+                  <li>
+                    <a href="#">Ratio: Cases to Population</a>
+                  </li>
+                  <li>
+                    <a href="#">Ratio: Deaths to Population</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
 
-        <!-- Page Content  -->
-        <div id="content" class="p-2 p-md-1">
+    <!-- Page Content  -->
+    <div id="content" class="p-2 p-md-1">
 
-          <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top">
-            <div class="container-fluid">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top">
+        <div class="container-fluid">
 
-              <button type="button" id="sidebarCollapse" class="btn btn-primary">
-                <i class="fa fa-bars"></i>
-                <span class="sr-only">Toggle Menu</span>
+          <button type="button" id="sidebarCollapse" class="btn btn-primary">
+            <i class="fa fa-bars"></i>
+            <span class="sr-only">Toggle Menu</span>
+          </button>
+
+          <!-- The form -->
+          <div class="wrap">
+            <form class="search" action="">
+              <input type="text" class="searchTerm" placeholder="Search Country">
+              <button type="submit" class="searchButton">
+                <i class="fa fa-search"></i>
               </button>
-
-              <!-- The form -->
-              <div class="wrap">
-                <form class="search" action="">
-                  <input type="text" class="searchTerm" placeholder="Search Country">
-                  <button type="submit" class="searchButton">
-                    <i class="fa fa-search"></i>
-                  </button>
-                </form>
-              </div>
-            </div>
+            </form>
+          </div>
         </div>
-        </nav>
+    </div>
+    </nav>
 
-        <div class="col-xs-12" id="map">
-        </div>
+    <div class="col-xs-12" id="map">
+    </div>
 
-      </div>
-      </div>
+  </div>
+  </div>
 
-      <script src="js/jquery.min.js"></script>
-      <script src="js/popper.js"></script>
-      <script src="js/bootstrap.min.js"></script>
-      <script src="js/main.js"></script>
-      <script type="text/javascript" src="js/africa_map.js"></script>
+  <script src="js/jquery.min.js"></script>
+  <script src="js/axios.js"></script>
+  <script src="js/jquery.csv.js"></script>
+  <script src="js/popper.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/main.js"></script>
+  <script type="text/javascript" src="js/africa_map.js"></script>
 
+  <script>
+    $("#Visualizebtn").off().on("click", function() {
+      $("#visualize").toggle();
+    });
+    $(document).click(function(e) {
+      if ($(e.target).closest('#visualize, #Visualizebtn').length == 0) {
+        $("#visualize").hide();
+      }
+    })
+    $("#Interrogatebtn").off().on("click", function() {
+      $("#interrogate").toggle();
+    });
+    $(document).click(function(e) {
+      if ($(e.target).closest('#interrogate, #Interrogatebtn').length == 0) {
+        $("#interrogate").hide();
+      }
+    })
+    $("#Ugandabtn").off().on("click", function() {
+      $("#uganda").toggle();
+    });
+    $(document).click(function(e) {
+      if ($(e.target).closest('#uganda, #Ugandabtn').length == 0) {
+        $("#uganda").hide();
+      }
+    })
+  </script>
 </body>
 
 </html>
