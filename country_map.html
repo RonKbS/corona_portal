@@ -29,7 +29,7 @@
             <p style="font-size:20px;color:white;top:-128px;position:relative;text-align:justify;left:4em;">Pan<br /> African<br /> COVID 19<br /> Analysis</p>
           </a>
         </div>
-        <div class="p-4 pt-5" style="max-height: 66vh;overflow: auto;">
+        <div class="p-4 pt-5" style="max-height: 85vh;overflow: auto;">
           <!-- <div id="tops">
             <ul style="display:flex;" class="list-unstyled components mb-5">
               <li id="Visualizebtn" style="margin-right:1em;">
@@ -47,12 +47,12 @@
             <ul class="list-unstyled components mb-5">
               <li id="visualize">
                 <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Infrastructure</a>
-                <ul class="list-unstyled" id="homeSubmenu">
+                <ul class="collapse list-unstyled" id="homeSubmenu">
                   <li>
                     <a href="ventilators_map.html">Ventilators</a>
                   </li>
                   <li>
-                    <a style="color:#f8b739;" href="ICU_map.html">ICUs</a>
+                    <a href="ICU_map.html">ICUs</a>
                   </li>
                   <li>
                     <a href="#">Health Center Coverage</a>
@@ -83,12 +83,12 @@
                   </li>
                 </ul>
                 <a href="#homeSubmenu3" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Response</a>
-                <ul class="collapse list-unstyled" id="homeSubmenu3">
+                <ul class="list-unstyled" id="homeSubmenu3">
                   <li>
                     <a href="govt_map.html">Government Intervention</a>
                   </li>
                   <li>
-                    <a href="country_map.html">Country Response Measures</a>
+                    <a style="color:#f8b739;" href="country_map.html">Country Response Measures</a>
                   </li>
                 </ul>
               </li>
@@ -151,7 +151,7 @@
     <!-- Page Content  -->
     <div id="content" class="p-2 p-md-1">
 
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light ">
         <div class="container-fluid">
 
           <button type="button" id="sidebarCollapse" class="btn btn-primary">
@@ -171,9 +171,6 @@
       <div class="logo2">
         <img style="width:56%;" class="irish_logo" src="images/irish.png">
       </div>
-      <div class="legend">
-        <img class="ICU" src="images/ICU_legend.png">
-      </div>
     </div>
   </div>
   </div>
@@ -184,7 +181,7 @@
   <script src="js/popper.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script src="js/main.js"></script>
-  <script type="text/javascript" src="js/ICU_map.js"></script>
+  <script type="text/javascript" src="js/country_map.js"></script>
 
   <!-- <script>
     $("#Visualizebtn").off().on("click", function() {

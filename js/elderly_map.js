@@ -1,4 +1,3 @@
-
 let long_id = "1tRF8gjyRd0oA2sSpTKmZqambggZzUM0YiED6KqF8H8M"
 let gid = "1502462034"
 let url = `https://docs.google.com/spreadsheets/d/${long_id}/export?format=csv&id=${long_id}&gid=${gid}`
@@ -13,18 +12,15 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png
   maxZoom: 19
 }).addTo(map);
 
-
-
-function getColorICU(d) {
-  return d > 29900000 ? '#b30000' :
-    d > 2500000 ? '#e34a33' :
-    d > 800000 ? '#fc8d59' :
-    d > 400000 ? '#fdbb84' :
-    d > 200000 ? '#fdd49e' :
-    d > 0 ? '#fef0d9':
+function getColorelderly(d) {
+  return d > 11 ? '#050505' :
+    d > 9 ? '#424242' :
+    d > 7 ? '#808080' :
+    d > 4 ? '#bdbdbd' :
+    d > 2 ? '#fafafa' :
+    d > 0 ? '#f1eef6' :
     '#ffffff00';
 }
-
 
 axios.get(url)
   .then(responseArrs => {
@@ -33,13 +29,13 @@ axios.get(url)
     icus_data.forEach(object_ => {
       icus_obj[object_["COUNTRY"]] = [
         object_["POP"],
-        object_["ICU"],
-        object_["PEOPLE_PER_ICU"]
+        object_["Elderly_rates"],
+        object_["Elderly_percentage"]
       ]
     })
 
     let african_data = L.geoJson(africa_data, {
-      style: styleICU
+      style: styleelderly
     }).addTo(map);
 
     african_data.eachLayer(function (layer) {
@@ -47,8 +43,8 @@ axios.get(url)
       layer.bindPopup(
         '<strong>Country:</strong> ' + country_
         + '<br>' + '<strong>Population:</strong> ' + icus_obj[country_][0]
-        + '<br>' + '<strong>ICUs:</strong> ' + icus_obj[country_][1]
-        + '<br>' + '<strong>People per ICU:</strong> ' + icus_obj[country_][2]
+        + '<br>' + '<strong>Elderly rates:</strong> ' + icus_obj[country_][1]
+        + '<br>' + '<strong>Elderly percentage:</strong> ' + icus_obj[country_][2]
       );
       layer.on('mouseover', function (e) {
         this.openPopup();
@@ -58,9 +54,9 @@ axios.get(url)
       });
     });
 
-    function styleICU(feature) {
+    function styleelderly(feature) {
       return {
-        fillColor: getColorICU(parseFloat(icus_obj[feature.properties.COUNTRY][2].split(",").join(""))),
+        fillColor: getColorelderly(parseFloat(icus_obj[feature.properties.COUNTRY][2].split(",").join(""))),
         weight: 1,
         opacity: 1,
         color: 'black',

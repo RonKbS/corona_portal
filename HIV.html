@@ -29,8 +29,8 @@
             <p style="font-size:20px;color:white;top:-128px;position:relative;text-align:justify;left:4em;">Pan<br /> African<br /> COVID 19<br /> Analysis</p>
           </a>
         </div>
-        <div class="p-4 pt-5" style="max-height: 85vh;overflow: auto;">
-          <div id="tops">
+        <div class="p-4 pt-5" style="max-height: 66vh;overflow: auto;">
+          <!-- <div id="tops">
             <ul style="display:flex;" class="list-unstyled components mb-5">
               <li id="Visualizebtn" style="margin-right:1em;">
                 <a style="background-color:#4e4e4e;box-shadow:0 3px #fff;color:#f8b739;padding:8px;border-top-left-radius:12px;border-top-right-radius:12px;"href="#">Visualize</a>
@@ -42,7 +42,7 @@
                 <a href="#">Uganda </a>
               </li>
             </ul>
-          </div>
+          </div> -->
           <div>
             <ul class="list-unstyled components mb-5">
               <li id="visualize">
@@ -67,19 +67,28 @@
                     <a style="color:#f8b739;" href="HIV.html">HIV/AIDS(%)</a>
                   </li>
                   <li>
-                    <a href="#">TB(%)</a>
+                    <a href="TB.html">TB(%)</a>
                   </li>
                   <li>
-                    <a href="#">Elderly(%)</a>
+                    <a href="elderly.html">Elderly(%)</a>
                   </li>
                   <li>
-                    <a href="#">Vulnerable with known HIV/AIDS & TB cases</a>
+                    <a href="vulnerable.html">Vulnerable with known HIV/AIDS & TB cases</a>
                   </li>
                   <li>
-                    <a href="#">Cases per 100,000 people</a>
+                    <a href="cases.html">Cases per 100,000 people</a>
                   </li>
                   <li>
-                    <a href="#">Deaths per 100,000 people</a>
+                    <a href="deaths.html">Deaths per 100,000 people</a>
+                  </li>
+                </ul>
+                <a href="#homeSubmenu3" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Response</a>
+                <ul class="collapse list-unstyled" id="homeSubmenu3">
+                  <li>
+                    <a href="govt_map.html">Government Intervention</a>
+                  </li>
+                  <li>
+                    <a href="country_map.html">Country Response Measures</a>
                   </li>
                 </ul>
               </li>
@@ -156,8 +165,14 @@
     </div>
     </nav>
     <div class="col-xs-12" id="map">
+      <div class="logo1">
+        <img style="width:56%;" class="gg_logo" src="images/GG_Logo2.png">
+      </div>
+      <div class="logo2">
+        <img style="width:56%;" class="irish_logo" src="images/irish.png">
+      </div>
       <div class="legend">
-        <img class="density" src="images/density_legend.png">
+        <img class="HIV" src="images/HIV_legend.png">
       </div>
     </div>
   </div>
@@ -171,7 +186,7 @@
   <script src="js/main.js"></script>
   <script type="text/javascript" src="js/HIV_map.js"></script>
 
-  <script>
+  <!-- <script>
     $("#Visualizebtn").off().on("click", function() {
       $("#visualize").toggle();
     });
@@ -196,7 +211,7 @@
         $("#uganda").hide();
       }
     })
-  </script>
+  </script> -->
 
 </body>
 

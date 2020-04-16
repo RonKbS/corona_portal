@@ -12,10 +12,6 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png
   maxZoom: 19
 }).addTo(map);
 
-let african_data = L.geoJson(africa_data, {
-  style: stylevents
-}).addTo(map);
-
 function getColorvents(d) {
   return d > 8000000 ? '#045a8d' :
     d > 1600000 ? '#2b8cbe' :
@@ -26,36 +22,29 @@ function getColorvents(d) {
               '#ffffff00';
 }
 
-function stylevents(feature) {
-  return {
-    fillColor: getColorvents(feature.properties.pple_vents),
-    weight: 1,
-    opacity: 1,
-    color: 'black',
-    dashArray: '0',
-    fillOpacity: 1
-  };
-}
-
 axios.get(url)
   .then(responseArrs => {
-    ventilators_data = $.csv.toObjects(responseArrs.data);
-    let ventilators_obj = {}
-    ventilators_data.forEach(object_ => {
-      ventilators_obj[object_["COUNTRY"]] = [
+    icus_data = $.csv.toObjects(responseArrs.data);
+    let icus_obj = {}
+    icus_data.forEach(object_ => {
+      icus_obj[object_["COUNTRY"]] = [
         object_["POP"],
         object_["VENTILATORS"],
         object_["PEOPLE_PER_VENT"]
       ]
     })
 
+    let african_data = L.geoJson(africa_data, {
+      style: stylevents
+    }).addTo(map);
+
     african_data.eachLayer(function (layer) {
       let country_ = layer.feature.properties.COUNTRY;
       layer.bindPopup(
         '<strong>Country:</strong> ' + country_
-        + '<br>' + '<strong>Population:</strong> ' + ventilators_obj[country_][0]
-        + '<br>' + '<strong>Ventilators:</strong> ' + ventilators_obj[country_][1]
-        + '<br>' + '<strong>People per ventilator:</strong> ' + ventilators_obj[country_][2]
+        + '<br>' + '<strong>Population:</strong> ' + icus_obj[country_][0]
+        + '<br>' + '<strong>Ventilators:</strong> ' + icus_obj[country_][1]
+        + '<br>' + '<strong>People per ventilator:</strong> ' + icus_obj[country_][2]
       );
       layer.on('mouseover', function (e) {
         this.openPopup();
@@ -64,6 +53,17 @@ axios.get(url)
         this.closePopup();
       });
     });
+
+    function stylevents(feature) {
+      return {
+        fillColor: getColorvents(parseFloat(icus_obj[feature.properties.COUNTRY][2].split(",").join(""))),
+        weight: 1,
+        opacity: 1,
+        color: 'black',
+        dashArray: '0',
+        fillOpacity: 1
+      };
+    }
   })
 
   var info = L.control();
@@ -74,7 +74,7 @@ axios.get(url)
   };
 
   info.update = function(props) {
-    this._div.innerHTML =  (props ?
+    this._div.innerHTML = (props ?
       '<b>' + '</b><br />' + ' ' :
       'Hover over a country');
   };

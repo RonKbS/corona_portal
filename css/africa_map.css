@@ -20,7 +20,7 @@
   z-index: 1000;
   width: 10%;
   position: absolute;
-  bottom: 28px;
+  bottom: 99px;
   right: 10px;
 }
 
@@ -28,7 +28,7 @@
   z-index: 1000;
   width: 10%;
   position: absolute;
-  bottom: 28px;
+  bottom: 105px;
   right: 5px;
 }
 
@@ -36,10 +36,85 @@
   z-index: 1000;
   width: 20%;
   position: absolute;
-  bottom: -9em;
-  right: -4em;
+  bottom: -3.5em;
+  right: -5em;
 }
 
+.HIV {
+  z-index: 1000;
+  width: 8%;
+  position: absolute;
+  bottom: 99px;
+  right: 10px;
+}
+
+.TB {
+  z-index: 1000;
+  width: 7%;
+  position: absolute;
+  bottom: 99px;
+  right: 10px;
+}
+
+.elderly {
+  z-index: 1000;
+  width: 23%;
+  position: absolute;
+  bottom: -75px;
+  right: -126px;
+}
+
+.vulnerable {
+  z-index: 1000;
+  width: 16%;
+  position: absolute;
+  bottom: 95px;
+  right: 3px;
+}
+
+.cases {
+  z-index: 1000;
+  width: 14%;
+  position: absolute;
+  bottom: 95px;
+  right: 3px;
+}
+
+.deaths {
+  z-index: 1000;
+  width: 14%;
+  position: absolute;
+  bottom: 95px;
+  right: 3px;
+}
+
+.logo1 {
+  left: 23em;
+  z-index: 1000;
+  position: absolute;
+  bottom: 21px;
+}
+
+.logo2 {
+  z-index: 1000;
+  position: absolute;
+  bottom: 9px;
+  right: -9em;
+}
+
+/* .logo11 {
+  left: 23em;
+  z-index: 1000;
+  position: absolute;
+  bottom: 9px;
+}
+
+.logo22 {
+  z-index: 1000;
+  position: absolute;
+  bottom: -2px;
+  right: 43em;
+} */
 div #container3 {
   position: relative;
   width: 100%;

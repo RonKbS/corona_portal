@@ -47,19 +47,19 @@
             <ul class="list-unstyled components mb-5">
               <li id="visualize">
                 <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Infrastructure</a>
-                <ul class="list-unstyled" id="homeSubmenu">
+                <ul class="collapse list-unstyled" id="homeSubmenu">
                   <li>
                     <a href="ventilators_map.html">Ventilators</a>
                   </li>
                   <li>
-                    <a style="color:#f8b739;" href="ICU_map.html">ICUs</a>
+                    <a href="ICU_map.html">ICUs</a>
                   </li>
                   <li>
                     <a href="#">Health Center Coverage</a>
                   </li>
                 </ul>
                 <a href="#homeSubmenu2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Population</a>
-                <ul class="collapse list-unstyled" id="homeSubmenu2">
+                <ul class="list-unstyled" id="homeSubmenu2">
                   <li>
                     <a href="density.html">Population Density</a>
                   </li>
@@ -76,7 +76,7 @@
                     <a href="vulnerable.html">Vulnerable with known HIV/AIDS & TB cases</a>
                   </li>
                   <li>
-                    <a href="cases.html">Cases per 100,000 people</a>
+                    <a style="color:#f8b739;" href="cases.html">Cases per 100,000 people</a>
                   </li>
                   <li>
                     <a href="deaths.html">Deaths per 100,000 people</a>
@@ -172,7 +172,7 @@
         <img style="width:56%;" class="irish_logo" src="images/irish.png">
       </div>
       <div class="legend">
-        <img class="ICU" src="images/ICU_legend.png">
+        <img class="cases" src="images/cases_legend.png">
       </div>
     </div>
   </div>
@@ -184,7 +184,7 @@
   <script src="js/popper.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script src="js/main.js"></script>
-  <script type="text/javascript" src="js/ICU_map.js"></script>
+  <script type="text/javascript" src="js/cases_map.js"></script>
 
   <!-- <script>
     $("#Visualizebtn").off().on("click", function() {

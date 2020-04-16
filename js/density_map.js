@@ -12,10 +12,6 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png
   maxZoom: 19
 }).addTo(map);
 
-let african_data = L.geoJson(africa_data, {
-  style: styledensity
-}).addTo(map);
-
 function getColordensity(d) {
   return d > 730 ? '#993404' :
     d > 190 ? '#d95f0e' :
@@ -28,21 +24,25 @@ function getColordensity(d) {
 
 axios.get(url)
   .then(responseArrs => {
-    ventilators_data = $.csv.toObjects(responseArrs.data);
-    let ventilators_obj = {}
-    ventilators_data.forEach(object_ => {
-      ventilators_obj[object_["COUNTRY"]] = [
+    icus_data = $.csv.toObjects(responseArrs.data);
+    let icus_obj = {}
+    icus_data.forEach(object_ => {
+      icus_obj[object_["COUNTRY"]] = [
         object_["POP"],
         object_["DENSITY"]
       ]
     })
 
+    let african_data = L.geoJson(africa_data, {
+      style: styledensity
+    }).addTo(map);
+
     african_data.eachLayer(function (layer) {
       let country_ = layer.feature.properties.COUNTRY;
       layer.bindPopup(
         '<strong>Country:</strong> ' + country_
-        + '<br>' + '<strong>Population:</strong> ' + ventilators_obj[country_][0]
-        + '<br>' + '<strong>Population Density:</strong> ' + ventilators_obj[country_][1]
+        + '<br>' + '<strong>Population:</strong> ' + icus_obj[country_][0]
+        + '<br>' + '<strong>Population Density:</strong> ' + icus_obj[country_][1]
       );
       layer.on('mouseover', function (e) {
         this.openPopup();
@@ -51,18 +51,18 @@ axios.get(url)
         this.closePopup();
       });
     });
-  })
 
-  function styledensity(feature, ventilators_obj) {
-    return {
-      fillColor: getColordensity(ventilators_obj),
-      weight: 1,
-      opacity: 1,
-      color: 'black',
-      dashArray: '0',
-      fillOpacity: 1
-    };
-  }
+    function styledensity(feature) {
+      return {
+        fillColor: getColordensity(parseFloat(icus_obj[feature.properties.COUNTRY][1].split(",").join(""))),
+        weight: 1,
+        opacity: 1,
+        color: 'black',
+        dashArray: '0',
+        fillOpacity: 1
+      };
+    }
+  })
 
   var info = L.control();
   info.onAdd = function(map) {
@@ -72,7 +72,7 @@ axios.get(url)
   };
 
   info.update = function(props) {
-    this._div.innerHTML =  (props ?
+    this._div.innerHTML = (props ?
       '<b>' + '</b><br />' + ' ' :
       'Hover over a country');
   };
