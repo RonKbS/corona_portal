@@ -47,9 +47,9 @@
             <ul class="list-unstyled components mb-5">
               <li id="visualize">
                 <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Infrastructure</a>
-                <ul class="list-unstyled" id="homeSubmenu">
+                <ul class="collapse list-unstyled" id="homeSubmenu">
                   <li>
-                    <a style="color:#f8b739;" href="ventilators_map.html">Ventilators</a>
+                    <a href="ventilators_map.html">Ventilators</a>
                   </li>
                   <li>
                     <a href="ICU_map.html">ICUs</a>
@@ -59,12 +59,12 @@
                   </li>
                 </ul>
                 <a href="#homeSubmenu2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Population</a>
-                <ul class="collapse list-unstyled" id="homeSubmenu2">
+                <ul class="list-unstyled" id="homeSubmenu2">
                   <li>
                     <a href="density.html">Population Density</a>
                   </li>
                   <li>
-                    <a href="HIV.html">HIV/AIDS(%)</a>
+                    <a style="color:#f8b739;" href="HIV.html">HIV/AIDS(%)</a>
                   </li>
                   <li>
                     <a href="#">TB(%)</a>
@@ -142,7 +142,7 @@
     <!-- Page Content  -->
     <div id="content" class="p-2 p-md-1">
 
-      <nav class="navbar navbar-expand-lg navbar-light bg-light ">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
 
           <button type="button" id="sidebarCollapse" class="btn btn-primary">
@@ -157,7 +157,7 @@
     </nav>
     <div class="col-xs-12" id="map">
       <div class="legend">
-        <img class="vent" src="images/vent_legend.png">
+        <img class="density" src="images/density_legend.png">
       </div>
     </div>
   </div>
@@ -169,7 +169,7 @@
   <script src="js/popper.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script src="js/main.js"></script>
-  <script type="text/javascript" src="js/ventilators_map.js"></script>
+  <script type="text/javascript" src="js/HIV_map.js"></script>
 
   <script>
     $("#Visualizebtn").off().on("click", function() {

@@ -2,9 +2,10 @@
 let long_id = "1tRF8gjyRd0oA2sSpTKmZqambggZzUM0YiED6KqF8H8M"
 let gid = "1502462034"
 let url = `https://docs.google.com/spreadsheets/d/${long_id}/export?format=csv&id=${long_id}&gid=${gid}`
+
 let map = L.map('map', {
-  minZoom: 4
-}).setView([1.8, 10.24], 2);
+  minZoom: 3.4
+}).setView([1.8, -10.24], 2);
 
 L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png', {
   attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
@@ -52,10 +53,10 @@ axios.get(url)
     african_data.eachLayer(function (layer) {
       let country_ = layer.feature.properties.COUNTRY;
       layer.bindPopup(
-        '<strong>COUNTRY:</strong> ' + country_ 
-        + '<br>' + '<strong>POPULATION:</strong> ' + icus_obj[country_][0] 
+        '<strong>Country:</strong> ' + country_
+        + '<br>' + '<strong>Population:</strong> ' + icus_obj[country_][0]
         + '<br>' + '<strong>ICUs:</strong> ' + icus_obj[country_][1]
-        + '<br>' + '<strong>PEOPLE PER ICU:</strong> ' + icus_obj[country_][2]
+        + '<br>' + '<strong>People per ICU:</strong> ' + icus_obj[country_][2]
       );
       layer.on('mouseover', function (e) {
         this.openPopup();
@@ -65,3 +66,17 @@ axios.get(url)
       });
     });
   })
+
+  var info = L.control();
+  info.onAdd = function(map) {
+    this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
+    this.update();
+    return this._div;
+  };
+
+  info.update = function(props) {
+    this._div.innerHTML =  (props ?
+      '<b>' + '</b><br />' + ' ' :
+      'Hover over a country');
+  };
+  info.addTo(map);

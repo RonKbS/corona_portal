@@ -21,7 +21,7 @@
   width: 10%;
   position: absolute;
   bottom: 28px;
-  right: 0;
+  right: 10px;
 }
 
 .ICU {
@@ -29,15 +29,15 @@
   width: 10%;
   position: absolute;
   bottom: 28px;
-  right: 0;
+  right: 5px;
 }
 
 .vent {
   z-index: 1000;
   width: 20%;
   position: absolute;
-  bottom: -14em;
-  right: -5em;
+  bottom: -9em;
+  right: -4em;
 }
 
 div #container3 {
@@ -109,19 +109,19 @@ div #input_values {
   display: none;
 }
 
-h6{
+h6 {
   font-family: "Poppins", Arial, sans-serif;
-    font-size: 14px;
-    line-height: 1.8;
-    font-weight: normal;
+  font-size: 14px;
+  line-height: 1.8;
+  font-weight: normal;
 }
 
 .info {
   padding: 14px 8px;
   font-size: 18px;
   background: white;
-  background: rgba(255,255,255,0.8);
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
   color: black;
 }
