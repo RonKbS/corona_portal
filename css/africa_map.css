@@ -1,43 +1,202 @@
 @media (max-height:700px) {
-#map {
-  width: 100%;
-  height: 88.5%;
-  position: absolute;
-  top: 77px;
-  /* left: 22em; */
-}
+  #map {
+    width: 100%;
+    height: 88.5%;
+    position: absolute;
+    top: 77px;
+  }
 }
 
-@media (max-height:701px) {
+@media (min-height:701px) {
   #map {
     width: 100%;
     height: 92%;
     position: absolute;
     top: 77px;
-    /* left: 22em; */
   }
-  }
+}
 
 .density {
   z-index: 1000;
   width: 10%;
   position: absolute;
-  bottom: 28px;
-  right: 0;
+  bottom: 99px;
+  right: 10px;
 }
 
 .ICU {
   z-index: 1000;
   width: 10%;
   position: absolute;
-  bottom: 28px;
-  right: 0;
+  bottom: 105px;
+  right: 5px;
 }
 
 .vent {
   z-index: 1000;
   width: 20%;
   position: absolute;
-  bottom: -14em;
+  bottom: -3.5em;
   right: -5em;
+}
+
+.HIV {
+  z-index: 1000;
+  width: 8%;
+  position: absolute;
+  bottom: 99px;
+  right: 10px;
+}
+
+.TB {
+  z-index: 1000;
+  width: 7%;
+  position: absolute;
+  bottom: 99px;
+  right: 10px;
+}
+
+.elderly {
+  z-index: 1000;
+  width: 23%;
+  position: absolute;
+  bottom: -75px;
+  right: -126px;
+}
+
+.vulnerable {
+  z-index: 1000;
+  width: 16%;
+  position: absolute;
+  bottom: 95px;
+  right: 3px;
+}
+
+.cases {
+  z-index: 1000;
+  width: 14%;
+  position: absolute;
+  bottom: 95px;
+  right: 3px;
+}
+
+.deaths {
+  z-index: 1000;
+  width: 14%;
+  position: absolute;
+  bottom: 95px;
+  right: 3px;
+}
+
+.logo1 {
+  left: 23em;
+  z-index: 1000;
+  position: absolute;
+  bottom: 21px;
+}
+
+.logo2 {
+  z-index: 1000;
+  position: absolute;
+  bottom: 9px;
+  right: -9em;
+}
+
+/* .logo11 {
+  left: 23em;
+  z-index: 1000;
+  position: absolute;
+  bottom: 9px;
+}
+
+.logo22 {
+  z-index: 1000;
+  position: absolute;
+  bottom: -2px;
+  right: 43em;
+} */
+div #container3 {
+  position: relative;
+  width: 100%;
+}
+
+div #slider {
+  top: 22px;
+  margin: 22px 29px 0px 0px;
+  margin-left: auto;
+  width: 83%;
+  margin-bottom: 30px;
+  left: -15px;
+}
+
+div #slider2 {
+  top: 22px;
+  margin: 22px 29px 0px 0px;
+  margin-left: auto;
+  width: 83%;
+  margin-bottom: 30px;
+  left: -15px;
+}
+
+div #slider3 {
+  top: 22px;
+  margin: 22px 29px 0px 0px;
+  margin-left: auto;
+  width: 83%;
+  margin-bottom: 30px;
+  left: -15px;
+}
+
+div #slider4 {
+  top: 22px;
+  margin: 22px 29px 0px 0px;
+  margin-left: auto;
+  width: 83%;
+  margin-bottom: 30px;
+  left: -15px;
+}
+
+.noUi-connect {
+  background: #f8b049;
+}
+
+.noUi-horizontal .noUi-handle, .noUi-vertical .noUi-handle {
+  background: #e15b26;
+  ;
+}
+
+.noUi-target.noUi-horizontal .noUi-tooltip {
+  top: -39px;
+  bottom: initial;
+  border-style: solid;
+  border-color: rgb(169, 169, 169);
+  background-color: #e15b26;
+  width: 6em;
+}
+
+.noUi-handle {
+  box-shadow: none;
+}
+
+div #input_values {
+  padding: 12px;
+  text-align: center;
+  display: none;
+}
+
+h6 {
+  font-family: "Poppins", Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.8;
+  font-weight: normal;
+}
+
+.info {
+  padding: 14px 8px;
+  font-size: 18px;
+  background: white;
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  color: black;
 }

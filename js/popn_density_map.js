@@ -1,42 +1,37 @@
 
-
-function getColorvents(d) {
-  return d > 8000000 ? '#045a8d' :
-    d > 1600000 ? '#2b8cbe' :
-      d > 1000000 ? '#74a9cf' :
-        d > 800000 ? '#bdc9e1' :
-          d > 200000 ? '#dbf8ff' :
-            d > 0 ? '#f1eef6' :
+function getColordensity(d) {
+  return d > 730 ? '#993404' :
+    d > 190 ? '#d95f0e' :
+      d > 80 ? '#fe9929' :
+        d > 50 ? '#fed98e' :
+          d > 20 ? '#ffffd4' :
+            d > 0 ? '#fef0d9' :
               '#ffffff00';
 }
 
 
-let ventilators_layer = () => {
+let popn_density_layer = () => {
   if (african_data._map) {
     map.removeLayer(african_data)
   }
-
-  let ventilators_obj = {}
+  let popn_density_obj = {}
   google_sheet_data.forEach(object_ => {
-    ventilators_obj[object_["COUNTRY"]] = [
+    popn_density_obj[object_["COUNTRY"]] = [
       object_["POP"],
-      object_["VENTILATORS"],
-      object_["PEOPLE_PER_VENT"]
+      object_["DENSITY"]
     ]
   })
 
   african_data = L.geoJson(africa_data, {
-    style: stylevents
+    style: styledensity
   }).addTo(map);
-
 
   african_data.eachLayer(function (layer) {
     let country_ = layer.feature.properties.COUNTRY;
     layer.bindPopup(
       '<strong>Country:</strong> ' + country_
-      + '<br>' + '<strong>Population:</strong> ' + ventilators_obj[country_][0]
-      + '<br>' + '<strong>Ventilators:</strong> ' + ventilators_obj[country_][1]
-      + '<br>' + '<strong>People per ventilator:</strong> ' + ventilators_obj[country_][2]
+      + '<br>' + '<strong>Population:</strong> ' + popn_density_obj[country_][0]
+      + '<br>' + '<strong>Population Density:</strong> ' + popn_density_obj[country_][1]
     );
     layer.on('mouseover', function (e) {
       this.openPopup();
@@ -46,10 +41,9 @@ let ventilators_layer = () => {
     });
   });
 
-
-  function stylevents(feature) {
+  function styledensity(feature) {
     return {
-      fillColor: getColorvents(parseFloat(ventilators_obj[feature.properties.COUNTRY][2].split(",").join(""))),
+      fillColor: getColordensity(parseFloat(popn_density_obj[feature.properties.COUNTRY][1].split(",").join(""))),
       weight: 1,
       opacity: 1,
       color: 'black',
@@ -57,14 +51,13 @@ let ventilators_layer = () => {
       fillOpacity: 1
     };
   }
+
   let legend_parent = document.getElementsByClassName("legend")[0]
   if (legend_parent.childNodes.length > 1) {
     legend_parent.removeChild(legend_parent.childNodes[1])
   }
   let legend_child = document.createElement("IMG")
-  legend_child.setAttribute("src", "images/vent_legend.png");
-  legend_child.setAttribute("class", "vent")
+  legend_child.setAttribute("src", "images/density_legend.png");
+  legend_child.setAttribute("class", "density")
   legend_parent.appendChild(legend_child);
-  
 }
-

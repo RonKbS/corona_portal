@@ -1,42 +1,39 @@
 
-
-function getColorvents(d) {
-  return d > 8000000 ? '#045a8d' :
-    d > 1600000 ? '#2b8cbe' :
-      d > 1000000 ? '#74a9cf' :
-        d > 800000 ? '#bdc9e1' :
-          d > 200000 ? '#dbf8ff' :
+function getColorHIV(d) {
+  return d > 67 ? '#00441b' :
+    d > 6 ? '#2a924a' :
+      d > 3 ? '#7bc87c' :
+        d > 2 ? '#caeac3' :
+          d > 20 ? '#f7fcf5' :
             d > 0 ? '#f1eef6' :
               '#ffffff00';
 }
 
-
-let ventilators_layer = () => {
+let hiv_stats_layer = () => {
   if (african_data._map) {
     map.removeLayer(african_data)
   }
 
-  let ventilators_obj = {}
+  let hiv_stats_obj = {}
   google_sheet_data.forEach(object_ => {
-    ventilators_obj[object_["COUNTRY"]] = [
+    hiv_stats_obj[object_["COUNTRY"]] = [
       object_["POP"],
-      object_["VENTILATORS"],
-      object_["PEOPLE_PER_VENT"]
+      object_["HIV_rates"],
+      object_["HIV_percentage"]
     ]
   })
 
   african_data = L.geoJson(africa_data, {
-    style: stylevents
+    style: styleHIV
   }).addTo(map);
-
 
   african_data.eachLayer(function (layer) {
     let country_ = layer.feature.properties.COUNTRY;
     layer.bindPopup(
       '<strong>Country:</strong> ' + country_
-      + '<br>' + '<strong>Population:</strong> ' + ventilators_obj[country_][0]
-      + '<br>' + '<strong>Ventilators:</strong> ' + ventilators_obj[country_][1]
-      + '<br>' + '<strong>People per ventilator:</strong> ' + ventilators_obj[country_][2]
+      + '<br>' + '<strong>Population:</strong> ' + hiv_stats_obj[country_][0]
+      + '<br>' + '<strong>HIV rates:</strong> ' + hiv_stats_obj[country_][1]
+      + '<br>' + '<strong>HIV percentage:</strong> ' + hiv_stats_obj[country_][2]
     );
     layer.on('mouseover', function (e) {
       this.openPopup();
@@ -46,10 +43,9 @@ let ventilators_layer = () => {
     });
   });
 
-
-  function stylevents(feature) {
+  function styleHIV(feature) {
     return {
-      fillColor: getColorvents(parseFloat(ventilators_obj[feature.properties.COUNTRY][2].split(",").join(""))),
+      fillColor: getColorHIV(parseFloat(hiv_stats_obj[feature.properties.COUNTRY][2].split(",").join(""))),
       weight: 1,
       opacity: 1,
       color: 'black',
@@ -57,14 +53,13 @@ let ventilators_layer = () => {
       fillOpacity: 1
     };
   }
+
   let legend_parent = document.getElementsByClassName("legend")[0]
   if (legend_parent.childNodes.length > 1) {
     legend_parent.removeChild(legend_parent.childNodes[1])
   }
   let legend_child = document.createElement("IMG")
-  legend_child.setAttribute("src", "images/vent_legend.png");
-  legend_child.setAttribute("class", "vent")
+  legend_child.setAttribute("src", "images/HIV_legend.png");
+  legend_child.setAttribute("class", "HIV")
   legend_parent.appendChild(legend_child);
-  
 }
-

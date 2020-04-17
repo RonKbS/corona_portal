@@ -1,42 +1,41 @@
 
 
-function getColorvents(d) {
-  return d > 8000000 ? '#045a8d' :
-    d > 1600000 ? '#2b8cbe' :
-      d > 1000000 ? '#74a9cf' :
-        d > 800000 ? '#bdc9e1' :
-          d > 200000 ? '#dbf8ff' :
-            d > 0 ? '#f1eef6' :
+function getColorICU(d) {
+  return d > 29900000 ? '#b30000' :
+    d > 2500000 ? '#e34a33' :
+      d > 800000 ? '#fc8d59' :
+        d > 400000 ? '#fdbb84' :
+          d > 200000 ? '#fdd49e' :
+            d > 0 ? '#fef0d9' :
               '#ffffff00';
 }
 
 
-let ventilators_layer = () => {
+
+let icus_layer = () => {
   if (african_data._map) {
     map.removeLayer(african_data)
   }
-
-  let ventilators_obj = {}
+  let icus_obj = {}
   google_sheet_data.forEach(object_ => {
-    ventilators_obj[object_["COUNTRY"]] = [
+    icus_obj[object_["COUNTRY"]] = [
       object_["POP"],
-      object_["VENTILATORS"],
-      object_["PEOPLE_PER_VENT"]
+      object_["ICU"],
+      object_["PEOPLE_PER_ICU"]
     ]
   })
 
   african_data = L.geoJson(africa_data, {
-    style: stylevents
+    style: styleICU
   }).addTo(map);
-
 
   african_data.eachLayer(function (layer) {
     let country_ = layer.feature.properties.COUNTRY;
     layer.bindPopup(
       '<strong>Country:</strong> ' + country_
-      + '<br>' + '<strong>Population:</strong> ' + ventilators_obj[country_][0]
-      + '<br>' + '<strong>Ventilators:</strong> ' + ventilators_obj[country_][1]
-      + '<br>' + '<strong>People per ventilator:</strong> ' + ventilators_obj[country_][2]
+      + '<br>' + '<strong>Population:</strong> ' + icus_obj[country_][0]
+      + '<br>' + '<strong>ICUs:</strong> ' + icus_obj[country_][1]
+      + '<br>' + '<strong>People per ICU:</strong> ' + icus_obj[country_][2]
     );
     layer.on('mouseover', function (e) {
       this.openPopup();
@@ -46,10 +45,9 @@ let ventilators_layer = () => {
     });
   });
 
-
-  function stylevents(feature) {
+  function styleICU(feature) {
     return {
-      fillColor: getColorvents(parseFloat(ventilators_obj[feature.properties.COUNTRY][2].split(",").join(""))),
+      fillColor: getColorICU(parseFloat(icus_obj[feature.properties.COUNTRY][2].split(",").join(""))),
       weight: 1,
       opacity: 1,
       color: 'black',
@@ -57,14 +55,13 @@ let ventilators_layer = () => {
       fillOpacity: 1
     };
   }
+
   let legend_parent = document.getElementsByClassName("legend")[0]
   if (legend_parent.childNodes.length > 1) {
     legend_parent.removeChild(legend_parent.childNodes[1])
   }
   let legend_child = document.createElement("IMG")
-  legend_child.setAttribute("src", "images/vent_legend.png");
-  legend_child.setAttribute("class", "vent")
+  legend_child.setAttribute("src", "images/ICU_legend.png");
+  legend_child.setAttribute("class", "ICU")
   legend_parent.appendChild(legend_child);
-  
 }
-
