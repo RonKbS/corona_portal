@@ -71,10 +71,10 @@
                 <a href="#homeSubmenu3" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Response</a>
                 <ul class="collapse list-unstyled" id="homeSubmenu3">
                   <li>
-                    <a href="#" onclick="govt_intervention_layer()">Government Intervention</a>
+                    <a href="#" onclick="govt_intervention_layer(this)" id="govt">Government Intervention</a>
                   </li>
                   <li>
-                    <a href="country_map.html">Country Response Measures</a>
+                    <a href="#" onclick="govt_intervention_layer(this)" id="country">Country Response Measures</a>
                   </li>
                 </ul>
               </li>
@@ -188,7 +188,7 @@
   <script type="text/javascript" src="js/vulnerable_map.js"></script>
   <script type="text/javascript" src="js/cases_map.js"></script>
   <script type="text/javascript" src="js/deaths_map.js"></script>
-  <script type="text/javascript" src="js/govt_map.js"></script>
+  <script type="text/javascript" src="js/country_govt_map.js"></script>
 </body>
 
 </html>
