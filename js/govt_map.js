@@ -1,47 +1,6 @@
-let long_id = "1tRF8gjyRd0oA2sSpTKmZqambggZzUM0YiED6KqF8H8M"
-let gid = "805631867"
-let url = `https://docs.google.com/spreadsheets/d/${long_id}/export?format=csv&id=${long_id}&gid=${gid}`
+gid = "805631867"
 
-let map = L.map('map', {
-  minZoom: 3.4
-}).setView([1.8, -10.24], 2);
-
-L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png', {
-  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-  subdomains: 'abcd',
-  maxZoom: 19
-}).addTo(map);
-
-let african_data = L.geoJson(africa_data, {
-  style: {
-    weight: 2,
-    opacity: 2,
-    color: '#989898',
-    fillOpacity: 2.5,
-    fillColor: '#E15B26'
-  },
-  onEachFeature: function(feature, layer) {
-    layer.on('mouseover', function() {
-      this.setStyle({
-        weight: 2,
-        opacity: 2,
-        color: '#989898',
-        fillOpacity: 10,
-        fillColor: '#989898'
-      });
-    });
-    layer.on('mouseout', function() {
-      this.setStyle({
-        weight: 2,
-        opacity: 2,
-        color: '#989898',
-        fillOpacity: 2.5,
-        fillColor: '#E15B26'
-      });
-    });
-  }
-}).addTo(map);
-
+let govt_intervention_layer = () => {
 axios.get(url)
   .then(responseArrs => {
     ventilators_data = $.csv.toObjects(responseArrs.data);
@@ -70,6 +29,40 @@ axios.get(url)
         object_["DigFinTran"]
       ]
     })
+
+    if (african_data._map) {
+      map.removeLayer(african_data)
+    }
+
+    african_data = L.geoJson(africa_data, {
+      style: {
+        weight: 2,
+        opacity: 2,
+        color: '#989898',
+        fillOpacity: 2.5,
+        fillColor: '#E15B26'
+      },
+      onEachFeature: function(feature, layer) {
+        layer.on('mouseover', function() {
+          this.setStyle({
+            weight: 2,
+            opacity: 2,
+            color: '#989898',
+            fillOpacity: 10,
+            fillColor: '#989898'
+          });
+        });
+        layer.on('mouseout', function() {
+          this.setStyle({
+            weight: 2,
+            opacity: 2,
+            color: '#989898',
+            fillOpacity: 2.5,
+            fillColor: '#E15B26'
+          });
+        });
+      }
+    }).addTo(map);
 
     african_data.eachLayer(function (layer) {
       let country_ = layer.feature.properties.COUNTRY;
@@ -104,17 +97,4 @@ axios.get(url)
       });
     });
   })
-
-  var info = L.control();
-  info.onAdd = function(map) {
-    this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
-    this.update();
-    return this._div;
-  };
-
-  info.update = function(props) {
-    this._div.innerHTML =  (props ?
-      '<b>' + '</b><br />' + ' ' :
-      'Hover over a country');
-  };
-  info.addTo(map);
+}
