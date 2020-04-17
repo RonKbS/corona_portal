@@ -2,6 +2,7 @@
 let long_id = "1tRF8gjyRd0oA2sSpTKmZqambggZzUM0YiED6KqF8H8M"
 let gid = "1502462034"
 let url = `https://docs.google.com/spreadsheets/d/${long_id}/export?format=csv&id=${long_id}&gid=${gid}`
+let google_sheet_data;
 
 let map = L.map('map', {
   minZoom: 3.4
@@ -45,10 +46,10 @@ let african_data = L.geoJson(africa_data, {
 
 axios.get(url)
   .then(responseArrs => {
-    ventilators_data = $.csv.toObjects(responseArrs.data);
-    let ventilators_obj = {}
-    ventilators_data.forEach(object_ => {
-      ventilators_obj[object_["COUNTRY"]] = [
+    google_sheet_data = $.csv.toObjects(responseArrs.data);
+    let initial_data_obj = {}
+    google_sheet_data.forEach(object_ => {
+      initial_data_obj[object_["COUNTRY"]] = [
         object_["POP"],
         object_["DENSITY"]
       ]
@@ -58,8 +59,8 @@ axios.get(url)
       let country_ = layer.feature.properties.COUNTRY;
       layer.bindPopup(
         '<strong>Country:</strong> ' + country_
-        + '<br>' + '<strong>Population:</strong> ' + ventilators_obj[country_][0]
-        + '<br>' + '<strong>Density:</strong> ' + ventilators_obj[country_][1]
+        + '<br>' + '<strong>Population:</strong> ' + initial_data_obj[country_][0]
+        + '<br>' + '<strong>Density:</strong> ' + initial_data_obj[country_][1]
       );
       layer.on('mouseover', function (e) {
         this.openPopup();

@@ -32,33 +32,17 @@
           </a>
         </div>
         <div class="p-4 pt-5" style="max-height: 66vh;overflow: auto;">
-          <!-- <div id="tops">
-            <ul style="display:flex;" class="list-unstyled components mb-5">
-              <li id="Visualizebtn" style="margin-right:1em;">
-                <a href="#">Visualize</a>
-              </li>
-              <li id="Interrogatebtn" style="margin-right:1em;">
-                <a href="#">Interrogate</a>
-              </li>
-              <li id="Ugandabtn" style="margin-right:1em;">
-                <a href="#">Uganda </a>
-              </li>
-            </ul>
-          </div> -->
           <div>
             <ul class="list-unstyled components mb-5">
               <li id="visualize" style="display:block">
                 <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Infrastructure</a>
                 <ul class="collapse list-unstyled" id="homeSubmenu">
                   <li>
-                    <a href="ventilators_map.html">Ventilators</a>
+                    <a href="#" onclick="ventilators_layer()">Ventilators</a>
                   </li>
                   <li>
-                    <a href="ICU_map.html">ICUs</a>
+                    <a href="#" onclick="icus_layer()">ICUs</a>
                   </li>
-                  <!-- <li>
-                    <a href="#">Health Center Coverage</a>
-                  </li> -->
                 </ul>
                 <a href="#homeSubmenu2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Population</a>
                 <ul class="collapse list-unstyled" id="homeSubmenu2">
@@ -181,6 +165,8 @@
       <div class="logo2">
         <img style="width:56%;" class="irish_logo" src="images/irish.png">
       </div>
+      <div class="legend">
+      </div>
     </div>
 
   </div>
@@ -193,33 +179,8 @@
   <script src="js/bootstrap.min.js"></script>
   <script src="js/main.js"></script>
   <script type="text/javascript" src="js/africa_map.js"></script>
-
-  <!-- <script>
-    $("#Visualizebtn").off().on("click", function() {
-      $("#visualize").toggle();
-    });
-    $(document).click(function(e) {
-      if ($(e.target).closest('#visualize, #Visualizebtn').length == 0) {
-        $("#visualize").hide();
-      }
-    })
-    $("#Interrogatebtn").off().on("click", function() {
-      $("#interrogate").toggle();
-    });
-    $(document).click(function(e) {
-      if ($(e.target).closest('#interrogate, #Interrogatebtn').length == 0) {
-        $("#interrogate").hide();
-      }
-    })
-    $("#Ugandabtn").off().on("click", function() {
-      $("#uganda").toggle();
-    });
-    $(document).click(function(e) {
-      if ($(e.target).closest('#uganda, #Ugandabtn').length == 0) {
-        $("#uganda").hide();
-      }
-    })
-  </script> -->
+  <script type="text/javascript" src="js/ventilators_map.js"></script>
+  <script type="text/javascript" src="js/icus_map.js"></script>
 </body>
 
 </html>
