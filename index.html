@@ -41,7 +41,7 @@
                     <a href="#" onclick="ventilators_layer()">Ventilators</a>
                   </li>
                   <li>
-                    <a href="#" onclick="icus_layer()">ICUs</a>
+                    <a href="#" onclick="icus_layer()">ICU Beds</a>
                   </li>
                 </ul>
                 <a href="#homeSubmenu2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Population</a>
@@ -49,6 +49,7 @@
                   <li>
                     <a href="#" onclick="popn_density_layer()">Population Density</a>
                   </li>
+                  <br /><h6><strong>Vulnerability</strong></h6>
                   <li>
                     <a href="#" onclick="hiv_stats_layer()">HIV/AIDS(%)</a>
                   </li>
@@ -58,9 +59,7 @@
                   <li>
                     <a href="#" onclick="elderly_stats_layer()">Elderly(%)</a>
                   </li>
-                  <li>
-                    <a href="#" onclick="vulnerable_stats_layer()">Vulnerable with known HIV/AIDS & TB cases</a>
-                  </li>
+                  <br /><h6><strong>COVID 19 cases</strong></h6>
                   <li>
                     <a href="#" onclick="cases_concn_layer()">Cases per 100,000 people</a>
                   </li>
@@ -70,11 +69,19 @@
                 </ul>
                 <a href="#homeSubmenu3" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Response</a>
                 <ul class="collapse list-unstyled" id="homeSubmenu3">
+                  <br /><h6><strong>Government Intervention</strong></h6>
                   <li>
-                    <a href="#" onclick="govt_intervention_layer(this)" id="govt">Government Intervention</a>
+                    <a href="#" onclick="govt_intervention_layer(this)" id="fiscal">Fiscal</a>
                   </li>
                   <li>
-                    <a href="#" onclick="govt_intervention_layer(this)" id="country">Country Response Measures</a>
+                    <a href="#" onclick="govt_intervention_layer(this)" id="monetary">Monetary</a>
+                  </li>
+                  <li>
+                    <a href="#" onclick="govt_intervention_layer(this)" id="exhange">Exchange</a>
+                  </li>
+                  <br /><h6><strong>Country Response Measures</strong></h6>
+                  <li>
+                    <a href="#" onclick="govt_intervention_layer(this)" id="country">Country Response</a>
                   </li>
                 </ul>
               </li>
@@ -146,14 +153,14 @@
           </button>
 
           <!-- The form -->
-          <div class="wrap">
+          <!-- <div class="wrap">
             <form class="search" action="">
               <input type="text" class="searchTerm" placeholder="Search Country">
               <button type="submit" class="searchButton">
                 <i class="fa fa-search"></i>
               </button>
             </form>
-          </div>
+          </div> -->
         </div>
     </div>
     </nav>
@@ -185,7 +192,6 @@
   <script type="text/javascript" src="js/HIV_map.js"></script>
   <script type="text/javascript" src="js/TB_map.js"></script>
   <script type="text/javascript" src="js/elderly_map.js"></script>
-  <script type="text/javascript" src="js/vulnerable_map.js"></script>
   <script type="text/javascript" src="js/cases_map.js"></script>
   <script type="text/javascript" src="js/deaths_map.js"></script>
   <script type="text/javascript" src="js/country_govt_map.js"></script>

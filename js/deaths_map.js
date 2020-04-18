@@ -1,11 +1,11 @@
 
 function getColordeaths(d) {
-  return d > 3.90 ? '#fde725' :
-    d > 0.09 ? '#5dc962' :
-      d > 0.02 ? '#20908d' :
-        d > 0.01 ? '#3a528b' :
-          d > 0.00 ? '#440154' :
-            d > 0 ? '#f1eef6' :
+  return d > 3.90 ? '#f9fd00' :
+    d > 0.09 ? '#fbfe3d' :
+      d > 0.02 ? '#fdff7b' :
+        d > 0.01 ? '#ffffb8' :
+          d > 0.00 ? '#f1eef6' :
+            // d > 0 ? '#f1eef6' :
               '#ffffff00';
 }
 

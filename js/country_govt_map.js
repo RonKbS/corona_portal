@@ -1,35 +1,25 @@
 gid = "805631867"
 
+function getColorfiscal(d) {
+  return d > 1 ? '#00441b' :
+    d > 0 ? '#808080' :
+    '#ffffff00';
+}
+
 let govt_intervention_layer = (element) => {
   console.log(element.id)
   axios.get(url)
     .then(responseArrs => {
       google_sheet_data = $.csv.toObjects(responseArrs.data);
 
-      if (element.id === "govt") {
+      if (element.id === "fiscal") {
         let govt_intervention_obj = {}
         google_sheet_data.forEach(object_ => {
           govt_intervention_obj[object_["COUNTRY"]] = [
             object_["POP"],
-            // object_["Intro"],
-            // object_["Fiscal"],
-            // object_["Monetary_and_Macro_financial"],
-            object_["Exchange_rate_and_balance_of_payments"],
-            object_["Fiscal2"],
-            object_["Monetary"],
-            object_["Exchange"],
-            object_["Value"],
-            // object_["Summary"],
-            object_["SupportValue"],
-            object_["GDP_PC"],
-            object_["WageEmp"],
-            object_["Cash"],
-            object_["Credit"],
-            object_["TaxDelDef"],
-            object_["TaxCut"],
-            object_["Interest_rate_cuts/liquidity_measures/other_monetary_measures"],
-            object_["ImpExp"],
-            object_["DigFinTran"]
+            object_["Intro"],
+            object_["Fiscal"],
+            object_["Fiscal2"]
           ]
         })
 
@@ -38,33 +28,7 @@ let govt_intervention_layer = (element) => {
         }
 
         african_data = L.geoJson(africa_data, {
-          style: {
-            weight: 2,
-            opacity: 2,
-            color: '#989898',
-            fillOpacity: 2.5,
-            fillColor: '#E15B26'
-          },
-          onEachFeature: function (feature, layer) {
-            layer.on('mouseover', function () {
-              this.setStyle({
-                weight: 2,
-                opacity: 2,
-                color: '#989898',
-                fillOpacity: 10,
-                fillColor: '#989898'
-              });
-            });
-            layer.on('mouseout', function () {
-              this.setStyle({
-                weight: 2,
-                opacity: 2,
-                color: '#989898',
-                fillOpacity: 2.5,
-                fillColor: '#E15B26'
-              });
-            });
-          }
+          style: stylefiscal
         }).addTo(map);
 
         african_data.eachLayer(function (layer) {
@@ -72,25 +36,9 @@ let govt_intervention_layer = (element) => {
           layer.bindPopup(
             '<strong>Country:</strong> ' + country_
             + '<br>' + '<strong>Population:</strong> ' + govt_intervention_obj[country_][0]
-            // + '<br>' + '<strong>Introduction:</strong> ' + govt_intervention_obj[country_][1]
-            // + '<br>' + '<strong>Fiscal Policy:</strong> ' + govt_intervention_obj[country_][2]
-            // + '<br>' + '<strong>Monetary and Macro financial:</strong> ' + govt_intervention_obj[country_][3]
-            + '<br>' + '<strong>Exchange rate and balance of payments:</strong> ' + govt_intervention_obj[country_][1]
-            + '<br>' + '<strong>Fiscal:</strong> ' + govt_intervention_obj[country_][2]
-            + '<br>' + '<strong>Monetary:</strong> ' + govt_intervention_obj[country_][3]
-            + '<br>' + '<strong>Exchange:</strong> ' + govt_intervention_obj[country_][4]
-            + '<br>' + '<strong>Value:</strong> ' + govt_intervention_obj[country_][5]
-            // + '<br>' + '<strong>Summary:</strong> ' + govt_intervention_obj[country_][9]
-            + '<br>' + '<strong>Support Value:</strong> ' + govt_intervention_obj[country_][6]
-            + '<br>' + '<strong>GDP_PC:</strong> ' + govt_intervention_obj[country_][7]
-            + '<br>' + '<strong>WageEmp:</strong> ' + govt_intervention_obj[country_][8]
-            + '<br>' + '<strong>Cash:</strong> ' + govt_intervention_obj[country_][9]
-            + '<br>' + '<strong>Credit:</strong> ' + govt_intervention_obj[country_][10]
-            + '<br>' + '<strong>TaxDelDef:</strong> ' + govt_intervention_obj[country_][11]
-            + '<br>' + '<strong>Tax Cut:</strong> ' + govt_intervention_obj[country_][12]
-            + '<br>' + '<strong>Interest rate cuts/liquidity measures/other monetary measures:</strong> ' + govt_intervention_obj[country_][13]
-            + '<br>' + '<strong>ImpExp:</strong> ' + govt_intervention_obj[country_][14]
-            + '<br>' + '<strong>DigFinTran:</strong> ' + govt_intervention_obj[country_][15]
+            + '<br>' + '<strong>Introduction:</strong> ' + govt_intervention_obj[country_][1]
+            + '<br>' + '<strong>Fiscal Policy:</strong> ' + govt_intervention_obj[country_][2]
+            + '<br>' + '<strong>Fiscal:</strong> ' + govt_intervention_obj[country_][3]
           );
           layer.on('mouseover', function (e) {
             this.openPopup();
@@ -99,7 +47,110 @@ let govt_intervention_layer = (element) => {
             this.closePopup();
           });
         });
-      } else if (element.id === "country") {
+        function stylefiscal(feature) {
+          return {
+            fillColor: getColorfiscal(parseFloat(govt_intervention_obj[feature.properties.COUNTRY][3].split(",").join(""))),
+            weight: 1,
+            opacity: 1,
+            color: 'black',
+            dashArray: '0',
+            fillOpacity: 1
+          };
+        }
+      }
+    else if (element.id === "monetary") {
+        let govt_intervention_obj = {}
+        google_sheet_data.forEach(object_ => {
+          govt_intervention_obj[object_["COUNTRY"]] = [
+            object_["POP"],
+            object_["Intro"],
+            object_["Monetary_and_Macro_financial"],
+            object_["Monetary"]
+          ]
+        })
+
+        if (african_data._map) {
+          map.removeLayer(african_data)
+        }
+
+        african_data = L.geoJson(africa_data, {
+          style: stylefiscal
+        }).addTo(map);
+
+        african_data.eachLayer(function (layer) {
+          let country_ = layer.feature.properties.COUNTRY;
+          layer.bindPopup(
+            '<strong>Country:</strong> ' + country_
+            + '<br>' + '<strong>Population:</strong> ' + govt_intervention_obj[country_][0]
+            + '<br>' + '<strong>Introduction:</strong> ' + govt_intervention_obj[country_][1]
+            + '<br>' + '<strong>Monetary and Macro financial:</strong> ' + govt_intervention_obj[country_][2]
+            + '<br>' + '<strong>Monetary:</strong> ' + govt_intervention_obj[country_][3]
+          );
+          layer.on('mouseover', function (e) {
+            this.openPopup();
+          });
+          layer.on('mouseout', function (e) {
+            this.closePopup();
+          });
+        });
+        function stylefiscal(feature) {
+          return {
+            fillColor: getColorfiscal(parseFloat(govt_intervention_obj[feature.properties.COUNTRY][3].split(",").join(""))),
+            weight: 1,
+            opacity: 1,
+            color: 'black',
+            dashArray: '0',
+            fillOpacity: 1
+          };
+        }
+      }
+    else if (element.id === "exchange") {
+        let govt_intervention_obj = {}
+        google_sheet_data.forEach(object_ => {
+          govt_intervention_obj[object_["COUNTRY"]] = [
+            object_["POP"],
+            object_["Intro"],
+            object_["Exchange_rate_and_balance_of_payments"],
+            object_["Exchange"]
+          ]
+        })
+
+        if (african_data._map) {
+          map.removeLayer(african_data)
+        }
+
+        african_data = L.geoJson(africa_data, {
+          style: stylefiscal
+        }).addTo(map);
+
+        african_data.eachLayer(function (layer) {
+          let country_ = layer.feature.properties.COUNTRY;
+          layer.bindPopup(
+            '<strong>Country:</strong> ' + country_
+            + '<br>' + '<strong>Population:</strong> ' + govt_intervention_obj[country_][0]
+            + '<br>' + '<strong>Introduction:</strong> ' + govt_intervention_obj[country_][1]
+            + '<br>' + '<strong>Exchange rate and balance of payments:</strong> ' + govt_intervention_obj[country_][2]
+            + '<br>' + '<strong>Exchange:</strong> ' + govt_intervention_obj[country_][3]
+          );
+          layer.on('mouseover', function (e) {
+            this.openPopup();
+          });
+          layer.on('mouseout', function (e) {
+            this.closePopup();
+          });
+        });
+        function stylefiscal(feature) {
+          return {
+            fillColor: getColorfiscal(parseFloat(govt_intervention_obj[feature.properties.COUNTRY][3].split(",").join(""))),
+            weight: 1,
+            opacity: 1,
+            color: 'black',
+            dashArray: '0',
+            fillOpacity: 1
+          };
+        }
+      }
+      else if (element.id === "country") {
         let country_intervention_obj = {}
         google_sheet_data.forEach(object_ => {
           country_intervention_obj[object_["COUNTRY"]] = [
@@ -167,9 +218,14 @@ let govt_intervention_layer = (element) => {
           });
         });
       }
+
       let legend_parent = document.getElementsByClassName("legend")[0]
       if (legend_parent.childNodes.length > 1) {
         legend_parent.removeChild(legend_parent.childNodes[1])
       }
+      // let legend_child = document.createElement("IMG")
+      // legend_child.setAttribute("src", "images/fiscal_legend.png");
+      // legend_child.setAttribute("class", "fiscal")
+      // legend_parent.appendChild(legend_child);
     })
 }

@@ -1,10 +1,10 @@
 
 function getColorTB(d) {
-  return d > 86 ? '#404040' :
-    d > 21 ? '#bababa' :
-    d > 17 ? '#f1eef6' :
-    d > 16 ? '#f4a582' :
-    d > 10 ? '#ca0020' :
+  return d > 20.00 ? '#810f7c' :
+    d > 0.20 ? '#8856a7' :
+    d > 0.11 ? '#8c96c6' :
+    d > 0.08 ? '#b3cde3' :
+    d > 0.04 ? '#edf8fb' :
     d > 0 ? '#ffffff' :
     '#ffffff00';
 }

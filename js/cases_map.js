@@ -1,11 +1,11 @@
 
 function getColorcases(d) {
-  return d > 67.4 ? '#fde725' :
-    d > 2.9 ? '#5dc962' :
-      d > 1.3 ? '#20908d' :
-        d > 0.4 ? '#3a528b' :
-          d > 0.1 ? '#440154' :
-            d > 0 ? '#f1eef6' :
+  return d > 67.4 ? '#7a0177' :
+    d > 2.9 ? '#c51b8a' :
+      d > 1.3 ? '#f768a1' :
+        d > 0.4 ? '#fbb4b9' :
+          d > 0.1 ? '#feebe2' :
+            // d > 0 ? '#f1eef6' :
               '#ffffff00';
 }
 
