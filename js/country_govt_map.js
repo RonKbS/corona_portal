@@ -1,3 +1,5 @@
+let second_google_sheet_data;
+
 function getColorfiscal(d) {
   return d > 1 ? '#00441b' :
     d > 0 ? '#00441b' :
@@ -9,14 +11,11 @@ let govt_intervention_layer = (element) => {
   url = `https://docs.google.com/spreadsheets/d/${long_id}/export?format=csv&id=${long_id}&gid=${gid}`
   axios.get(url)
     .then(responseArrs => {
-      google_sheet_data = $.csv.toObjects(responseArrs.data);
+      second_google_sheet_data = $.csv.toObjects(responseArrs.data);
 
-      // the wording in these is alot and makes the map move down.
-      // we should instead have a popup to the left corner of the page next to the sidebar
-      // with these words
       if (element.id === "fiscal") {
         let govt_intervention_obj = {}
-        google_sheet_data.forEach(object_ => {
+        second_google_sheet_data.forEach(object_ => {
           govt_intervention_obj[object_["COUNTRY"]] = [
             object_["POP"],
             object_["Intro"],
@@ -66,7 +65,7 @@ let govt_intervention_layer = (element) => {
         }
       } else if (element.id === "monetary") {
         let govt_intervention_obj = {}
-        google_sheet_data.forEach(object_ => {
+        second_google_sheet_data.forEach(object_ => {
           govt_intervention_obj[object_["COUNTRY"]] = [
             object_["POP"],
             object_["Intro"],
@@ -116,7 +115,7 @@ let govt_intervention_layer = (element) => {
         }
       } else if (element.id === "exchange") {
         let govt_intervention_obj = {}
-        google_sheet_data.forEach(object_ => {
+        second_google_sheet_data.forEach(object_ => {
           govt_intervention_obj[object_["COUNTRY"]] = [
             object_["POP"],
             object_["Intro"],
@@ -166,7 +165,7 @@ let govt_intervention_layer = (element) => {
         }
       } else if (element.id === "country") {
         let country_intervention_obj = {}
-        google_sheet_data.forEach(object_ => {
+        second_google_sheet_data.forEach(object_ => {
           country_intervention_obj[object_["COUNTRY"]] = [
             object_["POP"],
             object_["Humanitarian_exemption"],
