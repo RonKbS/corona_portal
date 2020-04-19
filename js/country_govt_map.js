@@ -1,8 +1,7 @@
-
 function getColorfiscal(d) {
   return d > 1 ? '#00441b' :
-    d > 0 ? '#808080' :
-    '#ffffff00';
+    d > 0 ? '#00441b' :
+    '#808080';
 }
 
 let govt_intervention_layer = (element) => {
@@ -34,22 +33,27 @@ let govt_intervention_layer = (element) => {
           style: stylefiscal
         }).addTo(map);
 
-        african_data.eachLayer(function (layer) {
+        african_data.eachLayer(function(layer) {
           let country_ = layer.feature.properties.COUNTRY;
           layer.bindPopup(
-            '<strong>Country:</strong> ' + country_
-            + '<br>' + '<strong>Population:</strong> ' + govt_intervention_obj[country_][0]
-            + '<br>' + '<strong>Introduction:</strong> ' + govt_intervention_obj[country_][1]
-            + '<br>' + '<strong>Fiscal Policy:</strong> ' + govt_intervention_obj[country_][2]
-            + '<br>' + '<strong>Fiscal:</strong> ' + govt_intervention_obj[country_][3]
+            '<strong>Country:</strong> ' + country_ +
+            '<br>' + '<strong>Population:</strong> ' + govt_intervention_obj[country_][0] +
+            '<br>' + '<strong>Introduction:</strong> ' + govt_intervention_obj[country_][1] +
+            '<br>' + '<strong>Fiscal Policy:</strong> ' + govt_intervention_obj[country_][2] +
+            '<br>' + '<strong>Fiscal:</strong> ' + govt_intervention_obj[country_][3], {
+              autoPan: false,
+              maxWidth: 1100,
+              className: 'custom'
+            }
           );
-          layer.on('mouseover', function (e) {
+          layer.on('mouseover', function(e) {
             this.openPopup();
           });
-          layer.on('mouseout', function (e) {
+          layer.on('mouseout', function(e) {
             this.closePopup();
           });
         });
+
         function stylefiscal(feature) {
           return {
             fillColor: getColorfiscal(parseFloat(govt_intervention_obj[feature.properties.COUNTRY][3].split(",").join(""))),
@@ -60,8 +64,7 @@ let govt_intervention_layer = (element) => {
             fillOpacity: 1
           };
         }
-      }
-    else if (element.id === "monetary") {
+      } else if (element.id === "monetary") {
         let govt_intervention_obj = {}
         google_sheet_data.forEach(object_ => {
           govt_intervention_obj[object_["COUNTRY"]] = [
@@ -80,22 +83,27 @@ let govt_intervention_layer = (element) => {
           style: stylefiscal
         }).addTo(map);
 
-        african_data.eachLayer(function (layer) {
+        african_data.eachLayer(function(layer) {
           let country_ = layer.feature.properties.COUNTRY;
           layer.bindPopup(
-            '<strong>Country:</strong> ' + country_
-            + '<br>' + '<strong>Population:</strong> ' + govt_intervention_obj[country_][0]
-            + '<br>' + '<strong>Introduction:</strong> ' + govt_intervention_obj[country_][1]
-            + '<br>' + '<strong>Monetary and Macro financial:</strong> ' + govt_intervention_obj[country_][2]
-            + '<br>' + '<strong>Monetary:</strong> ' + govt_intervention_obj[country_][3]
+            '<strong>Country:</strong> ' + country_ +
+            '<br>' + '<strong>Population:</strong> ' + govt_intervention_obj[country_][0] +
+            '<br>' + '<strong>Introduction:</strong> ' + govt_intervention_obj[country_][1] +
+            '<br>' + '<strong>Monetary and Macro financial:</strong> ' + govt_intervention_obj[country_][2] +
+            '<br>' + '<strong>Monetary:</strong> ' + govt_intervention_obj[country_][3], {
+              autoPan: false,
+              maxWidth: 1000,
+              className: 'custom'
+            }
           );
-          layer.on('mouseover', function (e) {
+          layer.on('mouseover', function(e) {
             this.openPopup();
           });
-          layer.on('mouseout', function (e) {
+          layer.on('mouseout', function(e) {
             this.closePopup();
           });
         });
+
         function stylefiscal(feature) {
           return {
             fillColor: getColorfiscal(parseFloat(govt_intervention_obj[feature.properties.COUNTRY][3].split(",").join(""))),
@@ -106,8 +114,7 @@ let govt_intervention_layer = (element) => {
             fillOpacity: 1
           };
         }
-      }
-    else if (element.id === "exchange") {
+      } else if (element.id === "exchange") {
         let govt_intervention_obj = {}
         google_sheet_data.forEach(object_ => {
           govt_intervention_obj[object_["COUNTRY"]] = [
@@ -126,22 +133,27 @@ let govt_intervention_layer = (element) => {
           style: stylefiscal
         }).addTo(map);
 
-        african_data.eachLayer(function (layer) {
+        african_data.eachLayer(function(layer) {
           let country_ = layer.feature.properties.COUNTRY;
           layer.bindPopup(
-            '<strong>Country:</strong> ' + country_
-            + '<br>' + '<strong>Population:</strong> ' + govt_intervention_obj[country_][0]
-            + '<br>' + '<strong>Introduction:</strong> ' + govt_intervention_obj[country_][1]
-            + '<br>' + '<strong>Exchange rate and balance of payments:</strong> ' + govt_intervention_obj[country_][2]
-            + '<br>' + '<strong>Exchange:</strong> ' + govt_intervention_obj[country_][3]
+            '<strong>Country:</strong> ' + country_ +
+            '<br>' + '<strong>Population:</strong> ' + govt_intervention_obj[country_][0] +
+            '<br>' + '<strong>Introduction:</strong> ' + govt_intervention_obj[country_][1] +
+            '<br>' + '<strong>Exchange rate and balance of payments:</strong> ' + govt_intervention_obj[country_][2] +
+            '<br>' + '<strong>Exchange:</strong> ' + govt_intervention_obj[country_][3], {
+              autoPan: false,
+              maxWidth: 1000,
+              className: 'custom'
+            }
           );
-          layer.on('mouseover', function (e) {
+          layer.on('mouseover', function(e) {
             this.openPopup();
           });
-          layer.on('mouseout', function (e) {
+          layer.on('mouseout', function(e) {
             this.closePopup();
           });
         });
+
         function stylefiscal(feature) {
           return {
             fillColor: getColorfiscal(parseFloat(govt_intervention_obj[feature.properties.COUNTRY][3].split(",").join(""))),
@@ -152,8 +164,7 @@ let govt_intervention_layer = (element) => {
             fillOpacity: 1
           };
         }
-      }
-      else if (element.id === "country") {
+      } else if (element.id === "country") {
         let country_intervention_obj = {}
         google_sheet_data.forEach(object_ => {
           country_intervention_obj[object_["COUNTRY"]] = [
@@ -179,8 +190,8 @@ let govt_intervention_layer = (element) => {
             fillOpacity: 2.5,
             fillColor: '#b30000'
           },
-          onEachFeature: function (feature, layer) {
-            layer.on('mouseover', function () {
+          onEachFeature: function(feature, layer) {
+            layer.on('mouseover', function() {
               this.setStyle({
                 weight: 2,
                 opacity: 2,
@@ -189,7 +200,7 @@ let govt_intervention_layer = (element) => {
                 fillColor: '#989898'
               });
             });
-            layer.on('mouseout', function () {
+            layer.on('mouseout', function() {
               this.setStyle({
                 weight: 2,
                 opacity: 2,
@@ -201,22 +212,22 @@ let govt_intervention_layer = (element) => {
           }
         }).addTo(map);
 
-        african_data.eachLayer(function (layer) {
+        african_data.eachLayer(function(layer) {
           let country_ = layer.feature.properties.COUNTRY;
           layer.bindPopup(
-            '<strong>Country:</strong> ' + country_
-            + '<br>' + '<strong>Population:</strong> ' + country_intervention_obj[country_][0]
-            + '<br>' + '<strong>Humanitarian Exemption:</strong> ' + country_intervention_obj[country_][1]
-            + '<br>' + '<strong>Lock Down:</strong> ' + country_intervention_obj[country_][2]
-            + '<br>' + '<strong>Movement Restrictions:</strong> ' + country_intervention_obj[country_][3]
-            + '<br>' + '<strong>Public health measures:</strong> ' + country_intervention_obj[country_][4]
-            + '<br>' + '<strong>Social and economic measures:</strong> ' + country_intervention_obj[country_][5]
-            + '<br>' + '<strong>Social distancing:</strong> ' + country_intervention_obj[country_][6]
+            '<strong>Country:</strong> ' + country_ +
+            '<br>' + '<strong>Population:</strong> ' + country_intervention_obj[country_][0] +
+            '<br>' + '<strong>Humanitarian Exemption:</strong> ' + country_intervention_obj[country_][1] +
+            '<br>' + '<strong>Lock Down:</strong> ' + country_intervention_obj[country_][2] +
+            '<br>' + '<strong>Movement Restrictions:</strong> ' + country_intervention_obj[country_][3] +
+            '<br>' + '<strong>Public health measures:</strong> ' + country_intervention_obj[country_][4] +
+            '<br>' + '<strong>Social and economic measures:</strong> ' + country_intervention_obj[country_][5] +
+            '<br>' + '<strong>Social distancing:</strong> ' + country_intervention_obj[country_][6]
           );
-          layer.on('mouseover', function (e) {
+          layer.on('mouseover', function(e) {
             this.openPopup();
           });
-          layer.on('mouseout', function (e) {
+          layer.on('mouseout', function(e) {
             this.closePopup();
           });
         });

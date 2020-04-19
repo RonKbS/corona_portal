@@ -103,6 +103,16 @@
 .leaflet-tooltip-pane   { z-index: 650; }
 .leaflet-popup-pane   { z-index: 700; }
 
+.custom .leaflet-popup-tip,
+.custom .leaflet-popup-content-wrapper {
+	position: relative !important;
+    /* margin-top: 4em !important; */
+	font-size: 12px;
+	word-wrap: break-word;
+	/* padding: 0;
+	margin: 0; */
+}
+
 .leaflet-map-pane canvas { z-index: 100; }
 .leaflet-map-pane svg    { z-index: 200; }
 
