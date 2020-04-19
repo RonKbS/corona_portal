@@ -8252,7 +8252,7 @@ h1, h2, h3, h4, h5,
         border-top-right-radius: 12px;      }
         #sidebar ul li a:hover {
         color: #f8b739; }
-    #sidebar ul li.active > a {
+    #sidebar ul li a:focus {
       background: transparent;
       color: #f8b739; }
   @media (max-width: 991.98px) {

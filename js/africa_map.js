@@ -5,7 +5,8 @@ let url = `https://docs.google.com/spreadsheets/d/${long_id}/export?format=csv&i
 let google_sheet_data;
 
 let map = L.map('map', {
-  minZoom: 3.4
+  minZoom: 3.4,
+  maxZoom: 3.4
 }).setView([1.8, -10.24], 2);
 
 L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png', {
