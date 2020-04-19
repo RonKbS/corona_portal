@@ -1,4 +1,3 @@
-gid = "805631867"
 
 function getColorfiscal(d) {
   return d > 1 ? '#00441b' :
@@ -7,11 +6,15 @@ function getColorfiscal(d) {
 }
 
 let govt_intervention_layer = (element) => {
-  console.log(element.id)
+  gid = "805631867"
+  url = `https://docs.google.com/spreadsheets/d/${long_id}/export?format=csv&id=${long_id}&gid=${gid}`
   axios.get(url)
     .then(responseArrs => {
       google_sheet_data = $.csv.toObjects(responseArrs.data);
 
+      // the wording in these is alot and makes the map move down.
+      // we should instead have a popup to the left corner of the page next to the sidebar
+      // with these words
       if (element.id === "fiscal") {
         let govt_intervention_obj = {}
         google_sheet_data.forEach(object_ => {
