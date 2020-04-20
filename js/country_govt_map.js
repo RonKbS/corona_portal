@@ -1,8 +1,8 @@
 let second_google_sheet_data;
 
 function getColorfiscal(d) {
-  return d > 1 ? '#00441b' :
-    d > 0 ? '#00441b' :
+  return d > 1 ? '#15841b' :
+    d > 0 ? '#15841b' :
     '#808080';
 }
 
@@ -34,22 +34,8 @@ let govt_intervention_layer = (element) => {
 
         african_data.eachLayer(function(layer) {
           let country_ = layer.feature.properties.COUNTRY;
-          layer.bindPopup(
-            '<strong>Country:</strong> ' + country_ +
-            '<br>' + '<strong>Population:</strong> ' + govt_intervention_obj[country_][0] +
-            '<br>' + '<strong>Introduction:</strong> ' + govt_intervention_obj[country_][1] +
-            '<br>' + '<strong>Fiscal Policy:</strong> ' + govt_intervention_obj[country_][2] +
-            '<br>' + '<strong>Fiscal:</strong> ' + govt_intervention_obj[country_][3], {
-              autoPan: false,
-              maxWidth: 1100,
-              className: 'custom'
-            }
-          );
-          layer.on('mouseover', function(e) {
-            this.openPopup();
-          });
-          layer.on('mouseout', function(e) {
-            this.closePopup();
+          layer.on('click', function(e) {
+            document.getElementById("info").innerHTML = '<strong>Country: </strong>' + country_ + '<br>' + '<strong>Population: </strong>' + govt_intervention_obj[country_][0]+ '<br>' + '<strong>Introduction: </strong>' + govt_intervention_obj[country_][1]+ '<br>' + '<strong>Fiscal Policy: </strong>' + govt_intervention_obj[country_][2];
           });
         });
 
@@ -63,6 +49,14 @@ let govt_intervention_layer = (element) => {
             fillOpacity: 1
           };
         }
+        let legend_parent = document.getElementsByClassName("legend")[0]
+        if (legend_parent.childNodes.length > 1) {
+          legend_parent.removeChild(legend_parent.childNodes[1])
+        }
+        let legend_child = document.createElement("IMG")
+        legend_child.setAttribute("src", "images/fiscal_legend.png");
+        legend_child.setAttribute("class", "deaths")
+        legend_parent.appendChild(legend_child);
       } else if (element.id === "monetary") {
         let govt_intervention_obj = {}
         second_google_sheet_data.forEach(object_ => {
@@ -84,22 +78,8 @@ let govt_intervention_layer = (element) => {
 
         african_data.eachLayer(function(layer) {
           let country_ = layer.feature.properties.COUNTRY;
-          layer.bindPopup(
-            '<strong>Country:</strong> ' + country_ +
-            '<br>' + '<strong>Population:</strong> ' + govt_intervention_obj[country_][0] +
-            '<br>' + '<strong>Introduction:</strong> ' + govt_intervention_obj[country_][1] +
-            '<br>' + '<strong>Monetary and Macro financial:</strong> ' + govt_intervention_obj[country_][2] +
-            '<br>' + '<strong>Monetary:</strong> ' + govt_intervention_obj[country_][3], {
-              autoPan: false,
-              maxWidth: 1000,
-              className: 'custom'
-            }
-          );
-          layer.on('mouseover', function(e) {
-            this.openPopup();
-          });
-          layer.on('mouseout', function(e) {
-            this.closePopup();
+          layer.on('click', function(e) {
+            document.getElementById("info").innerHTML = '<strong>Country: </strong>' + country_ + '<br>' + '<strong>Population: </strong>' + govt_intervention_obj[country_][0]+ '<br>' + '<strong>Introduction: </strong>' + govt_intervention_obj[country_][1]+ '<br>' + '<strong>Monetary and Macro financial: </strong>' + govt_intervention_obj[country_][2];
           });
         });
 
@@ -113,6 +93,14 @@ let govt_intervention_layer = (element) => {
             fillOpacity: 1
           };
         }
+        let legend_parent = document.getElementsByClassName("legend")[0]
+        if (legend_parent.childNodes.length > 1) {
+          legend_parent.removeChild(legend_parent.childNodes[1])
+        }
+        let legend_child = document.createElement("IMG")
+        legend_child.setAttribute("src", "images/fiscal_legend.png");
+        legend_child.setAttribute("class", "deaths")
+        legend_parent.appendChild(legend_child);
       } else if (element.id === "exchange") {
         let govt_intervention_obj = {}
         second_google_sheet_data.forEach(object_ => {
@@ -134,22 +122,8 @@ let govt_intervention_layer = (element) => {
 
         african_data.eachLayer(function(layer) {
           let country_ = layer.feature.properties.COUNTRY;
-          layer.bindPopup(
-            '<strong>Country:</strong> ' + country_ +
-            '<br>' + '<strong>Population:</strong> ' + govt_intervention_obj[country_][0] +
-            '<br>' + '<strong>Introduction:</strong> ' + govt_intervention_obj[country_][1] +
-            '<br>' + '<strong>Exchange rate and balance of payments:</strong> ' + govt_intervention_obj[country_][2] +
-            '<br>' + '<strong>Exchange:</strong> ' + govt_intervention_obj[country_][3], {
-              autoPan: false,
-              maxWidth: 1000,
-              className: 'custom'
-            }
-          );
-          layer.on('mouseover', function(e) {
-            this.openPopup();
-          });
-          layer.on('mouseout', function(e) {
-            this.closePopup();
+          layer.on('click', function(e) {
+            document.getElementById("info").innerHTML = '<strong>Country: </strong>' + country_ + '<br>' + '<strong>Population: </strong>' + govt_intervention_obj[country_][0]+ '<br>' + '<strong>Introduction: </strong>' + govt_intervention_obj[country_][1]+ '<br>' + '<strong>Exchange rate and balance of payments: </strong>' + govt_intervention_obj[country_][2];
           });
         });
 
@@ -163,6 +137,14 @@ let govt_intervention_layer = (element) => {
             fillOpacity: 1
           };
         }
+        let legend_parent = document.getElementsByClassName("legend")[0]
+        if (legend_parent.childNodes.length > 1) {
+          legend_parent.removeChild(legend_parent.childNodes[1])
+        }
+        let legend_child = document.createElement("IMG")
+        legend_child.setAttribute("src", "images/fiscal_legend.png");
+        legend_child.setAttribute("class", "deaths")
+        legend_parent.appendChild(legend_child);
       } else if (element.id === "country") {
         let country_intervention_obj = {}
         second_google_sheet_data.forEach(object_ => {
@@ -221,7 +203,10 @@ let govt_intervention_layer = (element) => {
             '<br>' + '<strong>Movement Restrictions:</strong> ' + country_intervention_obj[country_][3] +
             '<br>' + '<strong>Public health measures:</strong> ' + country_intervention_obj[country_][4] +
             '<br>' + '<strong>Social and economic measures:</strong> ' + country_intervention_obj[country_][5] +
-            '<br>' + '<strong>Social distancing:</strong> ' + country_intervention_obj[country_][6]
+            '<br>' + '<strong>Social distancing:</strong> ' + country_intervention_obj[country_][6],
+            {
+              autoPan: false
+            }
           );
           layer.on('mouseover', function(e) {
             this.openPopup();
@@ -230,15 +215,10 @@ let govt_intervention_layer = (element) => {
             this.closePopup();
           });
         });
+        let legend_parent = document.getElementsByClassName("legend")[0]
+        if (legend_parent.childNodes.length > 1) {
+          legend_parent.removeChild(legend_parent.childNodes[1])
+        }
       }
-
-      let legend_parent = document.getElementsByClassName("legend")[0]
-      if (legend_parent.childNodes.length > 1) {
-        legend_parent.removeChild(legend_parent.childNodes[1])
-      }
-      // let legend_child = document.createElement("IMG")
-      // legend_child.setAttribute("src", "images/fiscal_legend.png");
-      // legend_child.setAttribute("class", "fiscal")
-      // legend_parent.appendChild(legend_child);
     })
 }

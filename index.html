@@ -26,9 +26,10 @@
     <nav id="sidebar">
       <div>
         <div class="img logo rounded mb-30">
-          <a href="index.html">
+          <a href="index.html" >
             <p style="font-size:6.6rem;color:white;text-align:center;top:-53px;position:relative;">PACA</p>
-            <p style="font-size:20px;color:white;top:-128px;position:relative;text-align:justify;left:4em;">Pan<br /> African<br /> COVID 19<br /> Analysis</p>
+            <p style="display:inline-block;color:white;top:-128px;position:relative;text-align:justify;left:1em;font-size:24px"><span style="font-size:44px;margin-bottom:-37px;">PAN AFRICAN</span><span
+                style="margin-bottom:-33px;font-size:44px;word-spacing:86px;">COVID 19</span><span style="letter-spacing:11px;font-size:44px">ANALYSIS</span></p>
           </a>
         </div>
         <div class="p-4 pt-5" style="max-height: 66vh;overflow: auto;">
@@ -49,7 +50,8 @@
                   <li>
                     <a href="#" onclick="popn_density_layer()">Population Density</a>
                   </li>
-                  <br /><h6><strong>Vulnerability</strong></h6>
+                  <br />
+                  <h6><strong>Vulnerability</strong></h6>
                   <li>
                     <a href="#" onclick="hiv_stats_layer()">HIV/AIDS(%)</a>
                   </li>
@@ -59,7 +61,14 @@
                   <li>
                     <a href="#" onclick="elderly_stats_layer()">Elderly(%)</a>
                   </li>
-                  <br /><h6><strong>COVID 19 cases</strong></h6>
+                  <br />
+                  <h6><strong>COVID 19 cases</strong></h6>
+                  <li>
+                    <a href="#" onclick="cases_layer()">Cases</a>
+                  </li>
+                  <li>
+                    <a href="#" onclick="deaths_layer()">Deaths</a>
+                  </li>
                   <li>
                     <a href="#" onclick="cases_concn_layer()">Cases per 100,000 people</a>
                   </li>
@@ -69,7 +78,8 @@
                 </ul>
                 <a href="#homeSubmenu3" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Response</a>
                 <ul class="collapse list-unstyled" id="homeSubmenu3">
-                  <br /><h6><strong>Government Intervention</strong></h6>
+                  <br />
+                  <h6><strong>Government Intervention</strong></h6>
                   <li>
                     <a href="#" onclick="govt_intervention_layer(this)" id="fiscal">Fiscal</a>
                   </li>
@@ -79,7 +89,8 @@
                   <li>
                     <a href="#" onclick="govt_intervention_layer(this)" id="exchange">Exchange</a>
                   </li>
-                  <br /><h6><strong>Country Response Measures</strong></h6>
+                  <br />
+                  <h6><strong>Country Response Measures</strong></h6>
                   <li>
                     <a href="#" onclick="govt_intervention_layer(this)" id="country">Country Response</a>
                   </li>
@@ -144,39 +155,23 @@
     <!-- Page Content  -->
     <div id="content" class="p-2 p-md-1">
 
-      <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top">
-        <div class="container-fluid">
-
-          <button type="button" id="sidebarCollapse" class="btn btn-primary">
-            <i class="fa fa-bars"></i>
-            <span class="sr-only">Toggle Menu</span>
-          </button>
-
-          <!-- The form -->
-          <!-- <div class="wrap">
-            <form class="search" action="">
-              <input type="text" class="searchTerm" placeholder="Search Country">
-              <button type="submit" class="searchButton">
-                <i class="fa fa-search"></i>
-              </button>
-            </form>
-          </div> -->
+      <div class="col-xs-12" id="map">
+        <div id="feature_infos">
+          <span class="close" id="closebtn">X</span>
+          <p style="margin-bottom:0;font-size:20px;">Click on a country</p>
+          <div id="info"></div>
         </div>
-    </div>
-    </nav>
+        <div class="logo1">
+          <img style="width:56%;" class="gg_logo" src="images/GG_Logo2.png">
+        </div>
+        <div class="logo2">
+          <img style="width:56%;" class="irish_logo" src="images/irish.png">
+        </div>
+        <div class="legend">
+        </div>
+      </div>
 
-    <div class="col-xs-12" id="map">
-      <div class="logo1">
-        <img style="width:56%;" class="gg_logo" src="images/GG_Logo2.png">
-      </div>
-      <div class="logo2">
-        <img style="width:56%;" class="irish_logo" src="images/irish.png">
-      </div>
-      <div class="legend">
-      </div>
     </div>
-
-  </div>
   </div>
 
   <script src="js/jquery.min.js"></script>
@@ -192,9 +187,22 @@
   <script type="text/javascript" src="js/HIV_map.js"></script>
   <script type="text/javascript" src="js/TB_map.js"></script>
   <script type="text/javascript" src="js/elderly_map.js"></script>
+  <script type="text/javascript" src="js/cases_ratio_map.js"></script>
+  <script type="text/javascript" src="js/deaths_ratio_map.js"></script>
   <script type="text/javascript" src="js/cases_map.js"></script>
   <script type="text/javascript" src="js/deaths_map.js"></script>
   <script type="text/javascript" src="js/country_govt_map.js"></script>
+
+  <script type="text/javascript">
+    $("#closebtn").off().on("click", function() {
+      $("#info").toggle();
+    });
+    $(document).click(function(e) {
+      if ($(e.target).closest('#info, #closebtn').length == 0) {
+        $("#info").show();
+      }
+    })
+  </script>
 </body>
 
 </html>

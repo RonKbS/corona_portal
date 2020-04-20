@@ -34,8 +34,11 @@ let icus_layer = () => {
     layer.bindPopup(
       '<strong>Country:</strong> ' + country_
       + '<br>' + '<strong>Population:</strong> ' + icus_obj[country_][0]
-      + '<br>' + '<strong>ICUs:</strong> ' + icus_obj[country_][1]
-      + '<br>' + '<strong>People per ICU:</strong> ' + icus_obj[country_][2]
+      + '<br>' + '<strong>ICU Beds:</strong> ' + icus_obj[country_][1]
+      + '<br>' + '<strong>People per ICU:</strong> ' + icus_obj[country_][2],
+      {
+        autoPan: false
+      }
     );
     layer.on('mouseover', function (e) {
       this.openPopup();

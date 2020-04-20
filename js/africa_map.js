@@ -1,4 +1,3 @@
-
 let long_id = "1tRF8gjyRd0oA2sSpTKmZqambggZzUM0YiED6KqF8H8M"
 let gid = "1502462034"
 let url = `https://docs.google.com/spreadsheets/d/${long_id}/export?format=csv&id=${long_id}&gid=${gid}`
@@ -7,7 +6,12 @@ let google_sheet_data;
 let map = L.map('map', {
   minZoom: 3.4,
   maxZoom: 3.4
-}).setView([1.8, -10.24], 2);
+}).setView([1.8, 2.24], 2);
+
+map.dragging.disable();
+map.touchZoom.disable();
+map.doubleClickZoom.disable();
+map.scrollWheelZoom.disable();
 
 L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png', {
   attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
@@ -45,6 +49,7 @@ let african_data = L.geoJson(africa_data, {
   }
 }).addTo(map);
 
+
 axios.get(url)
   .then(responseArrs => {
     google_sheet_data = $.csv.toObjects(responseArrs.data);
@@ -56,32 +61,18 @@ axios.get(url)
       ]
     })
 
-    african_data.eachLayer(function (layer) {
+    african_data.eachLayer(function(layer) {
       let country_ = layer.feature.properties.COUNTRY;
       layer.bindPopup(
-        '<strong>Country:</strong> ' + country_
-        + '<br>' + '<strong>Population:</strong> ' + initial_data_obj[country_][0]
-        + '<br>' + '<strong>Density:</strong> ' + initial_data_obj[country_][1]
+        '<strong>Country:</strong> ' + country_ +
+        '<br>' + '<strong>Population:</strong> ' + initial_data_obj[country_][0] +
+        '<br>' + '<strong>Density:</strong> ' + initial_data_obj[country_][1]
       );
-      layer.on('mouseover', function (e) {
+      layer.on('mouseover', function(e) {
         this.openPopup();
       });
-      layer.on('mouseout', function (e) {
+      layer.on('mouseout', function(e) {
         this.closePopup();
       });
     });
   })
-
-  var info = L.control();
-  info.onAdd = function(map) {
-    this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
-    this.update();
-    return this._div;
-  };
-
-  info.update = function(props) {
-    this._div.innerHTML =  (props ?
-      '<b>' + '</b><br />' + ' ' :
-      'Hover over a country');
-  };
-  info.addTo(map);

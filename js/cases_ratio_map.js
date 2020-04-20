@@ -1,36 +1,39 @@
 
-function getColordeaths(d) {
-  return d > 250 ? '#006837' :
-    d > 6 ? '#31a354' :
-      d > 2 ? '#78c679' :
-        d > 1 ? '#c2e699' :
-          d > 0 ? '#ffffcc' :
+function getColorcasesratio(d) {
+  return d > 67.4 ? '#7a0177' :
+    d > 2.9 ? '#c51b8a' :
+      d > 1.3 ? '#f768a1' :
+        d > 0.4 ? '#fbb4b9' :
+          d > 0.1 ? '#feebe2' :
+            // d > 0 ? '#f1eef6' :
               '#ffffff00';
 }
 
 
-let deaths_layer = () => {
+let cases_concn_layer = () => {
   if (african_data._map) {
     map.removeLayer(african_data)
   }
-  let deaths_obj = {}
+  let cases_concn_obj = {}
   google_sheet_data.forEach(object_ => {
-    deaths_obj[object_["COUNTRY"]] = [
+    cases_concn_obj[object_["COUNTRY"]] = [
       object_["POP"],
-      object_["DEATHS"]
+      object_["CASES"],
+      object_["CASES_PER_100,000"]
     ]
   })
 
   african_data = L.geoJson(africa_data, {
-    style: styledeaths
+    style: stylecasesratio
   }).addTo(map);
 
   african_data.eachLayer(function (layer) {
     let country_ = layer.feature.properties.COUNTRY;
     layer.bindPopup(
       '<strong>Country:</strong> ' + country_
-      + '<br>' + '<strong>Population:</strong> ' + deaths_obj[country_][0]
-      + '<br>' + '<strong>Deaths:</strong> ' + deaths_obj[country_][1],
+      + '<br>' + '<strong>Population:</strong> ' + cases_concn_obj[country_][0]
+      + '<br>' + '<strong>Cases:</strong> ' + cases_concn_obj[country_][1]
+      + '<br>' + '<strong>Cases per 100,000 people:</strong> ' + cases_concn_obj[country_][2],
       {
         autoPan: false
       }
@@ -43,9 +46,9 @@ let deaths_layer = () => {
     });
   });
 
-  function styledeaths(feature) {
+  function stylecasesratio(feature) {
     return {
-      fillColor: getColordeaths(parseFloat(deaths_obj[feature.properties.COUNTRY][1].split(",").join(""))),
+      fillColor: getColorcasesratio(parseFloat(cases_concn_obj[feature.properties.COUNTRY][2].split(",").join(""))),
       weight: 1,
       opacity: 1,
       color: 'black',
@@ -59,7 +62,7 @@ let deaths_layer = () => {
     legend_parent.removeChild(legend_parent.childNodes[1])
   }
   let legend_child = document.createElement("IMG")
-  legend_child.setAttribute("src", "images/deaths_legend.png");
-  legend_child.setAttribute("class", "deaths")
+  legend_child.setAttribute("src", "images/cases_ratio_legend.png");
+  legend_child.setAttribute("class", "cases")
   legend_parent.appendChild(legend_child);
 }

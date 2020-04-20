@@ -32,7 +32,10 @@ let elderly_stats_layer = () => {
       '<strong>Country:</strong> ' + country_
       + '<br>' + '<strong>Population:</strong> ' + elderly_stats_obj[country_][0]
       + '<br>' + '<strong>Elderly rates:</strong> ' + elderly_stats_obj[country_][1]
-      + '<br>' + '<strong>Elderly percentage:</strong> ' + elderly_stats_obj[country_][2]
+      + '<br>' + '<strong>Elderly percentage:</strong> ' + elderly_stats_obj[country_][2],
+      {
+        autoPan: false
+      }
     );
     layer.on('mouseover', function (e) {
       this.openPopup();

@@ -1,25 +1,24 @@
 
 function getColorcases(d) {
-  return d > 67.4 ? '#7a0177' :
-    d > 2.9 ? '#c51b8a' :
-      d > 1.3 ? '#f768a1' :
-        d > 0.4 ? '#fbb4b9' :
-          d > 0.1 ? '#feebe2' :
-            // d > 0 ? '#f1eef6' :
+  return d > 2000 ? '#016c59' :
+    d > 250 ? '#1c9099' :
+      d > 50 ? '#67a9cf' :
+        d > 20 ? '#bdc9e1' :
+          d > 10 ? '#f6eff7' :
+          d > 0 ? '#f0f5f7' :
               '#ffffff00';
 }
 
 
-let cases_concn_layer = () => {
+let cases_layer = () => {
   if (african_data._map) {
     map.removeLayer(african_data)
   }
-  let cases_concn_obj = {}
+  let cases_obj = {}
   google_sheet_data.forEach(object_ => {
-    cases_concn_obj[object_["COUNTRY"]] = [
+    cases_obj[object_["COUNTRY"]] = [
       object_["POP"],
-      object_["CASES"],
-      object_["CASES_PER_100,000"]
+      object_["CASES"]
     ]
   })
 
@@ -31,9 +30,11 @@ let cases_concn_layer = () => {
     let country_ = layer.feature.properties.COUNTRY;
     layer.bindPopup(
       '<strong>Country:</strong> ' + country_
-      + '<br>' + '<strong>Population:</strong> ' + cases_concn_obj[country_][0]
-      + '<br>' + '<strong>Cases:</strong> ' + cases_concn_obj[country_][1]
-      + '<br>' + '<strong>Cases per 100,000 people:</strong> ' + cases_concn_obj[country_][2]
+      + '<br>' + '<strong>Population:</strong> ' + cases_obj[country_][0]
+      + '<br>' + '<strong>Cases:</strong> ' + cases_obj[country_][1],
+      {
+        autoPan: false
+      }
     );
     layer.on('mouseover', function (e) {
       this.openPopup();
@@ -45,7 +46,7 @@ let cases_concn_layer = () => {
 
   function stylecases(feature) {
     return {
-      fillColor: getColorcases(parseFloat(cases_concn_obj[feature.properties.COUNTRY][2].split(",").join(""))),
+      fillColor: getColorcases(parseFloat(cases_obj[feature.properties.COUNTRY][1].split(",").join(""))),
       weight: 1,
       opacity: 1,
       color: 'black',

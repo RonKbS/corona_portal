@@ -31,7 +31,10 @@ let popn_density_layer = () => {
     layer.bindPopup(
       '<strong>Country:</strong> ' + country_
       + '<br>' + '<strong>Population:</strong> ' + popn_density_obj[country_][0]
-      + '<br>' + '<strong>Population Density:</strong> ' + popn_density_obj[country_][1]
+      + '<br>' + '<strong>Population Density:</strong> ' + popn_density_obj[country_][1],
+      {
+        autoPan: false
+      }
     );
     layer.on('mouseover', function (e) {
       this.openPopup();

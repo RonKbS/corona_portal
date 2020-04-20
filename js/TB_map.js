@@ -1,6 +1,6 @@
 
 function getColorTB(d) {
-  return d > 20.00 ? '#810f7c' :
+  return d > 0.40 ? '#810f7c' :
     d > 0.20 ? '#8856a7' :
     d > 0.11 ? '#8c96c6' :
     d > 0.08 ? '#b3cde3' :
@@ -32,7 +32,10 @@ let tb_stats_layer = () => {
         '<strong>Country:</strong> ' + country_
         + '<br>' + '<strong>Population:</strong> ' + tb_stats_obj[country_][0]
         + '<br>' + '<strong>TB rates:</strong> ' + tb_stats_obj[country_][1]
-        + '<br>' + '<strong>TB percentage:</strong> ' + tb_stats_obj[country_][2]
+        + '<br>' + '<strong>TB percentage:</strong> ' + tb_stats_obj[country_][2],
+        {
+          autoPan: false
+        }
       );
       layer.on('mouseover', function (e) {
         this.openPopup();
