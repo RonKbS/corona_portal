@@ -63,6 +63,6 @@ let deaths_concn_layer = () => {
   }
   let legend_child = document.createElement("IMG")
   legend_child.setAttribute("src", "images/deaths_ratio_legend.png");
-  legend_child.setAttribute("class", "deaths")
+  legend_child.setAttribute("class", "deaths_ratio")
   legend_parent.appendChild(legend_child);
 }
