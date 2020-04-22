@@ -1,6 +1,6 @@
 @media (max-height:700px) {
   #map {
-    width: 78%;
+    width: 76%;
     height: 100%;
     position: absolute;
     /* top: 77px; */
@@ -195,10 +195,17 @@ h6 {
   display: block;
   z-index: 100000000000000000;
   border-radius: 7px;
+  height: 42px;
 }
 
 #info {
-  color: black;
   height: 68vh;
   overflow: auto;
+  border: 1px solid;
+  width: 103%;
+  position: relative;
+  border: 1px solid #ffffff00;
+  border-radius: 7px;
+  left: -5px;
+  color: black;
 }
