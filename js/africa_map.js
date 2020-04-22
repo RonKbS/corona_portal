@@ -1,4 +1,3 @@
-
 let long_id = "1tRF8gjyRd0oA2sSpTKmZqambggZzUM0YiED6KqF8H8M"
 let gid = "1502462034"
 let url = `https://docs.google.com/spreadsheets/d/${long_id}/export?format=csv&id=${long_id}&gid=${gid}`
@@ -7,7 +6,12 @@ let google_sheet_data;
 let map = L.map('map', {
   minZoom: 3.4,
   maxZoom: 3.4
-}).setView([1.8, -10.24], 2);
+}).setView([1.8, 2.24], 2);
+
+map.dragging.disable();
+map.touchZoom.disable();
+map.doubleClickZoom.disable();
+map.scrollWheelZoom.disable();
 
 L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png', {
   attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
@@ -15,35 +19,17 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png
   maxZoom: 19
 }).addTo(map);
 
-let african_data = L.geoJson(africa_data, {
-  style: {
-    weight: 2,
-    opacity: 2,
-    color: '#e15b26',
-    fillOpacity: 2.5,
-    fillColor: '#ffffff00'
-  },
-  onEachFeature: function(feature, layer) {
-    layer.on('mouseover', function() {
-      this.setStyle({
-        weight: 2,
-        opacity: 2,
-        color: '#989898',
-        fillOpacity: 10,
-        fillColor: '#989898'
-      });
-    });
-    layer.on('mouseout', function() {
-      this.setStyle({
-        weight: 2,
-        opacity: 2,
-        color: '#e15b26',
-        fillOpacity: 2.5,
-        fillColor: '#ffffff00'
-      });
-    });
-  }
-}).addTo(map);
+let african_data;
+function getColorcases(d) {
+  return d > 2000 ? '#016c59' :
+  d > 250 ? '#1c9099' :
+    d > 50 ? '#67a9cf' :
+      d > 20 ? '#bdc9e1' :
+        d > 10 ? '#f6eff7' :
+        d > 0 ? '#f0f5f7' :
+            '#ffffff00';
+}
+
 
 axios.get(url)
   .then(responseArrs => {
@@ -52,36 +38,42 @@ axios.get(url)
     google_sheet_data.forEach(object_ => {
       initial_data_obj[object_["COUNTRY"]] = [
         object_["POP"],
-        object_["DENSITY"]
+        object_["CASES"]
       ]
     })
 
-    african_data.eachLayer(function (layer) {
+    african_data = L.geoJson(africa_data, {
+      style: stylecases
+    }).addTo(map);
+
+    african_data.eachLayer(function(layer) {
       let country_ = layer.feature.properties.COUNTRY;
       layer.bindPopup(
-        '<strong>Country:</strong> ' + country_
-        + '<br>' + '<strong>Population:</strong> ' + initial_data_obj[country_][0]
-        + '<br>' + '<strong>Density:</strong> ' + initial_data_obj[country_][1]
+        '<strong>Country:</strong> ' + country_ +
+        '<br>' + '<strong>Population:</strong> ' + initial_data_obj[country_][0] +
+        '<br>' + '<strong>Cases:</strong> ' + initial_data_obj[country_][1]
       );
-      layer.on('mouseover', function (e) {
+      layer.on('mouseover', function(e) {
         this.openPopup();
       });
-      layer.on('mouseout', function (e) {
+      layer.on('mouseout', function(e) {
         this.closePopup();
       });
     });
+
+    function stylecases(feature) {
+      return {
+        fillColor: getColorcases(parseFloat(initial_data_obj[feature.properties.COUNTRY][1].split(",").join(""))),
+        weight: 1,
+        opacity: 1,
+        color: 'black',
+        dashArray: '0',
+        fillOpacity: 1
+      };
+    }
+    let legend_parent = document.getElementsByClassName("legend")[0]
+    let legend_child = document.createElement("IMG")
+    legend_child.setAttribute("src", "images/cases_legend.png");
+    legend_child.setAttribute("class", "cases")
+    legend_parent.appendChild(legend_child);
   })
-
-  var info = L.control();
-  info.onAdd = function(map) {
-    this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
-    this.update();
-    return this._div;
-  };
-
-  info.update = function(props) {
-    this._div.innerHTML =  (props ?
-      '<b>' + '</b><br />' + ' ' :
-      'Hover over a country');
-  };
-  info.addTo(map);

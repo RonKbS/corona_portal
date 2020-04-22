@@ -1,12 +1,11 @@
-
 function getColordensity(d) {
   return d > 730 ? '#993404' :
     d > 190 ? '#d95f0e' :
-      d > 80 ? '#fe9929' :
-        d > 50 ? '#fed98e' :
-          d > 20 ? '#ffffd4' :
-            d > 0 ? '#fef0d9' :
-              '#ffffff00';
+    d > 80 ? '#fe9929' :
+    d > 50 ? '#fed98e' :
+    d > 20 ? '#ffffd4' :
+    d > 0 ? '#fef0d9' :
+    '#ffffff00';
 }
 
 
@@ -26,17 +25,19 @@ let popn_density_layer = () => {
     style: styledensity
   }).addTo(map);
 
-  african_data.eachLayer(function (layer) {
+  african_data.eachLayer(function(layer) {
     let country_ = layer.feature.properties.COUNTRY;
     layer.bindPopup(
-      '<strong>Country:</strong> ' + country_
-      + '<br>' + '<strong>Population:</strong> ' + popn_density_obj[country_][0]
-      + '<br>' + '<strong>Population Density:</strong> ' + popn_density_obj[country_][1]
+      '<strong>Country:</strong> ' + country_ +
+      '<br>' + '<strong>Population:</strong> ' + popn_density_obj[country_][0] +
+      '<br>' + '<strong>Population Density:</strong> ' + popn_density_obj[country_][1], {
+        autoPan: false
+      }
     );
-    layer.on('mouseover', function (e) {
+    layer.on('mouseover', function(e) {
       this.openPopup();
     });
-    layer.on('mouseout', function (e) {
+    layer.on('mouseout', function(e) {
       this.closePopup();
     });
   });

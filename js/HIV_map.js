@@ -33,7 +33,10 @@ let hiv_stats_layer = () => {
       '<strong>Country:</strong> ' + country_
       + '<br>' + '<strong>Population:</strong> ' + hiv_stats_obj[country_][0]
       + '<br>' + '<strong>HIV rates:</strong> ' + hiv_stats_obj[country_][1]
-      + '<br>' + '<strong>HIV percentage:</strong> ' + hiv_stats_obj[country_][2]
+      + '<br>' + '<strong>HIV percentage:</strong> ' + hiv_stats_obj[country_][2],
+      {
+        autoPan: false
+      }
     );
     layer.on('mouseover', function (e) {
       this.openPopup();

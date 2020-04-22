@@ -1,13 +1,11 @@
-
-
 function getColorvents(d) {
   return d > 8000000 ? '#045a8d' :
     d > 1600000 ? '#2b8cbe' :
-      d > 1000000 ? '#74a9cf' :
-        d > 800000 ? '#bdc9e1' :
-          d > 200000 ? '#dbf8ff' :
-            d > 0 ? '#f1eef6' :
-              '#ffffff00';
+    d > 1000000 ? '#74a9cf' :
+    d > 800000 ? '#bdc9e1' :
+    d > 200000 ? '#dbf8ff' :
+    d > 0 ? '#f1eef6' :
+    '#ffffff00';
 }
 
 
@@ -30,18 +28,20 @@ let ventilators_layer = () => {
   }).addTo(map);
 
 
-  african_data.eachLayer(function (layer) {
+  african_data.eachLayer(function(layer) {
     let country_ = layer.feature.properties.COUNTRY;
     layer.bindPopup(
-      '<strong>Country:</strong> ' + country_
-      + '<br>' + '<strong>Population:</strong> ' + ventilators_obj[country_][0]
-      + '<br>' + '<strong>Ventilators:</strong> ' + ventilators_obj[country_][1]
-      + '<br>' + '<strong>People per ventilator:</strong> ' + ventilators_obj[country_][2]
+      '<strong>Country:</strong> ' + country_ +
+      '<br>' + '<strong>Population:</strong> ' + ventilators_obj[country_][0] +
+      '<br>' + '<strong>Ventilators:</strong> ' + ventilators_obj[country_][1] +
+      '<br>' + '<strong>People per ventilator:</strong> ' + ventilators_obj[country_][2], {
+        autoPan: false
+      }
     );
-    layer.on('mouseover', function (e) {
+    layer.on('mouseover', function(e) {
       this.openPopup();
     });
-    layer.on('mouseout', function (e) {
+    layer.on('mouseout', function(e) {
       this.closePopup();
     });
   });
@@ -65,6 +65,5 @@ let ventilators_layer = () => {
   legend_child.setAttribute("src", "images/vent_legend.png");
   legend_child.setAttribute("class", "vent")
   legend_parent.appendChild(legend_child);
-  
-}
 
+}
