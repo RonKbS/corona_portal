@@ -4629,7 +4629,7 @@ input[type="button"].btn-block {
   font-size: 1.5em;
   font-weight: 700;
   line-height: 1;
-  color: #000;
+  color: #f00;
   text-shadow: 0 1px 0 #fff;
   opacity: .5; }
   .close:hover {
@@ -8226,7 +8226,7 @@ h1, h2, h3, h4, h5,
     margin-left: -300px; }
   #sidebar .logo {
     background: #e15b26;
-    height: 16em;
+    height: 12em;
    }
     #sidebar .logo span {
       display: block; }
