@@ -105,26 +105,27 @@
 }
 
 .logo1 {
-  position: absolute;
-  top: 10.3em;
-  left: 13em;
+  position: relative;
+  top: 1.5em;
+  left: 11.5em;
 }
 
 .logo2 {
-  position: absolute;
-  top: 8em;
+  position: relative;
+  top: -4.5em;
 }
 
 .source {
   background-color: #4e4e4e;
   padding: 8px;
   z-index: 10000;
-  right: 3em;
-  position: absolute;
+  right: 10;
+  position: relative;
   top: 1em;
   width: 8%;
   border-radius: 22px;
   padding-left: 1.5%;
+  left: 90%;
 }
 
 div #container3 {

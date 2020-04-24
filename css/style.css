@@ -8223,6 +8223,7 @@ h1, h2, h3, h4, h5,
   -o-transition: all 0.3s;
   transition: all 0.3s; 
   z-index: 10000;
+  max-height: 100vh;
 }
   #sidebar.active {
     margin-left: -300px; }
