@@ -61,30 +61,4 @@ let popn_density_layer = () => {
   legend_child.setAttribute("src", "images/density_legend.png");
   legend_child.setAttribute("class", "density")
   legend_parent.appendChild(legend_child);
-
-  // var legend = L.control({
-  //   position: 'bottomright'
-  // });
-  //
-  // legend.onAdd = function(map) {
-  //   var div = L.DomUtil.create('div', 'info legend'),
-  //     grades = [0, 20, 50, 80, 190, 730],
-  //     labels = ['<strong> People/Sqkm </strong><br>'],
-  //     from, to;
-  //
-  //   for (var i = 0; i < grades.length; i++) {
-  //     from = grades[i];
-  //     to = grades[i + 1];
-  //
-  //     labels.push(
-  //       '<i style="background:' + getColordensity(from + 1) + '"> color </i> ' +
-  //       from + (to ? '&ndash;' + to : '+'));
-  //   }
-  //
-  //   div.innerHTML = labels.join('<br>');
-  //   return div;
-  // };
-  //
-  // legend.addTo(map);
-
 }
