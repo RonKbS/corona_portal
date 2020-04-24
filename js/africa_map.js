@@ -4,9 +4,9 @@ let url = `https://docs.google.com/spreadsheets/d/${long_id}/export?format=csv&i
 let google_sheet_data;
 
 let map = L.map('map', {
-  minZoom: 3.4,
-  maxZoom: 3.4
-}).setView([1.8, 2.24], 2);
+  minZoom: 3,
+  maxZoom: 3
+}).setView([2.8, 15.24], 2);
 
 map.dragging.disable();
 map.touchZoom.disable();

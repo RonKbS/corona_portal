@@ -1,12 +1,11 @@
-
 function getColorcases(d) {
   return d > 2000 ? '#016c59' :
     d > 250 ? '#1c9099' :
-      d > 50 ? '#67a9cf' :
-        d > 20 ? '#bdc9e1' :
-          d > 10 ? '#f6eff7' :
-          d > 0 ? '#f0f5f7' :
-              '#ffffff00';
+    d > 50 ? '#67a9cf' :
+    d > 20 ? '#bdc9e1' :
+    d > 10 ? '#f6eff7' :
+    d > 0 ? '#f0f5f7' :
+    '#ffffff00';
 }
 
 
@@ -26,20 +25,19 @@ let cases_layer = () => {
     style: stylecases
   }).addTo(map);
 
-  african_data.eachLayer(function (layer) {
+  african_data.eachLayer(function(layer) {
     let country_ = layer.feature.properties.COUNTRY;
     layer.bindPopup(
-      '<strong>Country:</strong> ' + country_
-      + '<br>' + '<strong>Population:</strong> ' + cases_obj[country_][0]
-      + '<br>' + '<strong>Cases:</strong> ' + cases_obj[country_][1],
-      {
+      '<strong>Country:</strong> ' + country_ +
+      '<br>' + '<strong>Population:</strong> ' + cases_obj[country_][0] +
+      '<br>' + '<strong>Cases:</strong> ' + cases_obj[country_][1], {
         autoPan: false
       }
     );
-    layer.on('mouseover', function (e) {
+    layer.on('mouseover', function(e) {
       this.openPopup();
     });
-    layer.on('mouseout', function (e) {
+    layer.on('mouseout', function(e) {
       this.closePopup();
     });
   });
@@ -55,12 +53,37 @@ let cases_layer = () => {
     };
   }
 
-  let legend_parent = document.getElementsByClassName("legend")[0]
-  if (legend_parent.childNodes.length > 1) {
-    legend_parent.removeChild(legend_parent.childNodes[1])
-  }
-  let legend_child = document.createElement("IMG")
-  legend_child.setAttribute("src", "images/cases_legend.png");
-  legend_child.setAttribute("class", "cases")
-  legend_parent.appendChild(legend_child);
+  // let legend_parent = document.getElementsByClassName("legend")[0]
+  // if (legend_parent.childNodes.length > 1) {
+  //   legend_parent.removeChild(legend_parent.childNodes[1])
+  // }
+  // let legend_child = document.createElement("IMG")
+  // legend_child.setAttribute("src", "images/cases_legend.png");
+  // legend_child.setAttribute("class", "cases")
+  // legend_parent.appendChild(legend_child);
+
+  var caseslegend = L.control({
+    position: 'bottomright'
+  });
+  caseslegend.onAdd = function(map) {
+
+    var div = L.DomUtil.create('div', 'info legend'),
+      casesGrades = [0, 10, 20, 50, 250, 2000],
+      casesLabels = ['<strong>COVID 19 Cases</strong> <br>'],
+      from, to;
+
+    for (var i = 0; i < casesGrades.length; i++) {
+      from = casesGrades[i];
+      to = casesGrades[i + 1];
+
+      casesLabels.push(
+        '<i style="background:' + getColorcases(from) + '"></i> ' +
+        from + (to ? '&ndash;' + to : '+'));
+
+    }
+
+    div.innerHTML = casesLabels.join('<br>');
+    return div;
+  };
+
 }
