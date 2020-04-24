@@ -35,7 +35,7 @@ let govt_intervention_layer = (element) => {
         african_data.eachLayer(function(layer) {
           let country_ = layer.feature.properties.COUNTRY;
           layer.on('click', function(e) {
-            document.getElementById("info").innerHTML = '<strong>Country: </strong>' + country_ + '<br>' + '<strong>Population: </strong>' + govt_intervention_obj[country_][0]+ '<br>' + '<strong>Introduction: </strong>' + govt_intervention_obj[country_][1]+ '<br>' + '<strong>Fiscal Policy: </strong>' + govt_intervention_obj[country_][2];
+            document.getElementById("info").innerHTML = '<strong>Country: </strong>' + country_ + '<br>' + '<strong>Population: </strong>' + govt_intervention_obj[country_][0] + '<br>' + '<strong>Introduction: </strong>' + govt_intervention_obj[country_][1] + '<br>' + '<strong>Fiscal Policy: </strong>' + govt_intervention_obj[country_][2];
           });
         });
 
@@ -55,7 +55,7 @@ let govt_intervention_layer = (element) => {
         }
         let legend_child = document.createElement("IMG")
         legend_child.setAttribute("src", "images/fiscal_legend.png");
-        legend_child.setAttribute("class", "deaths")
+        legend_child.setAttribute("class", "fiscal")
         legend_parent.appendChild(legend_child);
       } else if (element.id === "monetary") {
         let govt_intervention_obj = {}
@@ -79,7 +79,7 @@ let govt_intervention_layer = (element) => {
         african_data.eachLayer(function(layer) {
           let country_ = layer.feature.properties.COUNTRY;
           layer.on('click', function(e) {
-            document.getElementById("info").innerHTML = '<strong>Country: </strong>' + country_ + '<br>' + '<strong>Population: </strong>' + govt_intervention_obj[country_][0]+ '<br>' + '<strong>Introduction: </strong>' + govt_intervention_obj[country_][1]+ '<br>' + '<strong>Monetary and Macro financial: </strong>' + govt_intervention_obj[country_][2];
+            document.getElementById("info").innerHTML = '<strong>Country: </strong>' + country_ + '<br>' + '<strong>Population: </strong>' + govt_intervention_obj[country_][0] + '<br>' + '<strong>Introduction: </strong>' + govt_intervention_obj[country_][1] + '<br>' + '<strong>Monetary and Macro financial: </strong>' + govt_intervention_obj[country_][2];
           });
         });
 
@@ -99,7 +99,7 @@ let govt_intervention_layer = (element) => {
         }
         let legend_child = document.createElement("IMG")
         legend_child.setAttribute("src", "images/fiscal_legend.png");
-        legend_child.setAttribute("class", "deaths")
+        legend_child.setAttribute("class", "fiscal")
         legend_parent.appendChild(legend_child);
       } else if (element.id === "exchange") {
         let govt_intervention_obj = {}
@@ -123,7 +123,7 @@ let govt_intervention_layer = (element) => {
         african_data.eachLayer(function(layer) {
           let country_ = layer.feature.properties.COUNTRY;
           layer.on('click', function(e) {
-            document.getElementById("info").innerHTML = '<strong>Country: </strong>' + country_ + '<br>' + '<strong>Population: </strong>' + govt_intervention_obj[country_][0]+ '<br>' + '<strong>Introduction: </strong>' + govt_intervention_obj[country_][1]+ '<br>' + '<strong>Exchange rate and balance of payments: </strong>' + govt_intervention_obj[country_][2];
+            document.getElementById("info").innerHTML = '<strong>Country: </strong>' + country_ + '<br>' + '<strong>Population: </strong>' + govt_intervention_obj[country_][0] + '<br>' + '<strong>Introduction: </strong>' + govt_intervention_obj[country_][1] + '<br>' + '<strong>Exchange rate and balance of payments: </strong>' + govt_intervention_obj[country_][2];
           });
         });
 
@@ -143,7 +143,7 @@ let govt_intervention_layer = (element) => {
         }
         let legend_child = document.createElement("IMG")
         legend_child.setAttribute("src", "images/fiscal_legend.png");
-        legend_child.setAttribute("class", "deaths")
+        legend_child.setAttribute("class", "fiscal")
         legend_parent.appendChild(legend_child);
       } else if (element.id === "country") {
         let country_intervention_obj = {}
@@ -195,24 +195,10 @@ let govt_intervention_layer = (element) => {
 
         african_data.eachLayer(function(layer) {
           let country_ = layer.feature.properties.COUNTRY;
-          layer.bindPopup(
-            '<strong>Country:</strong> ' + country_ +
-            '<br>' + '<strong>Population:</strong> ' + country_intervention_obj[country_][0] +
-            '<br>' + '<strong>Humanitarian Exemption:</strong> ' + country_intervention_obj[country_][1] +
-            '<br>' + '<strong>Lock Down:</strong> ' + country_intervention_obj[country_][2] +
-            '<br>' + '<strong>Movement Restrictions:</strong> ' + country_intervention_obj[country_][3] +
-            '<br>' + '<strong>Public health measures:</strong> ' + country_intervention_obj[country_][4] +
-            '<br>' + '<strong>Social and economic measures:</strong> ' + country_intervention_obj[country_][5] +
-            '<br>' + '<strong>Social distancing:</strong> ' + country_intervention_obj[country_][6],
-            {
-              autoPan: false
-            }
-          );
-          layer.on('mouseover', function(e) {
-            this.openPopup();
-          });
-          layer.on('mouseout', function(e) {
-            this.closePopup();
+          layer.on('click', function(e) {
+            document.getElementById("info").innerHTML = '<strong>Country: </strong>' + country_ + '<br>' + '<strong>Population: </strong>' + country_intervention_obj[country_][0] + '<br>' + '<strong>Humanitarian Exemption: </strong>' + country_intervention_obj[country_][1] +
+             '<br>' + '<strong>Lock Down: </strong>' + country_intervention_obj[country_][2] + '<br>' + '<strong>Movement Restrictions: </strong>' + country_intervention_obj[country_][3] +'<br>' + '<strong>Public health measures: </strong>' + country_intervention_obj[country_][4] +
+             '<br>' + '<strong>Social and economic measures: </strong>' + country_intervention_obj[country_][5] + '<br>' + '<strong>Social distancing: </strong>' + country_intervention_obj[country_][6];
           });
         });
         let legend_parent = document.getElementsByClassName("legend")[0]

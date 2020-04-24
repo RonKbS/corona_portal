@@ -9,10 +9,10 @@
   <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
 
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/africa_map.css" type="text/css" />
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="leaflet/leaflet.css" type="text/css" />
   <script src="leaflet/leaflet.js" charset="utf-8"></script>
-  <link rel="stylesheet" href="css/africa_map.css" type="text/css" />
 
   <script src="data/africa_data.geojson" charset="utf-8"></script>
 
@@ -24,74 +24,82 @@
 
   <div class="wrapper d-flex align-items-stretch">
     <nav id="sidebar">
-      <div>
         <div class="img logo rounded mb-30">
-          <a href="index.html" >
-            <p style="font-size:6.6rem;color:white;text-align:center;top:-53px;position:relative;">PACA</p>
-            <p style="display:inline-block;color:white;top:-128px;position:relative;text-align:justify;left:1em;font-size:24px"><span style="font-size:44px;margin-bottom:-37px;">PAN AFRICAN</span><span
-                style="margin-bottom:-33px;font-size:44px;word-spacing:86px;">COVID 19</span><span style="letter-spacing:11px;font-size:44px">ANALYSIS</span></p>
+          <a href="index.html">
+            <p style="font-size:5.6rem;color:white;text-align:center;top:-44px;position:relative;">PACA</p>
+            <p style="color:white;top:-6em;left:3em;position:relative;font-size:16px;">
+              Pan African COVID 19 Analysis
+            </p>
           </a>
         </div>
-        <div class="p-4 pt-5" style="max-height: 66vh;overflow: auto;">
+          <div class="logo1">
+            <img style="width:53%;" class="gg_logo" src="images/GG_Logo2.png">
+          </div>
+          <div class="logo2">
+            <img style="width:53%;" class="irish_logo" src="images/irish.png">
+        </div>
+        <div class="p-4 pt-5" style="overflow:auto;top:-4em;position:relative;background:#606060;width:101%;">
           <div>
             <ul class="list-unstyled components mb-5">
               <li id="visualize" style="display:block">
-                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Infrastructure</a>
+                <a href="#homeSubmenu5" data-toggle="collapse" aria-expanded="false" class="highlight dropdown-toggle" onclick="hide()">COVID 19 cases</a>
+                <ul class="collapse list-unstyled" id="homeSubmenu5">
+                  <li>
+                    <a href="#" onclick="cases_layer(); hide();">Cases</a>
+                  </li>
+                  <li>
+                    <a href="#" onclick="deaths_layer(); hide();">Deaths</a>
+                  </li>
+                  <li>
+                    <a href="#" onclick="cases_concn_layer(); hide();">Cases per 100,000 people</a>
+                  </li>
+                  <li>
+                    <a href="#" onclick="deaths_concn_layer(); hide();">Deaths per 100,000 people</a>
+                  </li>
+                </ul>
+                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" onclick="hide()">Infrastructure</a>
                 <ul class="collapse list-unstyled" id="homeSubmenu">
                   <li>
-                    <a href="#" onclick="ventilators_layer()">Ventilators</a>
+                    <a href="#" onclick="ventilators_layer(); hide();">Ventilators</a>
                   </li>
                   <li>
-                    <a href="#" onclick="icus_layer()">ICU Beds</a>
+                    <a href="#" onclick="icus_layer(); hide();">ICU Beds</a>
                   </li>
                 </ul>
-                <a href="#homeSubmenu2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Population</a>
+                <a href="#homeSubmenu2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" onclick="hide()">Population</a>
                 <ul class="collapse list-unstyled" id="homeSubmenu2">
                   <li>
-                    <a href="#" onclick="popn_density_layer()">Population Density</a>
-                  </li>
-                  <br />
-                  <h6><strong>Vulnerability</strong></h6>
-                  <li>
-                    <a href="#" onclick="hiv_stats_layer()">HIV/AIDS(%)</a>
+                    <a href="#" onclick="popn_density_layer(); hide();">Population Density</a>
                   </li>
                   <li>
-                    <a href="#" onclick="tb_stats_layer()">TB(%)</a>
+                    <a href="#" onclick="hiv_stats_layer(); hide();">HIV/AIDS(%)</a>
                   </li>
                   <li>
-                    <a href="#" onclick="elderly_stats_layer()">Elderly(%)</a>
-                  </li>
-                  <br />
-                  <h6><strong>COVID 19 cases</strong></h6>
-                  <li>
-                    <a href="#" onclick="cases_layer()">Cases</a>
+                    <a href="#" onclick="tb_stats_layer(); hide();">TB(%)</a>
                   </li>
                   <li>
-                    <a href="#" onclick="deaths_layer()">Deaths</a>
-                  </li>
-                  <li>
-                    <a href="#" onclick="cases_concn_layer()">Cases per 100,000 people</a>
-                  </li>
-                  <li>
-                    <a href="#" onclick="deaths_concn_layer()">Deaths per 100,000 people</a>
+                    <a href="#" onclick="elderly_stats_layer(); hide();">Elderly(% Over 65 in age)</a>
                   </li>
                 </ul>
-                <a href="#homeSubmenu3" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Response</a>
+                <a href="#homeSubmenu3" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" onclick="hide()">Government Intervention</a>
                 <ul class="collapse list-unstyled" id="homeSubmenu3">
-                  <br />
-                  <h6><strong>Government Intervention</strong></h6>
                   <li>
-                    <a href="#" onclick="govt_intervention_layer(this)" id="fiscal">Fiscal</a>
+                    <a href="#" onclick="govt_intervention_layer(this); show();" id="fiscal">Fiscal</a>
                   </li>
                   <li>
-                    <a href="#" onclick="govt_intervention_layer(this)" id="monetary">Monetary</a>
+                    <a href="#" onclick="govt_intervention_layer(this); show();" id="monetary">Monetary</a>
                   </li>
                   <li>
-                    <a href="#" onclick="govt_intervention_layer(this)" id="exchange">Exchange</a>
+                    <a href="#" onclick="govt_intervention_layer(this); show();" id="exchange">Exchange</a>
                   </li>
                   <li>
-                    <a href="#" onclick="govt_intervention_layer(this)" id="country">Country Response</a>
+                    <a href="#" onclick="govt_intervention_layer(this); show();" id="country">Other Measures Taken</a>
                   </li>
+                  <div id="info">
+                    <p style="text-align:center;">
+                      Click on country to view data
+                    </p>
+                  </div>
                 </ul>
               </li>
               <li id="interrogate" style="display:none">
@@ -147,23 +155,14 @@
             </ul>
           </div>
         </div>
-      </div>
     </nav>
 
     <!-- Page Content  -->
     <div id="content" class="p-2 p-md-1">
 
       <div class="col-xs-12" id="map">
-        <div id="feature_infos">
-          <span class="close" id="closebtn">X</span>
-          <p style="margin-bottom:0;font-size:20px;">Click on a country</p>
-          <div id="info"></div>
-        </div>
-        <div class="logo1">
-          <img style="width:56%;" class="gg_logo" src="images/GG_Logo2.png">
-        </div>
-        <div class="logo2">
-          <img style="width:56%;" class="irish_logo" src="images/irish.png">
+        <div class="source">
+          <a style="color:#f8b739;" type="button" target="_blank" href="https://docs.google.com/spreadsheets/d/1tRF8gjyRd0oA2sSpTKmZqambggZzUM0YiED6KqF8H8M/edit#gid=1584663082">Sources</a>
         </div>
         <div class="legend">
         </div>
@@ -192,14 +191,21 @@
   <script type="text/javascript" src="js/country_govt_map.js"></script>
 
   <script type="text/javascript">
-    $("#closebtn").off().on("click", function() {
-      $("#info").toggle();
-    });
-    $(document).click(function(e) {
-      if ($(e.target).closest('#info, #closebtn').length == 0) {
-        $("#info").show();
+    function hide() {
+      var x = document.getElementById("info");
+      if (x.style.display === "none") {
+
+      } else {
+        x.style.display = "none";
       }
-    })
+    }
+    function show() {
+      var x = document.getElementById("info");
+      if (x.style.display === "block") {} else {
+        x.style.display = "block";
+      }
+    }
+
   </script>
 </body>
 
