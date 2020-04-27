@@ -13,7 +13,7 @@ function addLegend (grades, ramp, title) {
       // loop through our density intervals and generate a label with a colored square for each interval
       for (var i = 0; i < grades.length; i++) {
         div.innerHTML +=
-          '<i style="background:' + ramp(grades[i] + 1) + '"></i> ' +
+          '<i style="background:' + ramp(grades[i]) + '"></i> ' +
           grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
       }
 

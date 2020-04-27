@@ -1,5 +1,6 @@
 
 function getColorTB(d) {
+  d = parseFloat(d);
   return d > 0.40 ? '#810f7c' :
     d > 0.20 ? '#8856a7' :
     d > 0.11 ? '#8c96c6' :
@@ -57,5 +58,5 @@ let tb_stats_layer = () => {
     }
 
     
-  addLegend([0, 0.04, 0.08, 0.11, 0.20, 0.40], getColorTB, "TB Percentage");
+  addLegend([0.0, 0.04, 0.08, 0.11, 0.20, 0.40], getColorTB, "TB Percentage");
   }

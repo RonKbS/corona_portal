@@ -28,21 +28,6 @@ map.touchZoom.disable();
 map.doubleClickZoom.disable();
 map.scrollWheelZoom.disable();
 
-var gg_logo = L.control({ position: 'bottomleft' });
-gg_logo.onAdd = function (map) {
-  var div = L.DomUtil.create('div');
-  div.innerHTML += '<img style="width:56%;" class="gg_logo" src="images/GG_Logo2.png">'
-  return div;
-};
-gg_logo.addTo(map);
-
-var ire_logo = L.control({ position: 'bottomright' });
-ire_logo.onAdd = function (map) {
-  var div = L.DomUtil.create('div');
-  div.innerHTML += '<img style="width:40%;float:right;" class="irish_logho" src="images/irish.png">'
-  return div;
-};
-ire_logo.addTo(map);
 
 L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png', {
   attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
