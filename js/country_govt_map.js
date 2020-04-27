@@ -49,14 +49,7 @@ let govt_intervention_layer = (element) => {
             fillOpacity: 1
           };
         }
-        let legend_parent = document.getElementsByClassName("legend")[0]
-        if (legend_parent.childNodes.length > 1) {
-          legend_parent.removeChild(legend_parent.childNodes[1])
-        }
-        let legend_child = document.createElement("IMG")
-        legend_child.setAttribute("src", "images/fiscal_legend.png");
-        legend_child.setAttribute("class", "fiscal")
-        legend_parent.appendChild(legend_child);
+        addLegend([0, 1], getColorfiscal);
       } else if (element.id === "monetary") {
         let govt_intervention_obj = {}
         second_google_sheet_data.forEach(object_ => {
@@ -93,14 +86,8 @@ let govt_intervention_layer = (element) => {
             fillOpacity: 1
           };
         }
-        let legend_parent = document.getElementsByClassName("legend")[0]
-        if (legend_parent.childNodes.length > 1) {
-          legend_parent.removeChild(legend_parent.childNodes[1])
-        }
-        let legend_child = document.createElement("IMG")
-        legend_child.setAttribute("src", "images/fiscal_legend.png");
-        legend_child.setAttribute("class", "fiscal")
-        legend_parent.appendChild(legend_child);
+        addLegend([0, 1], getColorfiscal);
+
       } else if (element.id === "exchange") {
         let govt_intervention_obj = {}
         second_google_sheet_data.forEach(object_ => {
@@ -137,14 +124,7 @@ let govt_intervention_layer = (element) => {
             fillOpacity: 1
           };
         }
-        let legend_parent = document.getElementsByClassName("legend")[0]
-        if (legend_parent.childNodes.length > 1) {
-          legend_parent.removeChild(legend_parent.childNodes[1])
-        }
-        let legend_child = document.createElement("IMG")
-        legend_child.setAttribute("src", "images/fiscal_legend.png");
-        legend_child.setAttribute("class", "fiscal")
-        legend_parent.appendChild(legend_child);
+        addLegend([0, 1], getColorfiscal);
       } else if (element.id === "country") {
         let country_intervention_obj = {}
         second_google_sheet_data.forEach(object_ => {
@@ -201,10 +181,7 @@ let govt_intervention_layer = (element) => {
              '<br>' + '<strong>Social and economic measures: </strong>' + country_intervention_obj[country_][5] + '<br>' + '<strong>Social distancing: </strong>' + country_intervention_obj[country_][6];
           });
         });
-        let legend_parent = document.getElementsByClassName("legend")[0]
-        if (legend_parent.childNodes.length > 1) {
-          legend_parent.removeChild(legend_parent.childNodes[1])
-        }
+        addLegend();
       }
     })
 }

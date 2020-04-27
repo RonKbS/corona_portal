@@ -56,12 +56,6 @@ let tb_stats_layer = () => {
       };
     }
 
-    let legend_parent = document.getElementsByClassName("legend")[0]
-    if (legend_parent.childNodes.length > 1) {
-      legend_parent.removeChild(legend_parent.childNodes[1])
-    }
-    let legend_child = document.createElement("IMG")
-    legend_child.setAttribute("src", "images/TB_legend.png");
-    legend_child.setAttribute("class", "TB")
-    legend_parent.appendChild(legend_child);
+    
+  addLegend([0, 0.04, 0.08, 0.11, 0.20, 0.40], getColorTB, "TB Percentage");
   }

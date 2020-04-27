@@ -58,13 +58,5 @@ let icus_layer = () => {
       fillOpacity: 1
     };
   }
-
-  let legend_parent = document.getElementsByClassName("legend")[0]
-  if (legend_parent.childNodes.length > 1) {
-    legend_parent.removeChild(legend_parent.childNodes[1])
-  }
-  let legend_child = document.createElement("IMG")
-  legend_child.setAttribute("src", "images/ICU_legend.png");
-  legend_child.setAttribute("class", "ICU")
-  legend_parent.appendChild(legend_child);
+  addLegend([0, 200000, 400000, 800000, 2500000, 29900000], getColorICU, 'People per ICU Bed');
 }
