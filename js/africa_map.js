@@ -3,19 +3,8 @@ let gid = "1502462034"
 let url = `https://docs.google.com/spreadsheets/d/${long_id}/export?format=csv&id=${long_id}&gid=${gid}`
 let google_sheet_data;
 
-var today = new Date();
-var dd = String(today.getDate()).padStart(2, '0');
-var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-var yyyy = today.getFullYear();
 
-today = yyyy + '-' + mm + '-' + dd;
-yesterday = yyyy + '-' + mm + '-' + (parseInt(dd) - 1).toString();
-
-
-let url1 = `https://covidtrackerapi.bsg.ox.ac.uk/api/stringency/date-range/${today}/${today}`
-
-
-let axioses = [axios.get(url, { mode: 'no-cors' }), axios.get(url1, { mode: 'no-cors' })]
+let axioses = [axios.get(url, { mode: 'no-cors' })]
 
 
 let map = L.map('map', {
@@ -59,8 +48,6 @@ function getColorcases(d) {
 axios.all(axioses)
   .then(responseArrs => {
     google_sheet_data = $.csv.toObjects(responseArrs[0].data);
-    api_data = responseArrs[1].data;
-    console.log(api_data);
     let initial_data_obj = {}
     google_sheet_data.forEach(object_ => {
       initial_data_obj[object_["COUNTRY"]] = [
