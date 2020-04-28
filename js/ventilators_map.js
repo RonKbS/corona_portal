@@ -57,13 +57,7 @@ let ventilators_layer = () => {
       fillOpacity: 1
     };
   }
-  let legend_parent = document.getElementsByClassName("legend")[0]
-  if (legend_parent.childNodes.length > 1) {
-    legend_parent.removeChild(legend_parent.childNodes[1])
-  }
-  let legend_child = document.createElement("IMG")
-  legend_child.setAttribute("src", "images/vent_legend.png");
-  legend_child.setAttribute("class", "vent")
-  legend_parent.appendChild(legend_child);
+  
+  addLegend([0, 200000, 800000, 1000000, 1600000, 8000000], getColorvents, "People per ventilator");
 
 }

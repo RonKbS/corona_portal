@@ -52,13 +52,5 @@ let popn_density_layer = () => {
       fillOpacity: 1
     };
   }
-
-  let legend_parent = document.getElementsByClassName("legend")[0]
-  if (legend_parent.childNodes.length > 1) {
-    legend_parent.removeChild(legend_parent.childNodes[1])
-  }
-  let legend_child = document.createElement("IMG")
-  legend_child.setAttribute("src", "images/density_legend.png");
-  legend_child.setAttribute("class", "density")
-  legend_parent.appendChild(legend_child);
+  addLegend([0, 20, 50, 80, 190, 730], getColordensity, "Population Density <br> (people per sq km)");
 }

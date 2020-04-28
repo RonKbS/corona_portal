@@ -53,12 +53,5 @@ let cases_layer = () => {
     };
   }
 
-  let legend_parent = document.getElementsByClassName("legend")[0]
-  if (legend_parent.childNodes.length > 1) {
-    legend_parent.removeChild(legend_parent.childNodes[1])
-  }
-  let legend_child = document.createElement("IMG")
-  legend_child.setAttribute("src", "images/cases_legend.png");
-  legend_child.setAttribute("class", "cases")
-  legend_parent.appendChild(legend_child);
+  addLegend([0, 10, 20, 50, 250, 2000], getColorcases, 'Cases');
 }

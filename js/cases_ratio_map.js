@@ -56,13 +56,5 @@ let cases_concn_layer = () => {
       fillOpacity: 1
     };
   }
-
-  let legend_parent = document.getElementsByClassName("legend")[0]
-  if (legend_parent.childNodes.length > 1) {
-    legend_parent.removeChild(legend_parent.childNodes[1])
-  }
-  let legend_child = document.createElement("IMG")
-  legend_child.setAttribute("src", "images/cases_ratio_legend.png");
-  legend_child.setAttribute("class", "cases_ratio")
-  legend_parent.appendChild(legend_child);
+  addLegend([0.1, 0.4, 1.3, 2.9, 67.4], getColorcasesratio, 'Cases per 100,000 people');
 }

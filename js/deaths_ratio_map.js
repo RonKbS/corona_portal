@@ -57,12 +57,5 @@ let deaths_concn_layer = () => {
     };
   }
 
-  let legend_parent = document.getElementsByClassName("legend")[0]
-  if (legend_parent.childNodes.length > 1) {
-    legend_parent.removeChild(legend_parent.childNodes[1])
-  }
-  let legend_child = document.createElement("IMG")
-  legend_child.setAttribute("src", "images/deaths_ratio_legend.png");
-  legend_child.setAttribute("class", "deaths_ratio")
-  legend_parent.appendChild(legend_child);
+  addLegend([0.00, 0.01, 0.02, 0.009, 3.90], getColordeathsratio, "Death's per 100,000 people");
 }
