@@ -5,12 +5,19 @@ let google_sheet_data;
 
 
 let axioses = [axios.get(url, { mode: 'no-cors' })]
-
+document.getElementById("map").setAttribute("style", `height: ${window.innerHeight}px`)
 
 let map = L.map('map', {
   minZoom: 3,
   maxZoom: 3
 }).setView([2.8, 15.24], 2);
+
+$(window).resize(() => {
+  document.getElementById("map").setAttribute("style", `height: ${window.innerHeight}px`)
+}
+)
+
+let sidebar = L.control.sidebar('sidebar').addTo(map);
 
 map.dragging.disable();
 map.touchZoom.disable();

@@ -50,6 +50,7 @@ article, figcaption, figure, footer, header, hgroup, main, nav, section {
   display: block; }
 
 body {
+  overflow: hidden;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-size: 1rem;
@@ -8214,7 +8215,7 @@ h1, h2, h3, h4, h5,
 .wrapper {
   width: 100%; }
 
-#sidebar {
+/* #sidebar {
   min-width: 319px;
   max-width: 300px;
   background: #ffffff;
@@ -8264,10 +8265,10 @@ h1, h2, h3, h4, h5,
         color: #f8b739; }
   @media (max-width: 991.98px) {
     #sidebar {
-      /* margin-left: -300px;  */
+      margin-left: -300px; 
     }
       #sidebar.active {
-        margin-left: 0; } }
+        margin-left: 0; } } */
 
 a[data-toggle="collapse"] {
   position: relative; }
@@ -8275,15 +8276,15 @@ a[data-toggle="collapse"] {
 .dropdown-toggle::after {
   display: block;
   position: absolute;
-  top: 50%;
-  right: 0;
+  top: 62%;
+  right: -10%;
   -webkit-transform: translateY(-50%);
   -ms-transform: translateY(-50%);
   transform: translateY(-50%); }
 
-@media (max-width: 991.98px) {
+/* @media (max-width: 991.98px) {
   #sidebarCollapse span {
-    display: none; } }
+    display: none; } } */
 
 #content {
   width: 100%;
