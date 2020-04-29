@@ -1,14 +1,13 @@
-
 function getColordeathsratio(d) {
-  return d > 3.90 ? '#bd0026' :
-    d > 0.09 ? '#f03b20' :
-      d > 0.02 ? '#fd8d3c' :
-        d > 0.01 ? '#fecc5c' :
-          d > 0.00 ? '#ffffb2' :
-            // d > 0 ? '#f1eef6' :
-              '#ffffff00';
+  return d > 6.0 ? '#bd0026' :
+  d > 5.9 ? '#bd0026' :
+    d > 4.0 ? '#f03b20' :
+    d > 2.0 ? '#fd8d3c' :
+    d > 0.2 ? '#fecc5c' :
+    d > 0.1 ? '#fecc5c' :
+    d > 0 ? '#ffffb2' :
+    '#808080';
 }
-
 
 let deaths_concn_layer = () => {
   if (african_data._map) {
@@ -27,21 +26,20 @@ let deaths_concn_layer = () => {
     style: styledeathsratio
   }).addTo(map);
 
-  african_data.eachLayer(function (layer) {
+  african_data.eachLayer(function(layer) {
     let country_ = layer.feature.properties.COUNTRY;
     layer.bindPopup(
-      '<strong>Country:</strong> ' + country_
-      + '<br>' + '<strong>Population:</strong> ' + deaths_concn_obj[country_][0]
-      + '<br>' + '<strong>Deaths:</strong> ' + deaths_concn_obj[country_][1]
-      + '<br>' + '<strong>Deaths per 100,000 people:</strong> ' + deaths_concn_obj[country_][2],
-      {
+      '<strong>Country:</strong> ' + country_ +
+      '<br>' + '<strong>Population:</strong> ' + deaths_concn_obj[country_][0] +
+      '<br>' + '<strong>Deaths:</strong> ' + deaths_concn_obj[country_][1] +
+      '<br>' + '<strong>Deaths per 100,000 people:</strong> ' + deaths_concn_obj[country_][2], {
         autoPan: false
       }
     );
-    layer.on('mouseover', function (e) {
+    layer.on('mouseover', function(e) {
       this.openPopup();
     });
-    layer.on('mouseout', function (e) {
+    layer.on('mouseout', function(e) {
       this.closePopup();
     });
   });
@@ -57,5 +55,5 @@ let deaths_concn_layer = () => {
     };
   }
 
-  addLegend([0.00, 0.01, 0.02, 0.009, 3.90], getColordeathsratio, "Death's per 100,000 people");
+  addLegend([0.1, 2.0, 4.0, 6.0], getColordeathsratio, "Death's per 100,000 people");
 }

@@ -1,13 +1,16 @@
-
 function getColordeaths(d) {
-  return d > 250 ? '#006837' :
-    d > 6 ? '#31a354' :
-      d > 2 ? '#78c679' :
-        d > 1 ? '#c2e699' :
-          d > 0 ? '#ffffcc' :
-              '#ffffff00';
+  return d > 400 ? '#00441b' :
+  d > 399 ? '#00441b' :
+    d > 300 ? '#137e3a' :
+    d > 200 ? '#3da75a' :
+    d > 100 ? '#7bc87c' :
+    d > 50 ? '#b2e0ab' :
+    d > 10 ? '#ddf2d7' :
+    d > 5 ? '#f7fcf5' :
+    d > 1 ? '#f7fcf5' :
+    d > 0 ? '#ffffff' :
+    '#808080';
 }
-
 
 let deaths_layer = () => {
   if (african_data._map) {
@@ -25,20 +28,19 @@ let deaths_layer = () => {
     style: styledeaths
   }).addTo(map);
 
-  african_data.eachLayer(function (layer) {
+  african_data.eachLayer(function(layer) {
     let country_ = layer.feature.properties.COUNTRY;
     layer.bindPopup(
-      '<strong>Country:</strong> ' + country_
-      + '<br>' + '<strong>Population:</strong> ' + deaths_obj[country_][0]
-      + '<br>' + '<strong>Deaths:</strong> ' + deaths_obj[country_][1],
-      {
+      '<strong>Country:</strong> ' + country_ +
+      '<br>' + '<strong>Population:</strong> ' + deaths_obj[country_][0] +
+      '<br>' + '<strong>Deaths:</strong> ' + deaths_obj[country_][1], {
         autoPan: false
       }
     );
-    layer.on('mouseover', function (e) {
+    layer.on('mouseover', function(e) {
       this.openPopup();
     });
-    layer.on('mouseout', function (e) {
+    layer.on('mouseout', function(e) {
       this.closePopup();
     });
   });
@@ -53,5 +55,5 @@ let deaths_layer = () => {
       fillOpacity: 1
     };
   }
-  addLegend([0, 1, 2, 6, 250], getColordeaths, 'Deaths');
+  addLegend([1, 10, 50, 100, 200, 300, 400], getColordeaths, 'Deaths');
 }

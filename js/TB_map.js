@@ -1,13 +1,21 @@
 
 function getColorTB(d) {
   d = parseFloat(d);
-  return d > 0.40 ? '#810f7c' :
-    d > 0.20 ? '#8856a7' :
-    d > 0.11 ? '#8c96c6' :
-    d > 0.08 ? '#b3cde3' :
-    d > 0.04 ? '#edf8fb' :
-    d > 0 ? '#ffffff' :
-    '#ffffff00';
+  return  d > 0.4 ? '#810f7c' :
+    d > 0.39 ? '#810f7c' :
+    d > 0.3 ? '#863e99' :
+    d > 0.29 ? '#863e99' :
+    d > 0.2 ? '#896bb2' :
+    d > 0.19 ? '#896bb2' :
+    d > 0.09 ? '#8c96c6' :
+    d > 0.08 ? '#8c96c6' :
+    d > 0.05 ? '#a6bbda' :
+    d > 0.04 ? '#a6bbda' :
+    d > 0.03 ? '#c7dceb' :
+    d > 0.02 ? '#c7dceb' :
+    d > 0.01 ? '#edf8fb' :
+    d > 0.0 ? '#edf8fb' :
+    '#808080';
 }
 
 let tb_stats_layer = () => {
@@ -57,6 +65,6 @@ let tb_stats_layer = () => {
       };
     }
 
-    
-  addLegend([0.0, 0.04, 0.08, 0.11, 0.20, 0.40], getColorTB, "TB Percentage");
+
+  addLegend([0.01, 0.03, 0.05, 0.09, 0.2, 0.3, 0.4], getColorTB, "TB Percentage");
   }

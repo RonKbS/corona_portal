@@ -30,10 +30,12 @@ map.touchZoom.disable();
 map.doubleClickZoom.disable();
 map.scrollWheelZoom.disable();
 
-var sources_button = L.control({ position: 'topright' });
-sources_button.onAdd = function (map) {
+var sources_button = L.control({
+  position: 'topright'
+});
+sources_button.onAdd = function(map) {
   var div = L.DomUtil.create('div', 'info legend');
-  div.innerHTML += '<a style="color:#f8b739;" type="button" target="_blank" href="https://docs.google.com/spreadsheets/d/1tRF8gjyRd0oA2sSpTKmZqambggZzUM0YiED6KqF8H8M/edit#gid=1584663082">Sources</a>'
+  div.innerHTML += '<a style="color:#f8b739;background-color:#4e4e4e;padding:7px;border-radius:10px;" type="button" target="_blank" href="https://docs.google.com/spreadsheets/d/1VR5mnOV3i6O8kXhh5SQb6tqMvevd02NXHldx3tOTZl4/edit#gid=0">Data Sources</a>'
   return div;
 };
 sources_button.addTo(map);
@@ -47,14 +49,23 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png
 }).addTo(map);
 
 let african_data;
+
 function getColorcases(d) {
-  return d > 2000 ? '#016c59' :
-    d > 250 ? '#1c9099' :
-      d > 50 ? '#67a9cf' :
-        d > 20 ? '#bdc9e1' :
-          d > 10 ? '#f6eff7' :
-            d > 0 ? '#f0f5f7' :
-              '#ffffff00';
+  return  d > 4500 ? '#016c59' :
+    d > 4499 ? '#016c59' :
+    d > 3000 ? '#1d905d' :
+    d > 2999 ? '#1d905d' :
+    d > 2000 ? '#3fad76' :
+    d > 1999 ? '#3fad76' :
+    d > 1000 ? '#66c2a4' :
+    d > 999 ? '#66c2a4' :
+    d > 500 ? '#99d8ce' :
+    d > 499 ? '#99d8ce' :
+    d > 100 ? '#b6dae2' :
+    d > 99 ? '#b6dae2' :
+    d > 1 ? '#bdc9e1' :
+    d > 0.1 ? '#bdc9e1' :
+    '#808080';
 }
 
 
@@ -98,5 +109,5 @@ axios.all(axioses)
         fillOpacity: 1
       };
     }
-    addLegend([0, 10, 20, 50, 250, 2000], getColorcases, "Cases");
+    addLegend([1, 100, 500, 1000, 2000, 3000, 4500], getColorcases, "Cases");
   })
