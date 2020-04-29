@@ -41,6 +41,7 @@
     height: 100%;
     background-color: #fff; }
     .sidebar-left .sidebar-tabs {
+      background-color: #606060;
       left: 0; }
     .sidebar-right .sidebar-tabs {
       right: 0; }
@@ -84,7 +85,7 @@
     position: absolute;
     top: 0;
     bottom: 0;
-    background-color: rgba(255, 255, 255, 0.95);
+    background-color: #606060;;
     overflow-x: hidden;
     overflow-y: auto; }
     .sidebar-left .sidebar-content {
@@ -116,7 +117,7 @@
   
   .sidebar-header {
     margin: -10px -20px 0;
-    height: 40px;
+    height: 120px;
     padding: 0 20px;
     line-height: 40px;
     font-size: 14.4pt;

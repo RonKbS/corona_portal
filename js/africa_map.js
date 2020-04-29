@@ -15,7 +15,7 @@ let southWest = L.latLng(53.85252660044951, 107.75390625),
 let map = L.map('map', {
   maxBounds: bounds,
   minZoom: 3,
-  maxZoom: 4
+  maxZoom: 3
 }).setView([2.8, 15.24], 2);
 
 $(window).resize(() => {
@@ -23,9 +23,12 @@ $(window).resize(() => {
 }
 )
 let sidebar = L.control.sidebar('sidebar').addTo(map);
+sidebar.open("layers")
 
+map.dragging.disable();
 map.touchZoom.disable();
 map.doubleClickZoom.disable();
+map.scrollWheelZoom.disable();
 
 var sources_button = L.control({ position: 'topright' });
 sources_button.onAdd = function (map) {
