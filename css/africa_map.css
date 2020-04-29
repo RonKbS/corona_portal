@@ -3,8 +3,16 @@
   font-size: 20px;
   border-style: solid;
   border-width: 0 0 2px 0;
+  border-color: ghostwhite;
 }
 
+.short-text { display: none; }
+
+/* When resolution <= 1200px, hide full text and show short text */
+@media (max-width: 1205px) {
+    .short-text { display: block; text-align: center; }
+    .full-text { display: none; }
+}
 
 .button_inner_content {
   width: 80%;

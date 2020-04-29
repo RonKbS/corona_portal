@@ -7,22 +7,25 @@ let google_sheet_data;
 let axioses = [axios.get(url, { mode: 'no-cors' })]
 document.getElementById("map").setAttribute("style", `height: ${window.innerHeight}px`)
 
+
+let southWest = L.latLng(53.85252660044951, 107.75390625),
+    northEast = L.latLng(-50.28933925329178, -132.01171875000003),
+    bounds = L.latLngBounds(southWest, northEast);
+
 let map = L.map('map', {
+  maxBounds: bounds,
   minZoom: 3,
-  maxZoom: 3
+  maxZoom: 4
 }).setView([2.8, 15.24], 2);
 
 $(window).resize(() => {
   document.getElementById("map").setAttribute("style", `height: ${window.innerHeight}px`)
 }
 )
-
 let sidebar = L.control.sidebar('sidebar').addTo(map);
 
-map.dragging.disable();
 map.touchZoom.disable();
 map.doubleClickZoom.disable();
-map.scrollWheelZoom.disable();
 
 var sources_button = L.control({ position: 'topright' });
 sources_button.onAdd = function (map) {
