@@ -1,120 +1,27 @@
-@media (max-height:700px) {
-  #content {
-    width: 100%;
-    height: 99%;
-    /* position: absolute; */
-    /* top: 77px; */
-  }
+
+
+.short-text { display: none; }
+
+/* When resolution <= 1200px, hide full text and show short text */
+@media (max-width: 1205px) {
+    .short-text { display: block; text-align: center; }
+    .full-text { display: none; }
 }
 
-@media (min-height:701px) {
-  #content {
-    width: 83%;
-    height: 99%;
-    position: absolute;
-    /* top: 77px; */
-  }
+.button_title_content {
+  color: rgb(219, 216, 216);
+  font-size: 20px;
+  border-style: solid;
+  border-width: 0 0 1px 0;
 }
 
-.density {
-  z-index: 1000;
-  width: 12%;
-  position: absolute;
-  bottom: 99px;
-  right: 10px;
+.button_inner_content {
+  color: rgb(219, 216, 216);
+  width: 80%;
+  font-size: 17px;
+  border-style: solid;
+  border-width: 0 0 0.1px 0;
 }
-
-.ICU {
-  z-index: 1000;
-  width: 15%;
-  position: absolute;
-  bottom: 105px;
-  right: 5px;
-}
-
-.vent {
-  z-index: 1000;
-  width: 15%;
-  position: absolute;
-  bottom: 6.5em;
-  right: 0em;
-}
-
-.HIV {
-  z-index: 1000;
-  width: 10%;
-  position: absolute;
-  bottom: 99px;
-  right: 10px;
-}
-
-.TB {
-  z-index: 1000;
-  width: 11%;
-  position: absolute;
-  bottom: 99px;
-  right: 10px;
-}
-
-.elderly {
-  z-index: 1000;
-  width: 12%;
-  position: absolute;
-  bottom: 94px;
-  right: 0px;
-}
-
-.cases {
-  z-index: 1000;
-  width: 12%;
-  position: absolute;
-  bottom: 95px;
-  right: 3px;
-}
-
-.cases_ratio {
-  z-index: 1000;
-  width: 14%;
-  position: absolute;
-  bottom: 95px;
-  right: 3px;
-}
-
-.deaths {
-  z-index: 1000;
-  width: 10%;
-  position: absolute;
-  bottom: 95px;
-  right: 3px;
-}
-
-.fiscal {
-  z-index: 1000;
-  width: 14%;
-  position: absolute;
-  bottom: 95px;
-  right: 3px;
-}
-
-.deaths_ratio {
-  z-index: 1000;
-  width: 14%;
-  position: absolute;
-  bottom: 95px;
-  right: 3px;
-}
-
-.logo1 {
-  position: relative;
-  top: 1.5em;
-  left: 11.5em;
-}
-
-.logo2 {
-  position: relative;
-  top: -4.5em;
-}
-
 .source {
   background-color: #4e4e4e;
   padding: 8px;
@@ -204,19 +111,6 @@ h6 {
   font-weight: normal;
 }
 
-#feature_infos {
-  width: 19%;
-  background: white;
-  position: relative;
-  top: 9px;
-  padding: 5px;
-  border: 1px solid grey;
-  display: block;
-  z-index: 100000000000000000;
-  border-radius: 7px;
-  height: 42px;
-}
-
 #info {
   border: 1px solid;
   width: 116%;
@@ -227,4 +121,14 @@ h6 {
   color: black;
   background: white;
   font-size: 14px;
+}
+
+.sidebar-list {
+    overflow-y: scroll;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+}
+.sidebar-list::-webkit-scrollbar { /* WebKit */
+    width: 0;
+    height: 0;
 }

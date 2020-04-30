@@ -1,13 +1,20 @@
 function getColordensity(d) {
-  return d > 730 ? '#993404' :
-    d > 190 ? '#d95f0e' :
-    d > 80 ? '#fe9929' :
-    d > 50 ? '#fed98e' :
-    d > 20 ? '#ffffd4' :
-    d > 0 ? '#fef0d9' :
-    '#ffffff00';
+  return  d > 750 ? '#993404' :
+    d > 749 ? '#993404' :
+    d > 500 ? '#c4500a' :
+    d > 499 ? '#c4500a' :
+    d > 400 ? '#e67217' :
+    d > 399 ? '#e67217' :
+    d > 300 ? '#fe9929' :
+    d > 299 ? '#fe9929' :
+    d > 200 ? '#fec46c' :
+    d > 199 ? '#fec46c' :
+    d > 100 ? '#ffe6a5' :
+    d > 99 ? '#ffe6a5' :
+    d > 1 ? '#ffffd4' :
+    d > 0.1 ? '#ffffd4' :
+    '#808080';
 }
-
 
 let popn_density_layer = () => {
   if (african_data._map) {
@@ -52,5 +59,5 @@ let popn_density_layer = () => {
       fillOpacity: 1
     };
   }
-  addLegend([0, 20, 50, 80, 190, 730], getColordensity, "Population Density <br> (people per sq km)");
+  addLegend([1, 100, 200, 300, 400, 500, 750], getColordensity, "Population Density <br> (people per sq km)");
 }

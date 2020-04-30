@@ -41,7 +41,7 @@
 	}
 .leaflet-marker-icon,
 .leaflet-marker-shadow {
-	display: block;
+	display: none;
 	}
 /* .leaflet-container svg: reset svg max-width decleration shipped in Joomla! (joomla.org) 3.x */
 /* .leaflet-container img: map is broken in FF if you have max-width: 100% on tiles */
@@ -159,15 +159,16 @@
 	clear: both;
 	}
 .leaflet-right .leaflet-control {
-	 float: left;
+	 float: right;
 	}
 .leaflet-top .leaflet-control {
 	margin-top: 30px;
     width: max-content;
-    left: -40px;
+    left: -23px;
 	}
 .leaflet-bottom .leaflet-control {
-	margin-bottom: 42px;
+	margin-bottom: 10px;
+	margin-right: 34px;
 	}
 .leaflet-left .leaflet-control {
 	margin-left: 5500%;

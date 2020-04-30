@@ -50,6 +50,7 @@ article, figcaption, figure, footer, header, hgroup, main, nav, section {
   display: block; }
 
 body {
+  overflow: hidden;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-size: 1rem;
@@ -6727,7 +6728,7 @@ button.bg-dark:focus {
   @media (max-height:700px) {
 .p-4 {
   padding: 1.5rem !important; 
-  height: 68vh;
+  height: 69vh;
 }
   }
 
@@ -8142,16 +8143,6 @@ body {
   background: #fafafa;
   color: gray; }
 
-/* a {
-  -webkit-transition: .3s all ease;
-  -o-transition: .3s all ease;
-  transition: .3s all ease;
-  color: #f8b739; }
-  a:hover, a:focus {
-    text-decoration: none !important;
-    outline: none !important;
-    -webkit-box-shadow: none;
-    box-shadow: none; } */
 
 button {
   -webkit-transition: .3s all ease;
@@ -8214,61 +8205,6 @@ h1, h2, h3, h4, h5,
 .wrapper {
   width: 100%; }
 
-#sidebar {
-  min-width: 319px;
-  max-width: 300px;
-  background: #ffffff;
-  color: #fff;
-  -webkit-transition: all 0.3s;
-  -o-transition: all 0.3s;
-  transition: all 0.3s; 
-  z-index: 10000;
-  max-height: 100vh;
-}
-  #sidebar.active {
-    margin-left: -300px; }
-  #sidebar .logo {
-    background: #e15b26;
-    height: 8em;
-    width: 101%;
-   }
-    #sidebar .logo span {
-      display: block; }
-  #sidebar ul.components {
-    padding: 0; }
-  #sidebar ul li {
-    font-size: 16px; }
-    #sidebar ul li > ul {
-      margin-left: 10px; }
-      #sidebar ul li > ul li {
-        font-size: 14px; }
-    #sidebar ul li a {
-      padding: 10px 0;
-      display: block;
-      color: rgba(255, 255, 255, 0.8);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
-      #tops ul li a:focus{
-        background-color: #4e4e4e;
-        box-shadow: 0 3px #fff;
-        color: #f8b739;
-        padding: 8px;
-        border-top-left-radius: 12px;
-        border-top-right-radius: 12px;      }
-        #sidebar ul li a:hover {
-        color: #f8b739; }
-    #sidebar ul li a:active {
-      background: transparent;
-      color: #f8b739; }
-      #sidebar ul li a:focus {
-        background: transparent;
-        color: #f8b739; }
-  @media (max-width: 991.98px) {
-    #sidebar {
-      /* margin-left: -300px;  */
-    }
-      #sidebar.active {
-        margin-left: 0; } }
-
 a[data-toggle="collapse"] {
   position: relative; }
 
@@ -8276,19 +8212,15 @@ a[data-toggle="collapse"] {
   display: block;
   position: absolute;
   top: 50%;
-  right: 0;
+  right: 10%;
   -webkit-transform: translateY(-50%);
   -ms-transform: translateY(-50%);
   transform: translateY(-50%); }
 
-@media (max-width: 991.98px) {
-  #sidebarCollapse span {
-    display: none; } }
 
 #content {
   width: 100%;
   padding: 0;
-  /* min-height: 100vh; */
   -webkit-transition: all 0.3s;
   -o-transition: all 0.3s;
   transition: all 0.3s; }

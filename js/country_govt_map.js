@@ -3,7 +3,7 @@ let second_google_sheet_data;
 function getColorfiscal(d) {
   return d > 1 ? '#15841b' :
     d > 0 ? '#15841b' :
-    '#808080';
+    '#adadad';
 }
 
 let govt_intervention_layer = (element) => {
@@ -24,13 +24,36 @@ let govt_intervention_layer = (element) => {
           ]
         })
 
-        if (african_data._map) {
+        if (african_data && african_data._map) {
           map.removeLayer(african_data)
         }
 
-        african_data = L.geoJson(africa_data, {
+        var highlight = {
+                  weight: 2,
+                  opacity: 2,
+                  color: '#000000b8',
+                  fillOpacity: 10,
+                  fillColor: 'yellow'
+        };
+
+        african_data = L.geoJSON(africa_data, {
+          onEachFeature: forEachFeature2,
           style: stylefiscal
         }).addTo(map);
+
+
+        african_data.on("click", onFeatureGroupClick);
+
+        function onFeatureGroupClick(e) {
+        	var group = e.target,
+          		layer = e.layer;
+
+          group.setStyle(stylefiscal);
+          layer.setStyle(highlight);
+        }
+
+        function forEachFeature2(feature, layer) {
+        }
 
         african_data.eachLayer(function(layer) {
           let country_ = layer.feature.properties.COUNTRY;
@@ -61,13 +84,36 @@ let govt_intervention_layer = (element) => {
           ]
         })
 
-        if (african_data._map) {
+        if (african_data && african_data._map) {
           map.removeLayer(african_data)
         }
 
-        african_data = L.geoJson(africa_data, {
+        var highlight = {
+                  weight: 2,
+                  opacity: 2,
+                  color: '#000000b8',
+                  fillOpacity: 10,
+                  fillColor: 'yellow'
+        };
+
+        african_data = L.geoJSON(africa_data, {
+          onEachFeature: forEachFeature2,
           style: stylefiscal
         }).addTo(map);
+
+
+        african_data.on("click", onFeatureGroupClick);
+
+        function onFeatureGroupClick(e) {
+        	var group = e.target,
+          		layer = e.layer;
+
+          group.setStyle(stylefiscal);
+          layer.setStyle(highlight);
+        }
+
+        function forEachFeature2(feature, layer) {
+        }
 
         african_data.eachLayer(function(layer) {
           let country_ = layer.feature.properties.COUNTRY;
@@ -99,13 +145,36 @@ let govt_intervention_layer = (element) => {
           ]
         })
 
-        if (african_data._map) {
+        if (african_data && african_data._map) {
           map.removeLayer(african_data)
         }
 
-        african_data = L.geoJson(africa_data, {
+        var highlight = {
+                  weight: 2,
+                  opacity: 2,
+                  color: '#000000b8',
+                  fillOpacity: 10,
+                  fillColor: 'yellow'
+        };
+
+        african_data = L.geoJSON(africa_data, {
+          onEachFeature: forEachFeature2,
           style: stylefiscal
         }).addTo(map);
+
+
+        african_data.on("click", onFeatureGroupClick);
+
+        function onFeatureGroupClick(e) {
+        	var group = e.target,
+          		layer = e.layer;
+
+          group.setStyle(stylefiscal);
+          layer.setStyle(highlight);
+        }
+
+        function forEachFeature2(feature, layer) {
+        }
 
         african_data.eachLayer(function(layer) {
           let country_ = layer.feature.properties.COUNTRY;
@@ -139,39 +208,44 @@ let govt_intervention_layer = (element) => {
           ]
         })
 
-        if (african_data._map) {
+        if (african_data && african_data._map) {
           map.removeLayer(african_data)
         }
 
-        african_data = L.geoJson(africa_data, {
-          style: {
-            weight: 2,
-            opacity: 2,
-            color: '#989898',
-            fillOpacity: 2.5,
-            fillColor: '#b30000'
-          },
-          onEachFeature: function(feature, layer) {
-            layer.on('mouseover', function() {
-              this.setStyle({
-                weight: 2,
-                opacity: 2,
-                color: '#989898',
-                fillOpacity: 10,
-                fillColor: '#989898'
-              });
-            });
-            layer.on('mouseout', function() {
-              this.setStyle({
-                weight: 2,
-                opacity: 2,
-                color: '#989898',
-                fillOpacity: 2.5,
-                fillColor: '#b30000'
-              });
-            });
-          }
+        var style2 = {
+          weight: 2,
+          opacity: 2,
+          color: '#000000b8',
+          fillOpacity: 2.5,
+          fillColor: '#AAA583'
+        };
+
+        var highlight = {
+                  weight: 2,
+                  opacity: 2,
+                  color: '#000000b8',
+                  fillOpacity: 10,
+                  fillColor: 'yellow'
+        };
+
+        var african_data = L.geoJSON(africa_data, {
+          onEachFeature: forEachFeature2,
+          style: style2
         }).addTo(map);
+
+
+        african_data.on("click", onFeatureGroupClick);
+
+        function onFeatureGroupClick(e) {
+        	var group = e.target,
+          		layer = e.layer;
+
+          group.setStyle(style2);
+          layer.setStyle(highlight);
+        }
+
+        function forEachFeature2(feature, layer) {
+        }
 
         african_data.eachLayer(function(layer) {
           let country_ = layer.feature.properties.COUNTRY;

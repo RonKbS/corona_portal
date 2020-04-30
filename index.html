@@ -13,165 +13,198 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.6.0/leaflet.css" type="text/css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.6.0/leaflet-src.js" charset="utf-8"></script>
-  <link rel="stylesheet" href="css/africa_map.css" type="text/css" />
 
+  <!-- Leaflet sidebar -->
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/leaflet-sidebar.css" />
+  <script src="js/leaflet-sidebar.js"></script>
+
+  <link rel="stylesheet" href="css/africa_map.css" type="text/css" />
   <link rel="stylesheet" href="css/legend_info.css" type="text/css" />
 
   <script src="data/africa_data.geojson" charset="utf-8"></script>
+  <script src="data/cases_points.geojson" charset="utf-8"></script>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
 </head>
 
 <body>
+  <div id="sidebar" class="sidebar collapsed">
+    <div class="sidebar-tabs">
+      <ul role="tablist">
+        <li><a href="#layers" role="tab"><i class="fa fa-bars"></i></a></li>
+        <li><a href="#profile" role="tab"><i class="fa fa-filter"></i></a></li>
+        <li><a href="#messages" role="tab"><i class="fa fa-envelope"></i></a></li>
+        <!-- class="disabled" -->
+        </li>
+      </ul>
 
-  <div class="wrapper d-flex align-items-stretch">
-    <nav id="sidebar">
-        <div class="img logo rounded mb-30">
-          <a href="index.html">
-            <p style="font-size:5.6rem;color:white;text-align:center;top:-44px;position:relative;">PACA</p>
-            <p style="color:white;top:-6em;left:3em;position:relative;font-size:16px;">
-              Pan African COVID 19 Analysis
-            </p>
-          </a>
-        </div>
-          <div class="logo1">
-            <img style="width:53%;" class="gg_logo" src="images/GG_Logo2.png">
+
+    </div>
+
+    <div class="sidebar-content">
+
+      <div class="sidebar-pane" id="layers">
+        <h1 class="full-text sidebar-header">
+          <p style="font-size:5.6rem;text-align:center;padding-top:7%;">PACA</p>
+          <p style="text-align:center;font-size:16px;">
+            Pan African COVID 19 Analysis
+          </p>
+          <span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
+        </h1>
+          <h1 class="short-text sidebar-header">
+            <!-- check the responsiveness here -->
+            <p style="font-size:5.6rem;text-align:center;padding-top:7%;">PACA</p>
+            <span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
+          </h1>
+        <div class="row" style="background-color: white;width: 110%;">
+          <div class="col-sm-6">
+            <img style="width:100%;" class="irish_logo" src="images/irish.png">
           </div>
-          <div class="logo2">
-            <img style="width:53%;" class="irish_logo" src="images/irish.png">
+          <div class="col-sm-6">
+            <img style="margin-top: 10%; width:100%;" class="align-middle" src="images/GG_Logo2.png">
+          </div>
         </div>
-        <div class="p-4 pt-5" style="overflow:auto;top:-4em;position:relative;background:#606060;width:101%;">
-          <div>
-            <ul class="list-unstyled components mb-5">
-              <li id="visualize" style="display:block">
-                <a href="#homeSubmenu5" data-toggle="collapse" aria-expanded="false" class="highlight dropdown-toggle" onclick="hide()">COVID 19 cases</a>
-                <ul class="collapse list-unstyled" id="homeSubmenu5">
-                  <li>
-                    <a href="#" onclick="cases_layer(); hide();">Cases</a>
-                  </li>
-                  <li>
-                    <a href="#" onclick="deaths_layer(); hide();">Deaths</a>
-                  </li>
-                  <li>
-                    <a href="#" onclick="cases_concn_layer(); hide();">Cases per 100,000 people</a>
-                  </li>
-                  <li>
-                    <a href="#" onclick="deaths_concn_layer(); hide();">Deaths per 100,000 people</a>
-                  </li>
-                </ul>
-                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" onclick="hide()">Infrastructure</a>
-                <ul class="collapse list-unstyled" id="homeSubmenu">
-                  <li>
-                    <a href="#" onclick="ventilators_layer(); hide();">Ventilators</a>
-                  </li>
-                  <li>
-                    <a href="#" onclick="icus_layer(); hide();">ICU Beds</a>
-                  </li>
-                </ul>
-                <a href="#homeSubmenu2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" onclick="hide()">Population</a>
-                <ul class="collapse list-unstyled" id="homeSubmenu2">
-                  <li>
-                    <a href="#" onclick="popn_density_layer(); hide();">Population Density</a>
-                  </li>
-                  <li>
-                    <a href="#" onclick="hiv_stats_layer(); hide();">HIV/AIDS(%)</a>
-                  </li>
-                  <li>
-                    <a href="#" onclick="tb_stats_layer(); hide();">TB(%)</a>
-                  </li>
-                  <li>
-                    <a href="#" onclick="elderly_stats_layer(); hide();">Elderly(% Over 65 in age)</a>
-                  </li>
-                </ul>
-                <a href="#homeSubmenu3" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" onclick="hide()">Government Intervention</a>
-                <ul class="collapse list-unstyled" id="homeSubmenu3">
-                  <li>
-                    <a href="#" onclick="govt_intervention_layer(this); show();" id="fiscal">Fiscal</a>
-                  </li>
-                  <li>
-                    <a href="#" onclick="govt_intervention_layer(this); show();" id="monetary">Monetary</a>
-                  </li>
-                  <li>
-                    <a href="#" onclick="govt_intervention_layer(this); show();" id="exchange">Exchange</a>
-                  </li>
-                  <li>
-                    <a href="#" onclick="govt_intervention_layer(this); show();" id="country">Other Measures Taken</a>
-                  </li>
-                  <div id="info">
-                    <p style="text-align:center;">
-                      Click on country to view data
-                    </p>
-                  </div>
-                </ul>
+        <div class="sidebar-list" style="max-height: 420px;">
+            <a
+            href="#homeSubmenu5" data-toggle="collapse" aria-expanded="false"
+            class="d-flex justify-content-center dropdown-toggle p-2 button_title_content" onclick="hide()"
+            >
+              COVID 19 cases
+            </a>
+            <ul class="collapse list-unstyled" id="homeSubmenu5">
+              <li class="d-flex justify-content-center">
+                <a href="#" class="d-flex justify-content-center p-2 button_inner_content" onclick="cases_layer(); hide();">Cases</a>
               </li>
-              <li id="interrogate" style="display:none">
-                <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Response</a>
-                <ul class="collapse list-unstyled" id="pageSubmenu">
-                  <li>
-                    <a href="#">Country Response Measures</a>
-                  </li>
-                  <li>
-                    <a href="#">Contact Map</a>
-                  </li>
-                  <li>
-                    <a href="govt_map.html">Government Intervention</a>
-                  </li>
-                </ul>
+              <li class="d-flex justify-content-center">
+                <a href="#" class="d-flex justify-content-center p-2 button_inner_content" onclick="deaths_layer(); hide();">Deaths</a>
               </li>
-              <li id="uganda" style="display:none">
-                <a href="#pageSubmenu2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Infrastructure</a>
-                <ul class="collapse list-unstyled" id="pageSubmenu2">
-                  <h6><strong>Health Infrastructure</strong></h6>
-                  <li>
-                    <a href="#">Ventilators</a>
-                  </li>
-                  <li>
-                    <a href="#">ICUs</a>
-                  </li>
-                  <h6><strong>Vulnerability</strong></h6>
-                  <li>
-                    <a href="#">HIV/AIDS</a>
-                  </li>
-                  <li>
-                    <a href="#">TB</a>
-                  </li>
-                  <li>
-                    <a href="#">Elderly</a>
-                  </li>
-                  <li>
-                    <a href="#">Elderly with Cases</a>
-                  </li>
-                  <h6><strong>Population</strong></h6>
-                  <li>
-                    <a href="#">Population Density</a>
-                  </li>
-                  <h6><strong>Cases</strong></h6>
-                  <li>
-                    <a href="#">Ratio: Cases to Population</a>
-                  </li>
-                  <li>
-                    <a href="#">Ratio: Deaths to Population</a>
-                  </li>
-                </ul>
+              <li class="d-flex justify-content-center">
+                <a href="#" class="d-flex justify-content-center p-2 button_inner_content" onclick="cases_concn_layer(); hide();">Cases per 100,000 people</a>
+              </li>
+              <li class="d-flex justify-content-center">
+                <a href="#" class="d-flex justify-content-center p-2 button_inner_content" onclick="deaths_concn_layer(); hide();">Deaths per 100,000 people</a>
               </li>
             </ul>
+
+            <a
+            href="#homeSubmenu" data-toggle="collapse" aria-expanded="false"
+            class="d-flex justify-content-center dropdown-toggle p-2 button_title_content" onclick="hide()"
+            >
+              Infrastructure
+            </a>
+            <ul class="collapse list-unstyled" id="homeSubmenu">
+              <li class="d-flex justify-content-center">
+                <a href="#" class="d-flex justify-content-center p-2 button_inner_content" onclick="ventilators_layer(); hide();">Ventilators</a>
+              </li>
+              <li class="d-flex justify-content-center">
+                <a href="#" class="d-flex justify-content-center p-2 button_inner_content" onclick="icus_layer(); hide();">ICU Beds</a>
+              </li>
+            </ul>
+
+            <a
+            href="#homeSubmenu2" data-toggle="collapse" aria-expanded="false"
+            class="d-flex justify-content-center dropdown-toggle p-2 button_title_content" onclick="hide()"
+            >
+              Population
+            </a>
+            <ul class="collapse list-unstyled" id="homeSubmenu2">
+              <li class="d-flex justify-content-center">
+                <a href="#" class="d-flex justify-content-center p-2 button_inner_content" onclick="popn_density_layer(); hide();">Population Density</a>
+              </li>
+              <li class="d-flex justify-content-center">
+                <a href="#" class="d-flex justify-content-center p-2 button_inner_content" onclick="hiv_stats_layer(); hide();">HIV/AIDS(%)</a>
+              </li>
+              <li class="d-flex justify-content-center">
+                <a href="#" class="d-flex justify-content-center p-2 button_inner_content" onclick="tb_stats_layer(); hide();">TB(%)</a>
+              </li>
+              <li class="d-flex justify-content-center">
+                <a href="#" class="d-flex justify-content-center p-2 button_inner_content" onclick="elderly_stats_layer(); hide();">Elderly(% Over 65 in age)</a>
+              </li>
+            </ul>
+
+            <a
+            href="#homeSubmenu3" data-toggle="collapse" aria-expanded="false"
+            class="d-flex justify-content-center dropdown-toggle p-2 button_title_content" onclick="hide()"
+            >
+              Government Intervention</a>
+            <ul class="collapse list-unstyled" id="homeSubmenu3">
+              <li class="d-flex justify-content-center">
+                <a href="#" class="d-flex justify-content-center p-2 button_inner_content" onclick="govt_intervention_layer(this); show();" id="fiscal">Fiscal</a>
+              </li>
+              <li class="d-flex justify-content-center">
+                <a href="#" class="d-flex justify-content-center p-2 button_inner_content" onclick="govt_intervention_layer(this); show();" id="monetary">Monetary</a>
+              </li>
+              <li class="d-flex justify-content-center">
+                <a href="#" class="d-flex justify-content-center p-2 button_inner_content" onclick="govt_intervention_layer(this); show();" id="exchange">Exchange</a>
+              </li>
+              <li class="d-flex justify-content-center">
+                <a href="#" class="d-flex justify-content-center p-2 button_inner_content" onclick="govt_intervention_layer(this); show();" id="country">Other Measures Taken</a>
+              </li>
+              <div id="info">
+                <p style="text-align:center;">
+                  Click on country to view data
+                </p>
+              </div>
+            </ul>
+        </div>
+      </div>
+
+      <div class="sidebar-pane" id="profile">
+      <h1 class="full-text sidebar-header">
+        <p style="font-size:5.6rem;text-align:center;padding-top:7%;">PACA</p>
+        <p style="text-align:center;font-size:16px;">
+          Pan African COVID 19 Analysis
+        </p>
+        <span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
+      </h1>
+        <h1 class="short-text sidebar-header">
+          <!-- check the responsiveness here -->
+          <p style="font-size:5.6rem;text-align:center;padding-top:7%;">PACA</p>
+          <span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
+        </h1>
+        <div class="row" style="background-color: white;width: 110%;">
+          <div class="col-sm-6">
+            <img style="width:100%;" class="irish_logo" src="images/irish.png">
+          </div>
+          <div class="col-sm-6">
+            <img style="margin-top: 10%; width:100%;" class="align-middle" src="images/GG_Logo2.png">
           </div>
         </div>
-    </nav>
 
-    <!-- Page Content  -->
-    <div id="content" class="p-2 p-md-1" style="position: absolute;">
-      <!-- <div class="source">
-          <a style="color:#f8b739;" type="button" target="_blank" href="https://docs.google.com/spreadsheets/d/1tRF8gjyRd0oA2sSpTKmZqambggZzUM0YiED6KqF8H8M/edit#gid=1584663082">Sources</a>
+        <div class="sidebar-list" style="max-height: 420px;">
+          <!-- Filters go here -->
         </div>
-        <div class="legend">
-        </div> -->
-      <div id="map" style="width: 100% !important;height: 100% !important; position: relative;">
+      </div>
+
+
+      <div class="sidebar-pane" id="messages">
+        <h1 class="full-text sidebar-header">
+          <p style="font-size:5.6rem;text-align:center;padding-top:7%;">PACA</p>
+          <p style="text-align:center;font-size:16px;">
+            Pan African COVID 19 Analysis
+          </p>
+          <span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
+        </h1>
+          <h1 class="short-text sidebar-header">
+            <!-- check the responsiveness here -->
+            <p style="font-size:5.6rem;text-align:center;padding-top:7%;">PACA</p>
+            <span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
+          </h1>
+        <div class="row" style="background-color: white;width: 110%;">
+          <div class="col-sm-6">
+            <img style="width:100%;" class="irish_logo" src="images/irish.png">
+          </div>
+          <div class="col-sm-6">
+            <img style="margin-top: 10%; width:100%;" class="align-middle" src="images/GG_Logo2.png">
+          </div>
+        </div>
       </div>
 
     </div>
   </div>
+  <div id="map"></div>
 
   <script src="js/jquery.min.js"></script>
   <script src="js/axios.js"></script>
@@ -179,6 +212,7 @@
   <script src="js/popper.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script src="js/main.js"></script>
+  <script type="text/javascript" src="js/legends.js"></script>
   <script type="text/javascript" src="js/africa_map.js"></script>
   <script type="text/javascript" src="js/ventilators_map.js"></script>
   <script type="text/javascript" src="js/icus_map.js"></script>
@@ -191,7 +225,6 @@
   <script type="text/javascript" src="js/cases_map.js"></script>
   <script type="text/javascript" src="js/deaths_map.js"></script>
   <script type="text/javascript" src="js/country_govt_map.js"></script>
-  <script type="text/javascript" src="js/legends.js"></script>
 
   <script type="text/javascript">
     function hide() {
@@ -204,7 +237,7 @@
     }
     function show() {
       var x = document.getElementById("info");
-      if (x.style.display === "block") {} else {
+      if (x.style.display === "block") { } else {
         x.style.display = "block";
       }
     }
