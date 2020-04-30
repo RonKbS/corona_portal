@@ -96,7 +96,7 @@ div #slider4 {
   border-style: solid;
   border-color: rgb(169, 169, 169);
   background-color: #e15b26;
-  width: 6em;
+  /* width: 6em; */
 }
 
 .noUi-handle {

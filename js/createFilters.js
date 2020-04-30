@@ -69,7 +69,7 @@ sidebar.on("content", (e) => {
 function createSlider(filterName, min, max) {
     
     var container = L.DomUtil.create('div', 'sliderContainer');
-    container.innerHTML += '<p><b>'+ filterName +'</b></p><br>';
+    container.innerHTML += '<p style="color:#fff;"><b>'+ filterName +'</b></p><br>';
 
     var div = L.DomUtil.create('div', 'slider ' + filterName);
     container.append(div);
