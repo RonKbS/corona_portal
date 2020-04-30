@@ -13,10 +13,12 @@ function getColorcasesratio(d) {
     '#808080';
 }
 
-let cases_concn_layer = () => {
+let cases_concn_layer = (element) => {
   if (african_data._map) {
     map.removeLayer(african_data)
   }
+  highlight_button(element)
+
   let cases_concn_obj = {}
   google_sheet_data.forEach(object_ => {
     cases_concn_obj[object_["COUNTRY"]] = [
