@@ -61,20 +61,17 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png
 let african_data;
 
 function getColorcases(d) {
-  return  d > 4500 ? '#016c59' :
-    d > 4499 ? '#016c59' :
-    d > 3000 ? '#1d905d' :
-    d > 2999 ? '#1d905d' :
-    d > 2000 ? '#3fad76' :
-    d > 1999 ? '#3fad76' :
-    d > 1000 ? '#66c2a4' :
-    d > 999 ? '#66c2a4' :
-    d > 500 ? '#99d8ce' :
-    d > 499 ? '#99d8ce' :
-    d > 100 ? '#b6dae2' :
-    d > 99 ? '#b6dae2' :
+  return  d > 4000 ? '#016c59' :
+    d > 3999 ? '#016c59' :
+    d > 1000 ? '#1c9099' :
+    d > 999 ? '#1c9099' :
+    d > 100 ? '#67a9cf' :
+    d > 99 ? '#67a9cf' :
     d > 1 ? '#bdc9e1' :
-    d > 0.1 ? '#bdc9e1' :
+    d > 0.9 ? '#bdc9e1' :
+    d > 0 ? '#f6eff7' :
+    d > -1 ? '#f6eff7' :
+    d > null ? '#808080' :
     '#808080';
 }
 
@@ -119,5 +116,5 @@ axios.all(axioses)
         fillOpacity: 1
       };
     }
-    addLegend([1, 100, 500, 1000, 2000, 3000, 4500], getColorcases, "Cases");
+    addLegend([0, 1, 100, 1000, 4000], getColorcases, "Cases");
   })

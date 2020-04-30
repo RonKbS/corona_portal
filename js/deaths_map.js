@@ -1,14 +1,15 @@
 function getColordeaths(d) {
-  return d > 400 ? '#00441b' :
-  d > 399 ? '#00441b' :
-    d > 300 ? '#137e3a' :
-    d > 200 ? '#3da75a' :
-    d > 100 ? '#7bc87c' :
-    d > 50 ? '#b2e0ab' :
-    d > 10 ? '#ddf2d7' :
-    d > 5 ? '#f7fcf5' :
-    d > 1 ? '#f7fcf5' :
-    d > 0 ? '#ffffff' :
+  return d > 400 ? '#006837' :
+  d > 399 ? '#006837' :
+    d > 300 ? '#31a354' :
+    d > 299 ? '#31a354' :
+    d > 100 ? '#78c679' :
+    d > 99 ? '#78c679' :
+    d > 1 ? '#c2e699' :
+    d > 0.9 ? '#c2e699' :
+    d > 0 ? '#ffffcc' :
+    d > -1 ? '#ffffcc' :
+    d > null ? '#808080' :
     '#808080';
 }
 
@@ -57,5 +58,5 @@ let deaths_layer = (element) => {
       fillOpacity: 1
     };
   }
-  addLegend([1, 10, 50, 100, 200, 300, 400], getColordeaths, 'Deaths');
+  addLegend([0, 1, 100, 300, 400], getColordeaths, 'Deaths');
 }
