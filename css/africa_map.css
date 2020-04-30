@@ -112,14 +112,9 @@ h6 {
 }
 
 #info {
-  border: 1px solid;
-  width: 116%;
-  position: relative;
   border: 1px solid #ffffff00;
   border-radius: 7px;
-  left: -25px;
   color: black;
-  background: white;
   font-size: 14px;
 }
 
