@@ -128,7 +128,8 @@
             href="#homeSubmenu3" data-toggle="collapse" aria-expanded="false"
             class="d-flex justify-content-center dropdown-toggle p-2 button_title_content" onclick="hide()"
             >
-              Government Intervention</a>
+              Government Intervention
+            </a>
             <ul class="collapse list-unstyled" id="homeSubmenu3">
               <li class="d-flex justify-content-center">
                 <a href="#" class="d-flex justify-content-center p-2 button_inner_content" onclick="govt_intervention_layer(this); show();" id="fiscal">Fiscal</a>
@@ -142,11 +143,11 @@
               <li class="d-flex justify-content-center">
                 <a href="#" class="d-flex justify-content-center p-2 button_inner_content" onclick="govt_intervention_layer(this); show();" id="country">Other Measures Taken</a>
               </li>
-              <div id="info">
-                <p style="text-align:center;">
+              <li>
+                <p style="text-align:end; color:rgb(219, 216, 216);">
                   Click on country to view data
                 </p>
-              </div>
+              </li>
             </ul>
         </div>
       </div>
@@ -199,6 +200,11 @@
           <div class="col-sm-6">
             <img style="margin-top: 10%; width:100%;" class="align-middle" src="images/GG_Logo2.png">
           </div>
+        </div>
+        <div class="sidebar-list" id="info" style="max-height: 449px;">
+          <p style="text-align:center;">
+            Click on country to view data
+          </p>
         </div>
       </div>
 
