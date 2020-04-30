@@ -17,7 +17,12 @@
   <link rel="stylesheet" href="css/leaflet-sidebar.css" />
   <link rel="stylesheet" href="css/africa_map.css" type="text/css" />
   <link rel="stylesheet" href="css/legend_info.css" type="text/css" />
+  <link rel="stylesheet" href="css/filters.css" type="text/css" />
 
+
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.0.3/nouislider.min.css" type="text/css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.0.3/nouislider.min.js"></script>
 
 </head>
 
@@ -85,6 +90,7 @@
 
         <div class="sidebar-list" style="max-height: 420px;">
           <!-- Filters go here -->
+          <div id="sliders"></div>
         </div>
       </div>
 
@@ -152,6 +158,8 @@
   <script type="text/javascript" src="js/ug_onEachFeature_fns.js"></script>
   <script type="text/javascript" src="js/ug_legend_colors_fns.js"></script>
   <script type="text/javascript" src="js/country_govt_map.js"></script>
+  <script type="text/javascript" src="js/createFilters.js"></script>
+  <script type="text/javascript" src="js/applyFilters.js"></script>
 
 </body>
 
