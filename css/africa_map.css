@@ -8,6 +8,10 @@
     .full-text { display: none; }
 }
 
+#sidebar a:hover {
+  color: #f8b739; 
+}
+
 .button_title_content {
   color: rgb(219, 216, 216);
   font-size: 20px;

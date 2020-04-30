@@ -12,10 +12,12 @@ function getColorelderly(d) {
     '#808080';
 }
 
-let elderly_stats_layer = () => {
+let elderly_stats_layer = (element) => {
   if (african_data._map) {
     map.removeLayer(african_data)
   }
+  highlight_button(element)
+
   let elderly_stats_obj = {}
   google_sheet_data.forEach(object_ => {
     elderly_stats_obj[object_["COUNTRY"]] = [

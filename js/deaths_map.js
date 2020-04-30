@@ -12,10 +12,12 @@ function getColordeaths(d) {
     '#808080';
 }
 
-let deaths_layer = () => {
+let deaths_layer = (element) => {
   if (african_data._map) {
     map.removeLayer(african_data)
   }
+  highlight_button(element)
+
   let deaths_obj = {}
   google_sheet_data.forEach(object_ => {
     deaths_obj[object_["COUNTRY"]] = [

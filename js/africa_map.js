@@ -2,6 +2,16 @@ let long_id = "1tRF8gjyRd0oA2sSpTKmZqambggZzUM0YiED6KqF8H8M"
 let gid = "1502462034"
 let url = `https://docs.google.com/spreadsheets/d/${long_id}/export?format=csv&id=${long_id}&gid=${gid}`
 let google_sheet_data;
+let prev_highlighted_button;
+
+// set the hightlighted button to show
+let highlight_button = (element) => {
+  prev_highlighted_button = $( "a[style='color: #f8b739;']" );
+  if (prev_highlighted_button.length != 0) {
+  prev_highlighted_button[0].setAttribute("style", "color: rgb(219, 216, 216);");
+  }
+  element.setAttribute("style", "color: #f8b739;");
+}
 
 
 let axioses = [axios.get(url, { mode: 'no-cors' })]

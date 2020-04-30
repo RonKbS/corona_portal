@@ -17,10 +17,12 @@ function getColorcases(d) {
 }
 
 
-let cases_layer = () => {
+let cases_layer = (element) => {
   if (african_data._map) {
     map.removeLayer(african_data)
   }
+  highlight_button(element)
+
   let cases_obj = {}
   google_sheet_data.forEach(object_ => {
     cases_obj[object_["COUNTRY"]] = [

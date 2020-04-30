@@ -21,6 +21,8 @@ let govt_intervention_layer = (element) => {
       second_google_sheet_data = $.csv.toObjects(responseArrs.data);
 
       if (element.id === "fiscal") {
+        highlight_button(element)
+
         let govt_intervention_obj = {}
         second_google_sheet_data.forEach(object_ => {
           govt_intervention_obj[object_["COUNTRY"]] = [
@@ -75,6 +77,8 @@ let govt_intervention_layer = (element) => {
         }
         addLegend([0, 1], getColorfiscal);
       } else if (element.id === "monetary") {
+        highlight_button(element)
+
         let govt_intervention_obj = {}
         second_google_sheet_data.forEach(object_ => {
           govt_intervention_obj[object_["COUNTRY"]] = [
@@ -130,6 +134,8 @@ let govt_intervention_layer = (element) => {
         addLegend([0, 1], getColorfiscal);
 
       } else if (element.id === "exchange") {
+        highlight_button(element)
+
         let govt_intervention_obj = {}
         second_google_sheet_data.forEach(object_ => {
           govt_intervention_obj[object_["COUNTRY"]] = [
@@ -186,6 +192,8 @@ let govt_intervention_layer = (element) => {
         }
         addLegend([0, 1], getColorfiscal);
       } else if (element.id === "country") {
+        highlight_button(element)
+
         let country_intervention_obj = {}
         second_google_sheet_data.forEach(object_ => {
           country_intervention_obj[object_["COUNTRY"]] = [

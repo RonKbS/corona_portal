@@ -16,10 +16,11 @@ function getColorvents(d) {
     '#808080';
 }
 
-let ventilators_layer = () => {
+let ventilators_layer = (element) => {
   if (african_data._map) {
     map.removeLayer(african_data)
   }
+  highlight_button(element)
 
   let ventilators_obj = {}
   google_sheet_data.forEach(object_ => {
