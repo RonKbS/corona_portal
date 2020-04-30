@@ -16,7 +16,7 @@
   color: rgb(219, 216, 216);
   font-size: 18px;
   border-style: solid;
-  border-width: 0 0 0px 0;
+  border-width: 0 0 1px 0;
   margin-right: 30px;
 }
 
@@ -25,7 +25,7 @@
   width: 80%;
   font-size: 15px;
   border-style: solid;
-  border-width: 0 0 0px 0;
+  border-width: 0 0 0 0;
 }
 .source {
   background-color: #4e4e4e;
