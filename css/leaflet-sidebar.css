@@ -102,8 +102,7 @@
     left: 0;
     right: 0;
     box-sizing: border-box;
-    padding: 10px 20px;
-  }
+    padding: 10px 20px 10px 0; }
     .sidebar-pane.active {
       display: block; }
     @media (min-width: 768px) and (max-width: 991px) {

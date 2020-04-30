@@ -219,7 +219,7 @@ let govt_intervention_layer = (element) => {
           fillColor: '#AAA583'
         };
 
-        let african_data = L.geoJSON(africa_data, {
+        african_data = L.geoJSON(africa_data, {
           style: style2
         }).addTo(map);
 

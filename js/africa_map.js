@@ -116,5 +116,9 @@ axios.all(axioses)
         fillOpacity: 1
       };
     }
-    addLegend([0, 1, 100, 1000, 4000], getColorcases, "Cases");
+    addLegend([1, 100, 500, 1000, 2000, 3000, 4500], getColorcases, "Cases");
+
+    $("#homeSubmenu5").attr("class", "list-unstyled collapse show")
+    $("a[onclick='cases_layer(this);']")[0].setAttribute("style", "color: #f8b739;")
+
   })
