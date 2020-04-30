@@ -1,15 +1,15 @@
 function getColorcasesratio(d) {
-  return d > 147 ? '#7a0177' :
-    d > 120 ? '#7a0177' :
-    d > 100 ? '#a50f82' :
-    d > 80 ? '#cc268d' :
-    d > 50 ? '#e9529b' :
-    d > 30 ? '#f97ea8' :
-    d > 10 ? '#fba9b6' :
-    d > 5 ? '#fdcccb' :
-    d > 1 ? '#fdcccb' :
-    d > 0.1 ? '#feebe2' :
-    d > 0 ? '#ffffff' :
+  return d > 140 ? '#980043' :
+    d > 139 ? '#980043' :
+    d > 100 ? '#dd1c77' :
+    d > 99 ? '#dd1c77' :
+    d > 10 ? '#df65b0' :
+    d > 9.9 ? '#df65b0' :
+    d > 1 ? '#d7b5d8' :
+    d > 0.9 ? '#d7b5d8' :
+    d > 0 ? '#f1eef6' :
+    d > -1 ? '#f1eef6' :
+    d > null ? '#808080' :
     '#808080';
 }
 
@@ -60,5 +60,5 @@ let cases_concn_layer = (element) => {
       fillOpacity: 1
     };
   }
-  addLegend([0.1, 1, 10, 30, 50, 80, 100, 147], getColorcasesratio, 'Cases per 100,000 people');
+  addLegend([0, 1, 10, 100, 140], getColorcasesratio, 'Cases per 100,000 people');
 }

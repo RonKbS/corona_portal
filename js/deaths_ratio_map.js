@@ -1,11 +1,15 @@
 function getColordeathsratio(d) {
-  return d > 6.0 ? '#bd0026' :
-  d > 5.9 ? '#bd0026' :
-    d > 4.0 ? '#f03b20' :
-    d > 2.0 ? '#fd8d3c' :
-    d > 0.2 ? '#fecc5c' :
+  return d > 1.0 ? '#bd0026' :
+  d > 0.9 ? '#bd0026' :
+    d > 0.5 ? '#f03b20' :
+    d > 0.49 ? '#f03b20' :
+    d > 0.2 ? '#fd8d3c' :
+    d > 0.19 ? '#fd8d3c' :
     d > 0.1 ? '#fecc5c' :
+    d > 0.09 ? '#fecc5c' :
     d > 0 ? '#ffffb2' :
+    d > -1 ? '#ffffb2' :
+    d > null ? '#808080' :
     '#808080';
 }
 
@@ -57,5 +61,5 @@ let deaths_concn_layer = (element) => {
     };
   }
 
-  addLegend([0.1, 2.0, 4.0, 6.0], getColordeathsratio, "Death's per 100,000 people");
+  addLegend([0, 0.1, 0.2, 0.5, 1.0], getColordeathsratio, "Death's per 100,000 people");
 }

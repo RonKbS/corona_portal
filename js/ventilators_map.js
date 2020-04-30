@@ -1,16 +1,12 @@
 function getColorvents(d) {
-  return  d > 18000000 ? '#08306b' :
-    d > 17999999 ? '#08306b' :
-    d > 10000000 ? '#1563aa' :
-    d > 9999999 ? '#1563aa' :
-    d > 2000000 ? '#3e8ec4' :
-    d > 1999999 ? '#3e8ec4' :
+  return   d > 10000000 ? '#08306b' :
+    d > 9999999 ? '#08306b' :
+    d > 2000000 ? '#2879b9' :
+    d > 1999999 ? '#2879b9' :
     d > 1000000 ? '#73b3d8' :
     d > 999999 ? '#73b3d8' :
-    d > 500000 ? '#b0d2e8' :
-    d > 499999 ? '#b0d2e8' :
-    d > 100000 ? '#d8e7f5' :
-    d > 99999 ? '#d8e7f5' :
+    d > 500000 ? '#c8ddf0' :
+    d > 499999 ? '#c8ddf0' :
     d > 9000 ? '#f7fbff' :
     d > 8999 ? '#f7fbff' :
     '#808080';
@@ -65,5 +61,5 @@ let ventilators_layer = (element) => {
       fillOpacity: 1
     };
   }
-  addLegend([9000, 100000, 500000, 1000000, 2000000, 10000000, 18000000], getColorvents, "People per ventilator");
+  addLegend([9000, 500000, 1000000, 2000000, 10000000], getColorvents, "People per ventilator");
 }

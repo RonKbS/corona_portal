@@ -1,14 +1,15 @@
 function getColorelderly(d) {
-  return d > 11 ? '#050505' :
-    d > 10 ? '#050505' :
-    d > 8 ? '#424242' :
-    d > 7 ? '#424242' :
-    d > 6 ? '#808080' :
-    d > 5 ? '#808080' :
-    d > 4 ? '#bdbdbd' :
-    d > 3 ? '#bdbdbd' :
-    d > 2 ? '#ffffff' :
-    d > 0 ? '#ffffff' :
+  return d > 11 ? '#253494' :
+    d > 10 ? '#253494' :
+    d > 8 ? '#2c7fb8' :
+    d > 7 ? '#2c7fb8' :
+    d > 4 ? '#41b6c4' :
+    d > 3.9 ? '#41b6c4' :
+    d > 3 ? '#a1dab4' :
+    d > 2.9 ? '#a1dab4' :
+    d > 2 ? '#ffffcc' :
+    d > 1.9 ? '#ffffcc' :
+    d > null ? '#808080' :
     '#808080';
 }
 
@@ -60,5 +61,5 @@ let elderly_stats_layer = (element) => {
     };
   }
 
-  addLegend([2, 4, 6, 8, 11], getColorelderly, 'Elderly Percentage');
+  addLegend([2, 3, 4, 8, 11], getColorelderly, 'Elderly Percentage');
 }

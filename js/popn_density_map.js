@@ -1,18 +1,14 @@
 function getColordensity(d) {
-  return  d > 750 ? '#993404' :
-    d > 749 ? '#993404' :
-    d > 500 ? '#c4500a' :
-    d > 499 ? '#c4500a' :
-    d > 400 ? '#e67217' :
-    d > 399 ? '#e67217' :
-    d > 300 ? '#fe9929' :
-    d > 299 ? '#fe9929' :
-    d > 200 ? '#fec46c' :
-    d > 199 ? '#fec46c' :
-    d > 100 ? '#ffe6a5' :
-    d > 99 ? '#ffe6a5' :
-    d > 1 ? '#ffffd4' :
-    d > 0.1 ? '#ffffd4' :
+  return d > 700 ? '#993404' :
+    d > 699 ? '#993404' :
+    d > 300 ? '#d95f0e' :
+    d > 299 ? '#d95f0e' :
+    d > 100 ? '#fe9929' :
+    d > 99 ? '#fe9929' :
+    d > 20 ? '#fed98e' :
+    d > 19 ? '#fed98e' :
+    d > 3 ? '#ffffd4' :
+    d > 2.9 ? '#ffffd4' :
     '#808080';
 }
 
@@ -61,5 +57,5 @@ let popn_density_layer = (element) => {
       fillOpacity: 1
     };
   }
-  addLegend([1, 100, 200, 300, 400, 500, 750], getColordensity, "Population Density <br> (people per sq km)");
+  addLegend([3, 20, 100, 400, 700], getColordensity, "Population Density <br> (people per sq km)");
 }
