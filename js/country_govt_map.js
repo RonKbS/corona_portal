@@ -47,6 +47,7 @@ let govt_intervention_layer = (element) => {
         function onFeatureGroupClick(e) {
           if (!$("#messages").hasClass("sidebar-pane active")) {
             sidebar.open("messages")
+            show_hamburg_button()
           }
         	let group = e.target,
           		layer = e.layer;
@@ -103,6 +104,7 @@ let govt_intervention_layer = (element) => {
         function onFeatureGroupClick(e) {
           if (!$("#messages").hasClass("sidebar-pane active")) {
             sidebar.open("messages")
+            show_hamburg_button()
           }
         	let group = e.target,
           		layer = e.layer;
@@ -162,6 +164,7 @@ let govt_intervention_layer = (element) => {
         function onFeatureGroupClick(e) {
           if (!$("#messages").hasClass("sidebar-pane active")) {
             sidebar.open("messages")
+            show_hamburg_button()
           }
         	let group = e.target,
           		layer = e.layer;
@@ -229,6 +232,7 @@ let govt_intervention_layer = (element) => {
         function onFeatureGroupClick(e) {
           if (!$("#messages").hasClass("sidebar-pane active")) {
             sidebar.open("messages")
+            show_hamburg_button()
           }
         	let group = e.target,
           		layer = e.layer;

@@ -13,6 +13,19 @@ let highlight_button = (element) => {
   element.setAttribute("style", "color: #f8b739;");
 }
 
+let show_hamburg_button = () => {
+  let hamburg_ = $("a[href='#layers']")[0]
+  let flashing_hamburg_ = setInterval( () => {
+    hamburg_.setAttribute("style", "background-color: #e15b26;")
+    setTimeout(
+      () => {
+        hamburg_.setAttribute("style", "color: rgb(51, 51, 51);")
+      }, 2000
+    )
+  }, 3000)
+  setTimeout( () => {clearInterval(flashing_hamburg_)}, 9000)
+}
+
 
 let axioses = [axios.get(url, { mode: 'no-cors' })]
 document.getElementById("map").setAttribute("style", `height: ${window.innerHeight}px`)
