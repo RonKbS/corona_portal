@@ -20,10 +20,10 @@ let show_hamburg_button = () => {
     setTimeout(
       () => {
         hamburg_.setAttribute("style", "color: rgb(51, 51, 51);")
-      }, 2000
+      }, 250
     )
-  }, 3000)
-  setTimeout( () => {clearInterval(flashing_hamburg_)}, 9000)
+  }, 1000)
+  setTimeout( () => {clearInterval(flashing_hamburg_)}, 15000)
 }
 
 
