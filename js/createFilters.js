@@ -10,7 +10,7 @@ sidebar.on("content", (e) => {
         if (african_data._map) {
             map.removeLayer(african_data)
           }
-          
+
           function getColorFilters() {
               return {
                 weight: 1,
@@ -30,14 +30,14 @@ sidebar.on("content", (e) => {
         if (african_data._map) {
             map.removeLayer(african_data)
           }
-  
+
           african_data = L.geoJson(africa_data, {
             style: stylecases
           }).addTo(map);
-      
+
           african_data.eachLayer(function (layer) {
             let country_ = layer.feature.properties.COUNTRY;
-            
+
             layer.bindPopup(
               '<strong>Country:</strong> ' + country_ +
               '<br>' + '<strong>Population:</strong> ' + initial_data_obj[country_][0] +
@@ -50,7 +50,7 @@ sidebar.on("content", (e) => {
               this.closePopup();
             });
           });
-      
+
           function stylecases(feature) {
             return {
               fillColor: getColorcases(parseFloat(initial_data_obj[feature.properties.COUNTRY][1].split(",").join(""))),
@@ -67,7 +67,7 @@ sidebar.on("content", (e) => {
 
 
 function createSlider(filterName, min, max) {
-    
+
     var container = L.DomUtil.create('div', 'sliderContainer');
     container.innerHTML += '<p style="color:#fff;"><b>'+ filterName +'</b></p><br>';
 
@@ -114,14 +114,14 @@ axios.get(url1)
                 filterData.forEach(object_ => {
                     filter_data_obj[object_["COUNTRY"]] = [
                         object_["DENSITY"],
-                        object_["CASES"], 
-                        object_["POP"], 
-                        object_["CASES_PER_100,000"], 
-                        object_["DEATHS"], 
+                        object_["CASES"],
+                        object_["POP"],
+                        object_["CASES_PER_100,000"],
+                        object_["DEATHS"],
                         object_["DEATHS_PER_100,000"],
-                        object_["Elderly_rates"], 
-                        object_["Elderly_percentage"], 
-                        object_["GDP_percentage"],
+                        object_["Elderly_rates"],
+                        object_["Elderly_percentage"],
+                        object_["health_percentage"],
                     ]
                     let value = object_[element].split(",").join("");
                         if (parseFloat(value) < min) min = parseFloat(value);

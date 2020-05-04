@@ -9,7 +9,7 @@
 }
 
 #sidebar a:hover {
-  color: #f8b739; 
+  color: #f8b739;
 }
 
 .button_title_content {
@@ -79,28 +79,6 @@ div #slider4 {
   width: 83%;
   margin-bottom: 30px;
   left: -15px;
-}
-
-.noUi-connect {
-  background: #f8b049;
-}
-
-.noUi-horizontal .noUi-handle, .noUi-vertical .noUi-handle {
-  background: #e15b26;
-  ;
-}
-
-.noUi-target.noUi-horizontal .noUi-tooltip {
-  top: -39px;
-  bottom: initial;
-  border-style: solid;
-  border-color: rgb(169, 169, 169);
-  background-color: #e15b26;
-  /* width: 6em; */
-}
-
-.noUi-handle {
-  box-shadow: none;
 }
 
 div #input_values {
