@@ -43,6 +43,33 @@ let map = L.map('map', {
 let sidebar = L.control.sidebar('sidebar').addTo(map);
 sidebar.open("layers")
 
+// display that cookies are being used on first time visit
+let cookieUsageDisplay = localStorage.getItem('cookieusagedisplayed');
+if (cookieUsageDisplay === null) {
+  let cookies_button = L.control({
+    position: 'topright'
+  });
+  cookies_button.onAdd = () => {
+    let div = L.DomUtil.create('div', 'cooookie');
+    // next to btn-link  style="color: #f8b739;"
+    div.innerHTML += '<h5\
+    style="background-color:#4e4e4e; padding: 0 3px 0 3px; color: white; border-radius: 10px">\
+    <button type="button" class="btn btn-link" id="coookie_button">\
+    <i class="fa fa-times"></i></button>\
+    By continuing to view this site, you agree to our usage of\
+    <a style="color: #f8b739;" type="button" target="_blank" href="/cookie.html"\
+    >cookies</a></h5>'
+    return div;
+  };
+  cookies_button.addTo(map);
+
+  $("#coookie_button").click(() => {
+    cookies_button.remove()
+    localStorage.setItem('cookieusagedisplayed', true)
+  });
+
+}
+
 // responsiveness styling
 $(".sidebar-list").css(
   "max-height", `${parseInt($(".sidebar-content").css("height"), 10) - 187}px`
@@ -60,11 +87,11 @@ map.touchZoom.disable();
 map.doubleClickZoom.disable();
 map.scrollWheelZoom.disable();
 
-var sources_button = L.control({
+let sources_button = L.control({
   position: 'topright'
 });
-sources_button.onAdd = function(map) {
-  var div = L.DomUtil.create('div', 'sources');
+sources_button.onAdd = () => {
+  let div = L.DomUtil.create('div', 'sources');
   div.innerHTML += '<a style="color: #f8b739;" type="button" target="_blank" href="https://docs.google.com/spreadsheets/d/1VR5mnOV3i6O8kXhh5SQb6tqMvevd02NXHldx3tOTZl4/edit#gid=0">Data Sources</a>'
   return div;
 };
