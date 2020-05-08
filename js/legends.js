@@ -16,10 +16,12 @@ function thousep2(n) {
 
 var legend = L.control({ position: 'bottomright' });
 
-function addLegend(grades, ramp, title = null) {
+function addLegend(grades, ramp, title = null, filterMap) {
   if (legend._map) {
     map.removeControl(legend);
   }
+
+  if (filterMap == undefined) {
 
   legend.onAdd = function (map) {
 
@@ -45,6 +47,18 @@ function addLegend(grades, ramp, title = null) {
 
     return div;
   };
+} else {
+  legend.onAdd = function (map) {
+
+    var div = L.DomUtil.create('div', 'info legend');
+
+      div.innerHTML += '<p><b>' + title + '</b></p><br>';
+      div.innerHTML += '<i style="background:#808080"></i> No data<br>';
+      div.innerHTML += '<i style="background:#e15b26"></i> Filtered<br>';
+
+    return div;
+  };
+}
 
   legend.addTo(map);
 
