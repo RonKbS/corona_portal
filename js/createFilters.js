@@ -66,7 +66,7 @@ sidebar.on("content", (e) => {
 })
 
 
-var filters = ["DENSITY", "CASES", "POP", "DEATHS", "Elderly_rates", "Elderly_percentage", "health_percentage"]
+var filters = ["DENSITY", "CASES", "POP", "DEATHS", "Elderly_rates"]
 
 sidebar.on("content", (e) => {
   if (e.id === 'profile') {
@@ -208,8 +208,6 @@ axios.get(url1)
             object_["POP"],
             object_["DEATHS"],
             object_["Elderly_rates"],
-            object_["Elderly_percentage"],
-            object_["health_percentage"],
           ]
           let value = object_[element].split(",").join("");
           if (parseFloat(value) < min) min = parseFloat(value);
