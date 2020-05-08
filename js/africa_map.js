@@ -82,6 +82,36 @@ $(window).resize(() => {
 }
 )
 
+// toggle to countries
+let countries_ = L.control({position: 'topright'});
+
+    function showDisclaimer() {
+        let div = document.getElementById("sources countries_")
+        div.setAttribute("style", "padding-bottom: 0")
+        div.innerHTML = "<h6 style='outline: none; margin-bottom: 0;'><a href='/uganda'\
+        style='color: rgb(248, 183, 57);'>UGANDA</a><h6>";
+    }
+
+    function hideDisclaimer() {
+        let div = document.getElementById("sources countries_")
+        div.setAttribute("style", "padding-bottom: 5px")
+        div.innerHTML = "<h6 style='color: rgb(248, 183, 57); outline: none;\
+        margin-bottom: 0;'>countries</h6>";
+    }
+
+    countries_.onAdd = function (map) {
+    let div = L.DomUtil.create('div', 'sources countries_');
+    div.innerHTML = "<h6 style='color: rgb(248, 183, 57); outline: none;\
+    margin-bottom: 0;'>countries</h6>";
+    div.setAttribute("style", "padding-bottom: 5px");
+    div.setAttribute("onmouseenter", "showDisclaimer()");
+    div.setAttribute("onmouseleave", "hideDisclaimer()");
+    div.id = "sources countries_"
+
+        return div;
+    };
+    countries_.addTo(map);
+
 map.dragging.disable();
 map.touchZoom.disable();
 map.doubleClickZoom.disable();
