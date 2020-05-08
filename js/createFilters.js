@@ -3,7 +3,9 @@ let filterData;
 
 let filter_data_obj ={};
 
-var dataToFilter = {}
+var dataToFilter = {};
+
+var filters = ["DENSITY","CASES",  "POP", "DEATHS", "Elderly_rates",  "Elderly_percentage",  "health_percentage"]
 
 sidebar.on("content", (e) => {
     if(e.id === 'profile' ) {
@@ -84,10 +86,10 @@ function createSlider(filterName, min, max) {
         },
         format: {
             to: function (value) {
-                return value.toFixed(0);
+                return thousep2(value.toFixed(1));
             },
             from: function (value) {
-                return value.replace('%', '');
+                return value.replace(',', '');
             }
         }
     });
@@ -107,7 +109,7 @@ axios.get(url1)
     .then(responseArrs => {
         filterData = $.csv.toObjects(responseArrs.data);
 
-        Object.keys(filterData[0]).forEach(element => {
+        filters.forEach(element => {
 
             let min = Infinity, max = -Infinity;
             if (element != "COUNTRY") {
@@ -116,9 +118,7 @@ axios.get(url1)
                         object_["DENSITY"],
                         object_["CASES"],
                         object_["POP"],
-                        object_["CASES_PER_100,000"],
                         object_["DEATHS"],
-                        object_["DEATHS_PER_100,000"],
                         object_["Elderly_rates"],
                         object_["Elderly_percentage"],
                         object_["health_percentage"],

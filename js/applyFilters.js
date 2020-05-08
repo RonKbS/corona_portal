@@ -10,7 +10,7 @@ function filterMap() {
         ) {
             let filter = [];
             var l = map["_layers"][key];
-            Object.keys(filterData[0]).slice(1).forEach((element, index) => {
+            filters.forEach((element, index) => {
                 let value = filter_data_obj[l.feature.properties.COUNTRY][index].split(",").join("");
                 if (parseFloat(value) > dataToFilter[element][0] && parseFloat(value) < dataToFilter[element][1]) {
                     filter.push("True");
