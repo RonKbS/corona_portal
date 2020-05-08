@@ -88,8 +88,9 @@ let countries_ = L.control({position: 'topright'});
     function showDisclaimer() {
         let div = document.getElementById("sources countries_")
         div.setAttribute("style", "padding-bottom: 0")
-        div.innerHTML = "<h6 style='outline: none; margin-bottom: 0;'><a href='/uganda'\
-        style='color: rgb(248, 183, 57);'>UGANDA</a><h6>";
+        div.innerHTML = `<h6 style='outline: none; margin-bottom: 0;'>\
+        <a href='${window.location.href}uganda'\
+        style='color: rgb(248, 183, 57);'>UGANDA</a><h6>`;
     }
 
     function hideDisclaimer() {

@@ -53,10 +53,10 @@ sidebar.open("layers")
 // toggle to Africa
 let africa_ = L.control({position: 'topright'});
 
-    africa_.onAdd = function (map) {
+    africa_.onAdd = function () {
       let div = L.DomUtil.create('div', 'sources africa_');
-      div.innerHTML = "<h6 style='color: rgb(248, 183, 57); outline: none;\
-      margin-bottom: 0;'><a href='/' style='color: rgb(248, 183, 57);'>AFRICA</a></h6>";
+      div.innerHTML = `<h6 style='color: rgb(248, 183, 57); outline: none;\
+      margin-bottom: 0;'><a href='/corona_portal' style='color: rgb(248, 183, 57);'>AFRICA</a></h6>`;
       div.setAttribute("style", "padding-bottom: 5px");
       div.id = "sources africa_"
       return div;
