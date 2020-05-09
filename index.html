@@ -16,13 +16,8 @@
 
   <!-- Leaflet sidebar -->
   <link rel="stylesheet" href="css/leaflet-sidebar.css" />
-  <script src="js/leaflet-sidebar.js"></script>
-
   <link rel="stylesheet" href="css/africa_map.css" type="text/css" />
   <link rel="stylesheet" href="css/legend_info.css" type="text/css" />
-
-  <script src="data/africa_data.geojson" charset="utf-8"></script>
-  <script src="data/cases_points.geojson" charset="utf-8"></script>
 
 
 </head>
@@ -73,16 +68,16 @@
             </a>
             <ul class="collapse list-unstyled" id="homeSubmenu5">
               <li class="d-flex justify-content-left">
-                <a href="#" class="d-flex justify-content-left p-2 button_inner_content" onclick="cases_layer(this);">Cases</a>
+                <a href="#" class="d-flex justify-content-left p-2 button_inner_content" onclick="add_layer(this);">Cases</a>
               </li>
               <li class="d-flex justify-content-left">
-                <a href="#" class="d-flex justify-content-left p-2 button_inner_content" onclick="deaths_layer(this);">Deaths</a>
+                <a href="#" class="d-flex justify-content-left p-2 button_inner_content" onclick="add_layer(this);">Deaths</a>
               </li>
               <li class="d-flex justify-content-left">
-                <a href="#" class="d-flex justify-content-left p-2 button_inner_content" onclick="cases_concn_layer(this);">Cases per 100,000 people</a>
+                <a href="#" class="d-flex justify-content-left p-2 button_inner_content" onclick="add_layer(this);">Cases per 100,000 people</a>
               </li>
               <li class="d-flex justify-content-left">
-                <a href="#" class="d-flex justify-content-left p-2 button_inner_content" onclick="deaths_concn_layer(this);">Deaths per 100,000 people</a>
+                <a href="#" class="d-flex justify-content-left p-2 button_inner_content" onclick="add_layer(this);">Deaths per 100,000 people</a>
               </li>
             </ul>
 
@@ -94,10 +89,10 @@
             </a>
             <ul class="collapse list-unstyled" id="homeSubmenu">
               <li class="d-flex justify-content-left">
-                <a href="#" class="d-flex justify-content-left p-2 button_inner_content" onclick="ventilators_layer(this);">Ventilators</a>
+                <a href="#" class="d-flex justify-content-left p-2 button_inner_content" onclick="add_layer(this);">Ventilators</a>
               </li>
               <li class="d-flex justify-content-left">
-                <a href="#" class="d-flex justify-content-left p-2 button_inner_content" onclick="icus_layer(this);">ICU Beds</a>
+                <a href="#" class="d-flex justify-content-left p-2 button_inner_content" onclick="add_layer(this);">ICU Beds</a>
               </li>
             </ul>
 
@@ -109,16 +104,16 @@
             </a>
             <ul class="collapse list-unstyled" id="homeSubmenu2">
               <li class="d-flex justify-content-left">
-                <a href="#" class="d-flex justify-content-left p-2 button_inner_content" onclick="popn_density_layer(this);">Population Density</a>
+                <a href="#" class="d-flex justify-content-left p-2 button_inner_content" onclick="add_layer(this);">Population Density</a>
               </li>
               <li class="d-flex justify-content-left">
-                <a href="#" class="d-flex justify-content-left p-2 button_inner_content" onclick="hiv_stats_layer(this);">HIV/AIDS(%)</a>
+                <a href="#" class="d-flex justify-content-left p-2 button_inner_content" onclick="add_layer(this);">HIV/AIDS(%)</a>
               </li>
               <li class="d-flex justify-content-left">
-                <a href="#" class="d-flex justify-content-left p-2 button_inner_content" onclick="tb_stats_layer(this);">TB(%)</a>
+                <a href="#" class="d-flex justify-content-left p-2 button_inner_content" onclick="add_layer(this);">TB(%)</a>
               </li>
               <li class="d-flex justify-content-left">
-                <a href="#" class="d-flex justify-content-left p-2 button_inner_content" onclick="elderly_stats_layer(this);">Elderly(% Over 65 in age)</a>
+                <a href="#" class="d-flex justify-content-left p-2 button_inner_content" onclick="add_layer(this);">Elderly(% Over 65 in age)</a>
               </li>
             </ul>
 
@@ -210,23 +205,20 @@
   </div>
   <div id="map"></div>
 
-  <script src="js/jquery.min.js"></script>
-  <script src="js/axios.js"></script>
-  <script src="js/jquery.csv.js"></script>
-  <script src="js/popper.js"></script>
-  <script src="js/bootstrap.min.js"></script>
+  <script src="lib/leaflet-sidebar.js"></script>
+  <script src="lib/jquery.min.js"></script>
+  <script src="lib/axios.js"></script>
+  <script src="lib/jquery.csv.js"></script>
+  <script src="lib/popper.js"></script>
+  <script src="lib/bootstrap.min.js"></script>
+
+  <script src="data/africa_data.geojson" charset="utf-8"></script>
+  <script src="data/cases_points.geojson" charset="utf-8"></script>
+  <script type="text/javascript" src="js/legend_colors_fns.js"></script>
   <script type="text/javascript" src="js/legends.js"></script>
+  <script type="text/javascript" src="js/layers_object.js"></script>
+  <script type="text/javascript" src="js/layers_fn.js"></script>
   <script type="text/javascript" src="js/africa_map.js"></script>
-  <script type="text/javascript" src="js/ventilators_map.js"></script>
-  <script type="text/javascript" src="js/icus_map.js"></script>
-  <script type="text/javascript" src="js/popn_density_map.js"></script>
-  <script type="text/javascript" src="js/HIV_map.js"></script>
-  <script type="text/javascript" src="js/TB_map.js"></script>
-  <script type="text/javascript" src="js/elderly_map.js"></script>
-  <script type="text/javascript" src="js/cases_ratio_map.js"></script>
-  <script type="text/javascript" src="js/deaths_ratio_map.js"></script>
-  <script type="text/javascript" src="js/cases_map.js"></script>
-  <script type="text/javascript" src="js/deaths_map.js"></script>
   <script type="text/javascript" src="js/country_govt_map.js"></script>
 
 </body>
