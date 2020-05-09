@@ -24,15 +24,6 @@ function getCovidData() {
       countries_from_gsheet.push(country[0])
     })
   
-    // Get missing countries
-    response.forEach(country_object => {
-        if (missing_countries.includes(country_object["Country_Region"])){
-            Object.defineProperty(obj, newElem,
-                Object.getOwnPropertyDescriptor(obj, oldElem));
-            delete obj[oldElem];
-            }
-    })
-  
     //  get data from API
     let response = UrlFetchApp.fetch('https://coronavirus.m.pipedream.net/');
     response = JSON.parse(response.getContentText())["rawData"]
@@ -42,7 +33,28 @@ function getCovidData() {
      }
      return false
     })
-    
+
+    // Get missing countries
+    response.forEach(country_object => {
+      if (missing_countries.includes(country_object["Country_Region"])){
+        let old_name = missing_countries[
+          missing_countries.indexOf(country_object["Country_Region"])
+        ]
+        let new_name = missing_countries[
+          missing_countries.indexOf(country_object["Country_Region"])
+        ] === "Congo (Brazzaville)" ? "Congo" : "Congo DRC";
+
+        // so wrong...damn
+        // Object.defineProperty(
+        //   country_object,
+        //   new_name,
+        //   Object.getOwnPropertyDescriptor(country_object["Country_Region"], old_name)
+        // );
+        // delete country_object[old_name];
+      country_object["Country_Region"] = new_name
+      african_data.push(country_object);
+      }
+    })
     
     let countries_from_gsheet_obj = {};
     country_column.forEach((country, i) => {
