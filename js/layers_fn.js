@@ -1,6 +1,6 @@
 
 function add_layer(element) {
-    if (african_data._map) {
+    if (african_data && african_data._map) {
       map.removeLayer(african_data)
     }
     highlight_button(element)
@@ -57,6 +57,9 @@ function add_layer(element) {
             fillOpacity: 1
         };
     }
-    addLegend(layers_[layer_text]["legend_array"], layers_[layer_text]["legend_fn"], layer_text);
+    addLegend(
+      layers_[layer_text]["legend_array"], layers_[layer_text]["legend_fn"],
+      layers_[layer_text]["popup_text"][layers_[layer_text]["popup_text"].length - 1]
+    );
   }
   
