@@ -62,4 +62,3 @@ function add_layer(element) {
       layers_[layer_text]["popup_text"][layers_[layer_text]["popup_text"].length - 1]
     );
   }
-  

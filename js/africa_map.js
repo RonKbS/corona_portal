@@ -55,13 +55,13 @@ if (cookieUsageDisplay === null) {
   cookies_button.onAdd = () => {
     let div = L.DomUtil.create('div', 'cooookie');
     // next to btn-link  style="color: #f8b739;"
-    div.innerHTML += '<h5\
+    div.innerHTML += '<h6\
     style="background-color:#4e4e4e; padding: 0 3px 0 3px; color: white; border-radius: 10px">\
     <button type="button" class="btn btn-link" id="coookie_button">\
     <i class="fa fa-times"></i></button>\
     By continuing to view this site, you agree to our usage of\
     <a style="color: #f8b739;" type="button" target="_blank" href="/cookie.html"\
-    >cookies</a></h5>'
+    >cookies</a></h6>'
     return div;
   };
   cookies_button.addTo(map);
@@ -84,37 +84,6 @@ $(window).resize(() => {
   );
 }
 )
-
-// toggle to countries
-let countries_ = L.control({position: 'topright'});
-
-    function showDisclaimer() {
-        let div = document.getElementById("sources countries_")
-        div.setAttribute("style", "padding-bottom: 0")
-        div.innerHTML = `<h6 style='outline: none; margin-bottom: 0;'>\
-        <a href='${window.location.href}uganda'\
-        style='color: rgb(248, 183, 57);'>UGANDA</a><h6>`;
-    }
-
-    function hideDisclaimer() {
-        let div = document.getElementById("sources countries_")
-        div.setAttribute("style", "padding-bottom: 5px")
-        div.innerHTML = "<h6 style='color: rgb(248, 183, 57); outline: none;\
-        margin-bottom: 0;'>countries</h6>";
-    }
-
-    countries_.onAdd = function (map) {
-    let div = L.DomUtil.create('div', 'sources countries_');
-    div.innerHTML = "<h6 style='color: rgb(248, 183, 57); outline: none;\
-    margin-bottom: 0;'>countries</h6>";
-    div.setAttribute("style", "padding-bottom: 5px");
-    div.setAttribute("onmouseenter", "showDisclaimer()");
-    div.setAttribute("onmouseleave", "hideDisclaimer()");
-    div.id = "sources countries_"
-
-        return div;
-    };
-    countries_.addTo(map);
 
 map.dragging.disable();
 map.touchZoom.disable();
