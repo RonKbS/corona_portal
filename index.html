@@ -12,17 +12,11 @@
   <link rel="stylesheet" href="css/africa_map.css" type="text/css" />
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.6.0/leaflet.css" type="text/css" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.6.0/leaflet-src.js" charset="utf-8"></script>
 
   <!-- Leaflet sidebar -->
   <link rel="stylesheet" href="css/leaflet-sidebar.css" />
-  <script src="js/leaflet-sidebar.js"></script>
-
   <link rel="stylesheet" href="css/africa_map.css" type="text/css" />
   <link rel="stylesheet" href="css/legend_info.css" type="text/css" />
-
-  <script src="data/africa_data.geojson" charset="utf-8"></script>
-  <script src="data/cases_points.geojson" charset="utf-8"></script>
 
 
 </head>
@@ -51,11 +45,11 @@
           </p>
           <span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
         </h1>
-          <h1 class="short-text sidebar-header">
-            <!-- check the responsiveness here -->
-            <p style="font-size:5.6rem;text-align:center;padding-top:7%;">PACA</p>
-            <span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
-          </h1>
+        <h1 class="short-text sidebar-header">
+          <!-- check the responsiveness here -->
+          <p style="font-size:5.6rem;text-align:center;padding-top:7%;">PACA</p>
+          <span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
+        </h1>
         <div class="row" style="background-color: white;width: 109%; margin-right: 0;margin-left: 0;">
           <div class="col-sm-6 d-flex justify-content-center">
             <img style="width: 52%;" class="irish_logo" src="images/Irish.svg">
@@ -64,90 +58,7 @@
             <img style="margin-top: 5%;width: 55%;" class="align-middle" src="images/GG.svg">
           </div>
         </div>
-        <div class="sidebar-list">
-            <a
-            href="#homeSubmenu5" data-toggle="collapse" aria-expanded="false"
-            class="d-flex justify-content-left dropdown-toggle p-2 button_title_content"
-            >
-              COVID 19 cases
-            </a>
-            <ul class="collapse list-unstyled" id="homeSubmenu5">
-              <li class="d-flex justify-content-left">
-                <a href="#" class="d-flex justify-content-left p-2 button_inner_content" onclick="cases_layer(this);">Cases</a>
-              </li>
-              <li class="d-flex justify-content-left">
-                <a href="#" class="d-flex justify-content-left p-2 button_inner_content" onclick="deaths_layer(this);">Deaths</a>
-              </li>
-              <li class="d-flex justify-content-left">
-                <a href="#" class="d-flex justify-content-left p-2 button_inner_content" onclick="cases_concn_layer(this);">Cases per 100,000 people</a>
-              </li>
-              <li class="d-flex justify-content-left">
-                <a href="#" class="d-flex justify-content-left p-2 button_inner_content" onclick="deaths_concn_layer(this);">Deaths per 100,000 people</a>
-              </li>
-            </ul>
-
-            <a
-            href="#homeSubmenu" data-toggle="collapse" aria-expanded="false"
-            class="d-flex justify-content-left dropdown-toggle p-2 button_title_content"
-            >
-              Health
-            </a>
-            <ul class="collapse list-unstyled" id="homeSubmenu">
-              <li class="d-flex justify-content-left">
-                <a href="#" class="d-flex justify-content-left p-2 button_inner_content" onclick="ventilators_layer(this);">Ventilators</a>
-              </li>
-              <li class="d-flex justify-content-left">
-                <a href="#" class="d-flex justify-content-left p-2 button_inner_content" onclick="icus_layer(this);">ICU Beds</a>
-              </li>
-            </ul>
-
-            <a
-            href="#homeSubmenu2" data-toggle="collapse" aria-expanded="false"
-            class="d-flex justify-content-left dropdown-toggle p-2 button_title_content"
-            >
-              Population
-            </a>
-            <ul class="collapse list-unstyled" id="homeSubmenu2">
-              <li class="d-flex justify-content-left">
-                <a href="#" class="d-flex justify-content-left p-2 button_inner_content" onclick="popn_density_layer(this);">Population Density</a>
-              </li>
-              <li class="d-flex justify-content-left">
-                <a href="#" class="d-flex justify-content-left p-2 button_inner_content" onclick="hiv_stats_layer(this);">HIV/AIDS(%)</a>
-              </li>
-              <li class="d-flex justify-content-left">
-                <a href="#" class="d-flex justify-content-left p-2 button_inner_content" onclick="tb_stats_layer(this);">TB(%)</a>
-              </li>
-              <li class="d-flex justify-content-left">
-                <a href="#" class="d-flex justify-content-left p-2 button_inner_content" onclick="elderly_stats_layer(this);">Elderly(% Over 65 in age)</a>
-              </li>
-            </ul>
-
-            <a
-            href="#homeSubmenu3" data-toggle="collapse" aria-expanded="false"
-            class="d-flex justify-content-left dropdown-toggle p-2 button_title_content"
-            >
-              Government Intervention
-            </a>
-            <ul class="collapse list-unstyled" id="homeSubmenu3">
-              <li class="d-flex justify-content-left">
-                <a href="#" class="d-flex justify-content-left p-2 button_inner_content" onclick="govt_intervention_layer(this);" id="fiscal">Fiscal</a>
-              </li>
-              <li class="d-flex justify-content-left">
-                <a href="#" class="d-flex justify-content-left p-2 button_inner_content" onclick="govt_intervention_layer(this);" id="monetary">Monetary</a>
-              </li>
-              <li class="d-flex justify-content-left">
-                <a href="#" class="d-flex justify-content-left p-2 button_inner_content" onclick="govt_intervention_layer(this);" id="exchange">Exchange</a>
-              </li>
-              <li class="d-flex justify-content-left">
-                <a href="#" class="d-flex justify-content-left p-2 button_inner_content" onclick="govt_intervention_layer(this);" id="country">Other Measures Taken</a>
-              </li>
-              <li>
-                <p style="text-align:end; color:rgb(219, 216, 216);">
-                  Click on country to view data
-                </p>
-              </li>
-            </ul>
-        </div>
+        <div class="sidebar-list" id="create-sidebar-list"></div>
       </div>
 
       <div class="sidebar-pane" id="profile">
@@ -210,23 +121,26 @@
   </div>
   <div id="map"></div>
 
-  <script src="js/jquery.min.js"></script>
-  <script src="js/axios.js"></script>
-  <script src="js/jquery.csv.js"></script>
-  <script src="js/popper.js"></script>
-  <script src="js/bootstrap.min.js"></script>
+  <script src="js/side_panel_html.js" charset="utf-8"></script>
+
+  <script src="lib/jquery.min.js"></script>
+  <script src="lib/axios.js"></script>
+  <script src="lib/jquery.csv.js"></script>
+  <script src="lib/popper.js"></script>
+  <script src="lib/bootstrap.min.js"></script>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.6.0/leaflet-src.js"
+    charset="utf-8"
+  ></script>
+  <script src="lib/leaflet-sidebar.js"></script>
+
+  <script src="data/africa_data.geojson" charset="utf-8"></script>
+  <script src="data/cases_points.geojson" charset="utf-8"></script>
+  <script type="text/javascript" src="js/legend_colors_fns.js"></script>
   <script type="text/javascript" src="js/legends.js"></script>
+  <script type="text/javascript" src="js/layers_object.js"></script>
+  <script type="text/javascript" src="js/layers_fn.js"></script>
   <script type="text/javascript" src="js/africa_map.js"></script>
-  <script type="text/javascript" src="js/ventilators_map.js"></script>
-  <script type="text/javascript" src="js/icus_map.js"></script>
-  <script type="text/javascript" src="js/popn_density_map.js"></script>
-  <script type="text/javascript" src="js/HIV_map.js"></script>
-  <script type="text/javascript" src="js/TB_map.js"></script>
-  <script type="text/javascript" src="js/elderly_map.js"></script>
-  <script type="text/javascript" src="js/cases_ratio_map.js"></script>
-  <script type="text/javascript" src="js/deaths_ratio_map.js"></script>
-  <script type="text/javascript" src="js/cases_map.js"></script>
-  <script type="text/javascript" src="js/deaths_map.js"></script>
   <script type="text/javascript" src="js/country_govt_map.js"></script>
 
 </body>
