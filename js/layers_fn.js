@@ -62,3 +62,63 @@ function add_layer(element) {
       layers_[layer_text]["popup_text"][layers_[layer_text]["popup_text"].length - 1]
     );
   }
+
+function switch_map(map) {
+
+  if (map.options.minZoom === 3) {
+    map.removeLayer(african_data)
+    map.options.minZoom = 7;
+    map.options.maxZoom = 7;
+    map.flyTo([1.8, 29.24], 7, {
+      animate: true,
+      duration: 1.0
+    });
+    $("#sidebar").attr("class", "sidebar sidebar-left leaflet-touch collapsed")
+    setTimeout(function() {
+      $("#sidebar").attr("class", "sidebar sidebar-left leaflet-touch")
+    }, 1000)
+    
+    $("#create-sidebar-list").empty()
+    create_sidepanel(ugandan_sidepanel_text)
+
+    // $("a").filter(function() {
+    //   return $(this).text() === "Border Points";
+    // }).click()
+    
+    $("#homeSubmenu0").attr("class", "list-unstyled collapse show")
+    $("a[onclick='add_layer(this);']")[0].setAttribute("style", "color: #f8b739;")
+
+    $("a[onclick='switch_map(map);']").text('AFRICA')
+  
+  } else if (map.options.minZoom === 7) {
+    // zoom out to Africa
+  
+    if (african_data && african_data._map) {
+      map.removeLayer(african_data)
+    }
+  
+    map.options.minZoom = 3;
+    map.options.maxZoom = 3;
+    map.flyTo([2.8, 15.24], 2, {
+      animate: true,
+      duration: 1.0
+    });
+    $("#sidebar").attr("class", "sidebar sidebar-left leaflet-touch collapsed")
+    setTimeout(function() {
+      $("#sidebar").attr("class", "sidebar sidebar-left leaflet-touch")
+    }, 1000)
+    
+    $("#create-sidebar-list").empty()
+    create_sidepanel(african_sidepanel_text)
+
+    $("a").filter(function() {
+      return $(this).text() === "Cases";
+    }).click()
+    
+    $("#homeSubmenu0").attr("class", "list-unstyled collapse show")
+    $("a[onclick='add_layer(this);']")[0].setAttribute("style", "color: #f8b739;")
+
+    $("a[onclick='switch_map(map);']").text('UGANDA')
+
+  }
+}

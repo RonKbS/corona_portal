@@ -29,8 +29,6 @@ let show_hamburg_button = () => {
   setTimeout( () => {clearInterval(flashing_hamburg_)}, 15000)
 }
 
-
-let axioses = [axios.get(url), axios.get(govt_intervention_url)]
 document.getElementById("map").setAttribute("style", `height: ${window.innerHeight}px`)
 
 
@@ -102,6 +100,23 @@ sources_button.addTo(map);
 
 
 
+// toggle to countries
+let countries_ = L.control({position: 'topright'});
+
+
+
+    countries_.onAdd = function (map) {
+    let div = L.DomUtil.create('div', 'sources countries_');
+    div.innerHTML = "<h6 style='color: rgb(248, 183, 57); outline: none;\
+    margin-bottom: 0;'><a href='#' onclick='switch_map(map);'\
+    style='color: rgb(248, 183, 57);'>UGANDA</a></h6>";
+    div.setAttribute("style", "padding-bottom: 5px");
+    div.id = "sources countries_"
+        return div;
+    };
+    countries_.addTo(map);
+
+
 L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png', {
   attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
   subdomains: 'abcd',
@@ -112,10 +127,9 @@ let african_data;
 
 
 
-axios.all(axioses)
+axios.get(url)
   .then(responseArrs => {
-    google_sheet_data = $.csv.toObjects(responseArrs[0].data);
-    second_google_sheet_data = $.csv.toObjects(responseArrs[1].data);
+    google_sheet_data = $.csv.toObjects(responseArrs.data);
 
     $("a").filter(function() {
       return $(this).text() === "Cases";
@@ -124,4 +138,9 @@ axios.all(axioses)
     $("#homeSubmenu0").attr("class", "list-unstyled collapse show")
     $("a[onclick='add_layer(this);']")[0].setAttribute("style", "color: #f8b739;")
 
+  })
+
+axios.get(govt_intervention_url)
+.then(responseArrs => {
+    second_google_sheet_data = $.csv.toObjects(responseArrs.data);
   })
