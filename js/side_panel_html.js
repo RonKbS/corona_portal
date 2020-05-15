@@ -16,7 +16,7 @@ let ugandan_sidepanel_text = {
         "Border Points", "ICU Beds Per Health Center",
     ],
     "UgandaMaps": [
-        "Population Density", "Population", "Contacts", "Poverty Rate",
+        "Poverty Rate", "Population Density", "Population", "Contacts",
         "Elderly(Over 60 in age)", "AIDS Rate", "Prisons Population", "GDP"
     ]
 }

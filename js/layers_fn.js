@@ -83,7 +83,7 @@ function switch_map(map) {
 
 
     $("a").filter(function() {
-      return $(this).text() === "Population Density";
+      return $(this).text() === "Poverty Rate";
     }).click()
     $("a").filter(function() {
       return $(this).text() === "Border Points";
