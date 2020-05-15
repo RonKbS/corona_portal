@@ -204,9 +204,21 @@ function markets_OEF(layer) {
 }
 
 function border_points_OEF(layer) {
+    let cases;
+    border_sheet_data.forEach(element => {
+        if (element.Border_cases != "" && element.Border == layer.feature.properties.Name) {
+        cases = element.Border_cases
+        }
+    });
+    if (cases) {
+    layer.bindPopup('<strong>District:</strong> ' + layer.feature.properties.District + '<br>' + '<strong>Name:</strong> ' +
+    layer.feature.properties.Name + '<br>' + '<strong>Path:</strong> ' +
+    layer.feature.properties.Path + '<br>' + '<strong>Number of Cases:</strong> ' + cases);
+    } else {
     layer.bindPopup('<strong>District:</strong> ' + layer.feature.properties.District + '<br>' + '<strong>Name:</strong> ' +
         layer.feature.properties.Name + '<br>' + '<strong>Path:</strong> ' +
         layer.feature.properties.Path);
+    }
     layer.on('mouseover', function (e) {
         this.openPopup();
     });
