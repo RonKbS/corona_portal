@@ -47,17 +47,16 @@ function create_sidepanel (sidepanel_text) {
             button_element.setAttribute(
                 "class", "d-flex justify-content-left p-2 button_inner_content"
             )
-            key === "Infrastructure" && sidepanel_text[key].length === 5 ?
-                button_element.setAttribute("onclick", "add_overlay(this);") 
-                : button_element.setAttribute("onclick", "add_layer(this);")
-            key === "Government Intervention" ?
+            console.log(sidepanel_text[key].length)
+            if (key === "Infrastructure" && sidepanel_text[key].length === 5) {
+                button_element.setAttribute("onclick", "add_overlay(this);")
+            } else if (key === "UgandaMaps") {
+                button_element.setAttribute("onclick", "add_ug_layer(this);")
+            } else if (key === "Government Intervention") {
                 button_element.setAttribute("onclick", "govt_intervention_layer(this);") 
-                : button_element.setAttribute("onclick", "add_layer(this);")
-            key === "Government Intervention" ?
-                text_ === "Other Measures Taken" ?
-                button_element.setAttribute("id", "country")
-                : button_element.setAttribute("id", text_.toLowerCase()) 
-                : null
+            } else {
+                button_element.setAttribute("onclick", "add_layer(this);")
+            }
             button_element.text = text_
 
             list_element.appendChild(button_element)

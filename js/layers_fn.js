@@ -86,7 +86,7 @@ function switch_map(map) {
     // }).click()
     
     $("#homeSubmenu0").attr("class", "list-unstyled collapse show")
-    $("a[onclick='add_layer(this);']")[0].setAttribute("style", "color: #f8b739;")
+    $("a[onclick='add_ug_layer(this);']")[0].setAttribute("style", "color: #f8b739;")
 
     $("a[onclick='switch_map(map);']").text('AFRICA')
   
