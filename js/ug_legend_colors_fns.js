@@ -129,7 +129,7 @@ function getColoraids(d) {
 
 function styleaids(feature) {
     return {
-        fillColor: getColoraids(feature.properties.districts1_HIV_rates_15_yrs_old),
+        fillColor: getColoraids(feature.properties["districts1_HIV_rates(15+yrs_old)"]),
         weight: 1,
         opacity: 1,
         color: 'black',
@@ -184,32 +184,32 @@ function getColorgdp(d) {
 
 function stylegdp(feature) {
     return {
-      fillColor: getColorgdp(feature.properties.districts1_GDP_Per_Capita_USD),
-      weight: 1,
-      opacity: 1,
-      color: 'black',
-      dashArray: '0',
-      fillOpacity: 1
+        fillColor: getColorgdp(feature.properties["districts1_GDP_Per_Capita(USD)"]),
+        weight: 1,
+        opacity: 1,
+        color: 'black',
+        dashArray: '0',
+        fillOpacity: 1
     };
-  }
+}
 
 
-  let overlayLayers = {
+let overlayLayers = {
     "Border Points": [border_points, "#cccc09"],
-    "Health Centers": [health_centers, "red"],
+    // "Health Centers": [health_centers, "red"],
     "ICU Beds Per Health Center": [icu_beds, "orange"],
-    "Market Places": [markets, "green"],
-    "Water Access Points": [water_points, "blue"],
-  };
-  
-  let ugandaLayers = {
+    // "Market Places": [markets, "green"],
+    // "Water Access Points": [water_points, "blue"],
+};
+
+let ugandaLayers = {
     "Population": [[[5000, 150000, 250000, 350000, 2000000], getColorpop, "Population"], stylepop],
-    "Contacts": [[[],, "Hover over district <br> for contact information"], {
-      weight: 2,
-      opacity: 2,
-      color: '#000000b8',
-      fillOpacity: 2.5,
-      fillColor: '#AAA583'
+    "Contacts": [[[], , "Hover over district <br> for contact information"], {
+        weight: 2,
+        opacity: 2,
+        color: '#000000b8',
+        fillOpacity: 2.5,
+        fillColor: '#AAA583'
     }],
     "Population Density": [[[7, 100, 500, 1000, 7500], getColorden, "Population Density"], styleden],
     "Poverty Rate": [[[0.3, 2, 3, 5, 15], getColorpov, "Household Poverty Rates"], stylepov],
@@ -217,70 +217,73 @@ function stylegdp(feature) {
     "AIDS Rate": [[[440, 10000, 20000, 40000, 64000], getColoraids, "HIV Rates (15+ years old)"], styleaids],
     "Prisons Population": [[[15, 100, 1000, 3000, 6300], getColorprisons, "Total Prisoners"], styleprisons],
     "GDP": [[[34, 100, 200, 500, 3300], getColorgdp, "GDP Per Capita (USD)"], stylegdp]
-  };
+};
 
 
-  function createOverLayers() {
+function createOverLayers() {
 
     let layers = [];
-  
+
     Object.keys(overlayLayers).forEach(element => {
 
-      layers[element] = L.geoJson(overlayLayers[element], {
-        pointToLayer: function (feature, latlng) {
-          return new L.CircleMarker(latlng, {
-            radius: 4,
-            fillOpacity: 1,
-            color: 'black',
-            fillColor: overlayLayers[element][1],
-            weight: 0.6,
-          });
-        }
-      });
+        layers[element] = L.geoJson(overlayLayers[element], {
+            pointToLayer: function (feature, latlng) {
+                return new L.CircleMarker(latlng, {
+                    pane: 'overlaysPane',
+                    radius: 4,
+                    fillOpacity: 1,
+                    color: 'black',
+                    fillColor: overlayLayers[element][1],
+                    weight: 0.6,
+                });
+            }
+        });
     });
-  
+
     return layers;
-  }
-  
-  let layers = createOverLayers();
-  
-  function createCountryLayers() {
-  
+}
+
+let layers = createOverLayers();
+
+function createCountryLayers() {
+
     let layers = [];
-  
+
     Object.keys(ugandaLayers).forEach(element => {
-  
-      layers[element] = new L.geoJson(districts_data, { //ugandaLayers[element], {
-        style: ugandaLayers[element][1],
-        onEachFeature: function (feature, layer) {
-          layer.bindPopup(
-            '<strong>District:</strong> ' + layer.feature.properties.DNama2017 +
-            '<br>' + '<strong>Total Population:</strong> ' + layer.feature.properties.TotalPopn +
-            '<br>' + '<strong>Remanded:</strong> ' + layer.feature.properties.districts1_REMANDS +
-            '<br>' + '<strong>Convicted:</strong> ' + layer.feature.properties.districts1_CONVICTS +
-            '<br>' + '<strong>Debtors:</strong> ' + layer.feature.properties.districts1_DEBTORS +
-            '<br>' + '<strong>Total Prisoners:</strong> ' + layer.feature.properties.districts1_2017_TOTAL_PRISONERS
-          );
-          layer.on('mouseover', function (e) {
-            this.openPopup();
-          });
-          layer.on('mouseout', function (e) {
-            this.closePopup();
-          });
-        }
-      });
+
+        layers[element] = new L.geoJson(districts_data, { //ugandaLayers[element], {
+
+            pane: 'choroplethPane',
+            style: ugandaLayers[element][1],
+            onEachFeature: function (feature, layer) {
+                layer.bindPopup(
+                    '<strong>District:</strong> ' + layer.feature.properties.DNama2017 +
+                    '<br>' + '<strong>Total Population:</strong> ' + layer.feature.properties.TotalPopn +
+                    '<br>' + '<strong>Remanded:</strong> ' + layer.feature.properties.districts1_REMANDS +
+                    '<br>' + '<strong>Convicted:</strong> ' + layer.feature.properties.districts1_CONVICTS +
+                    '<br>' + '<strong>Debtors:</strong> ' + layer.feature.properties.districts1_DEBTORS +
+                    '<br>' + '<strong>Total Prisoners:</strong> ' + layer.feature.properties.districts1_2017_TOTAL_PRISONERS
+                );
+                layer.on('mouseover', function (e) {
+                    this.openPopup();
+                });
+                layer.on('mouseout', function (e) {
+                    this.closePopup();
+                });
+            }
+        });
     });
-  
+
     return layers;
-  }
-  
-  let countrylayers = createCountryLayers();
-  
-  function add_overlay(element) {
+}
+
+let countrylayers = createCountryLayers();
+
+function add_overlay(element) {
     let layer_ = element.text
     highlight_button(element)
     Object.keys(overlayLayers).forEach(element => {
-      map.removeLayer(layers[element]);
+        map.removeLayer(layers[element]);
     });
     layers[layer_].addTo(map)
     Object.keys(layers[layer_]._layers).forEach(element => {
@@ -289,31 +292,30 @@ function stylegdp(feature) {
         border_sheet_data.forEach(element => {
             if (element.Border_cases != "" && element.Border == l.feature.properties.Name) {
                 l.setStyle({
-                    radius : element.Border_cases / 3,
+                    radius: element.Border_cases / 3,
                     color: 'red',
                     fillOpacity: 0,
                     weight: 3,
                 })
             }
         });
-      });
-  }
-  
-  function add_ug_layer(element) {
+    });
+}
+
+function add_ug_layer(element) {
     let layer_ = element.text
     addLegend(ugandaLayers[layer_][0][0], ugandaLayers[layer_][0][1], ugandaLayers[layer_][0][2]);
     highlight_button(element)
     Object.keys(countrylayers).forEach(element => {
-      if (map.hasLayer(countrylayers[element])) {
-        map.removeLayer(countrylayers[element]);
-      }
+        if (map.hasLayer(countrylayers[element])) {
+            map.removeLayer(countrylayers[element]);
+        }
     });
     countrylayers[layer_].addTo(map)
     Object.keys(countrylayers[layer_]._layers).forEach(element => {
         let l = countrylayers[layer_]._layers[element];
         OEF(l, layer_)
-      });
-  }
-  
-  let overlays = $('#infrastructure');
-  
+    });
+}
+
+let overlays = $('#infrastructure');

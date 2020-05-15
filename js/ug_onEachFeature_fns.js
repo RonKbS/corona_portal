@@ -90,7 +90,7 @@ function aids_OEF(layer) {
     layer.bindPopup(
         '<strong>District:</strong> ' + layer.feature.properties.DNama2017 +
         '<br>' + '<strong>Total Population:</strong> ' + layer.feature.properties.TotalPopn +
-        '<br>' + '<strong>HIV rates (15+ years old):</strong> ' + layer.feature.properties.districts1_HIV_rates_15_yrs_old
+        '<br>' + '<strong>HIV rates (15+ years old):</strong> ' + layer.feature.properties["districts1_HIV_rates(15+yrs_old)"]
     );
     layer.on('mouseover', function (e) {
         this.openPopup();
@@ -120,9 +120,9 @@ function prisons_OEF(layer) {
 function gdp_OEF(layer) {
     layer.bindPopup(
         '<strong>District:</strong> ' + layer.feature.properties.DNama2017 +
-        '<br>' + '<strong>Rural GDP (Million USD):</strong> ' + layer.feature.properties.districts1_Rural_GDP_millionUSD +
-        '<br>' + '<strong>Urban GDP (Million USD):</strong> ' + layer.feature.properties.districts1_Urban_GDP_millionUSD +
-        '<br>' + '<strong>GDP Per Capita(USD):</strong> ' + layer.feature.properties.districts1_GDP_Per_Capita_USD
+        '<br>' + '<strong>Rural GDP (Million USD):</strong> ' + layer.feature.properties["districts1_Rural_GDP(millionUSD)"] +
+        '<br>' + '<strong>Urban GDP (Million USD):</strong> ' + layer.feature.properties["districts1_Urban_GDP(millionUSD)"] +
+        '<br>' + '<strong>GDP Per Capita(USD):</strong> ' + layer.feature.properties["districts1_GDP_Per_Capita(USD)"]
     );
     layer.on('mouseover', function (e) {
         this.openPopup();

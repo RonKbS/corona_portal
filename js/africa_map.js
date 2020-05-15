@@ -45,6 +45,13 @@ let map = L.map('map', {
   maxZoom: 3
 }).setView([2.8, 15.24], 2);
 let sidebar = L.control.sidebar('sidebar').addTo(map);
+
+map.createPane('choroplethPane');
+map.getPane('choroplethPane').style.zIndex = 400;
+map.createPane('overlaysPane');
+map.getPane('overlaysPane').style.zIndex = 600;
+
+
 sidebar.open("layers")
 
 // display that cookies are being used on first time visit

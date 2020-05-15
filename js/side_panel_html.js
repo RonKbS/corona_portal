@@ -13,11 +13,10 @@ let african_sidepanel_text = {
 
 let ugandan_sidepanel_text = {
     "Infrastructure": [
-        "Border Points", "Health Centers", "ICU Beds Per Health Center",
-        "Market Places", "Water Access Points"
+        "Border Points", "ICU Beds Per Health Center",
     ],
     "UgandaMaps": [
-        "Contacts", "Population", "Population Density", "Poverty Rate",
+        "Population Density", "Population", "Contacts", "Poverty Rate",
         "Elderly(Over 60 in age)", "AIDS Rate", "Prisons Population", "GDP"
     ]
 }
@@ -48,7 +47,7 @@ function create_sidepanel (sidepanel_text) {
                 "class", "d-flex justify-content-left p-2 button_inner_content"
             )
             console.log(sidepanel_text[key].length)
-            if (key === "Infrastructure" && sidepanel_text[key].length === 5) {
+            if (key === "Infrastructure" && sidepanel_text[key].length === 2) {
                 button_element.setAttribute("onclick", "add_overlay(this);")
             } else if (key === "UgandaMaps") {
                 button_element.setAttribute("onclick", "add_ug_layer(this);")
