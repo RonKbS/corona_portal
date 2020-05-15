@@ -98,9 +98,13 @@ function switch_map(map) {
   } else if (map.options.minZoom === 7) {
     // zoom out to Africa
   
-    if (african_data && african_data._map) {
-      map.removeLayer(african_data)
-    }
+      Object.keys(countrylayers).forEach(element => {
+          map.removeLayer(countrylayers[element]);
+      });
+      Object.keys(overlayLayers).forEach(element => {
+          map.removeLayer(layers[element]);
+      });
+
   
     map.options.minZoom = 3;
     map.options.maxZoom = 3;

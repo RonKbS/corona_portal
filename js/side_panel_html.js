@@ -1,5 +1,5 @@
 let african_sidepanel_text = {
-    "Infrastructure": [
+    "COVID 19 cases": [
         "Cases", "Deaths", "Cases per 100,000 people", "Deaths per 100,000 people"
     ],
     "Health": ["Ventilators", "ICU Beds"],
@@ -46,12 +46,16 @@ function create_sidepanel (sidepanel_text) {
             button_element.setAttribute(
                 "class", "d-flex justify-content-left p-2 button_inner_content"
             )
-            console.log(sidepanel_text[key].length)
-            if (key === "Infrastructure" && sidepanel_text[key].length === 2) {
+            if (key === "Infrastructure") {
                 button_element.setAttribute("onclick", "add_overlay(this);")
             } else if (key === "UgandaMaps") {
                 button_element.setAttribute("onclick", "add_ug_layer(this);")
             } else if (key === "Government Intervention") {
+                if (text_ === "Other Measures Taken") {
+                    button_element.setAttribute("id", "country")
+                } else {
+                    button_element.setAttribute("id", text_.toLowerCase())
+                }
                 button_element.setAttribute("onclick", "govt_intervention_layer(this);") 
             } else {
                 button_element.setAttribute("onclick", "add_layer(this);")
