@@ -1,7 +1,10 @@
 let long_id = "1tRF8gjyRd0oA2sSpTKmZqambggZzUM0YiED6KqF8H8M"
 let gid = "1502462034"
+govt_intervention_gid = "805631867"
 let url = `https://docs.google.com/spreadsheets/d/${long_id}/export?format=csv&id=${long_id}&gid=${gid}`
+let govt_intervention_url = `https://docs.google.com/spreadsheets/d/${long_id}/export?format=csv&id=${long_id}&gid=${govt_intervention_gid}`
 let google_sheet_data;
+let second_google_sheet_data;
 let prev_highlighted_button;
 
 // set the hightlighted button to show
@@ -27,7 +30,7 @@ let show_hamburg_button = () => {
 }
 
 
-let axioses = [axios.get(url, { mode: 'no-cors' })]
+let axioses = [axios.get(url), axios.get(govt_intervention_url)]
 document.getElementById("map").setAttribute("style", `height: ${window.innerHeight}px`)
 
 
@@ -82,6 +85,37 @@ $(window).resize(() => {
 }
 )
 
+// toggle to countries
+let countries_ = L.control({position: 'topright'});
+
+    function showDisclaimer() {
+        let div = document.getElementById("sources countries_")
+        div.setAttribute("style", "padding-bottom: 0")
+        div.innerHTML = `<h6 style='outline: none; margin-bottom: 0;'>\
+        <a href='${window.location.href}uganda'\
+        style='color: rgb(248, 183, 57);'>UGANDA</a><h6>`;
+    }
+
+    function hideDisclaimer() {
+        let div = document.getElementById("sources countries_")
+        div.setAttribute("style", "padding-bottom: 5px")
+        div.innerHTML = "<h6 style='color: rgb(248, 183, 57); outline: none;\
+        margin-bottom: 0;'>countries</h6>";
+    }
+
+    countries_.onAdd = function (map) {
+    let div = L.DomUtil.create('div', 'sources countries_');
+    div.innerHTML = "<h6 style='color: rgb(248, 183, 57); outline: none;\
+    margin-bottom: 0;'>countries</h6>";
+    div.setAttribute("style", "padding-bottom: 5px");
+    div.setAttribute("onmouseenter", "showDisclaimer()");
+    div.setAttribute("onmouseleave", "hideDisclaimer()");
+    div.id = "sources countries_"
+
+        return div;
+    };
+    countries_.addTo(map);
+
 map.dragging.disable();
 map.touchZoom.disable();
 map.doubleClickZoom.disable();
@@ -107,65 +141,18 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png
 
 let african_data;
 
-function getColorcases(d) {
-  return  d > 4000 ? '#016c59' :
-    d > 3999 ? '#016c59' :
-    d > 1000 ? '#1c9099' :
-    d > 999 ? '#1c9099' :
-    d > 100 ? '#67a9cf' :
-    d > 99 ? '#67a9cf' :
-    d > 1 ? '#bdc9e1' :
-    d > 0.9 ? '#bdc9e1' :
-    d > 0 ? '#f6eff7' :
-    d > -1 ? '#f6eff7' :
-    d > null ? '#808080' :
-    '#808080';
-}
 
 
 axios.all(axioses)
   .then(responseArrs => {
     google_sheet_data = $.csv.toObjects(responseArrs[0].data);
-    let initial_data_obj = {}
-    google_sheet_data.forEach(object_ => {
-      initial_data_obj[object_["COUNTRY"]] = [
-        object_["POP"],
-        object_["CASES"]
-      ]
-    })
+    second_google_sheet_data = $.csv.toObjects(responseArrs[1].data);
 
-    african_data = L.geoJson(africa_data, {
-      style: stylecases
-    }).addTo(map);
-
-    african_data.eachLayer(function (layer) {
-      let country_ = layer.feature.properties.COUNTRY;
-      layer.bindPopup(
-        '<strong>Country:</strong> ' + country_ +
-        '<br>' + '<strong>Population:</strong> ' + initial_data_obj[country_][0] +
-        '<br>' + '<strong>Cases:</strong> ' + initial_data_obj[country_][1]
-      );
-      layer.on('mouseover', function (e) {
-        this.openPopup();
-      });
-      layer.on('mouseout', function (e) {
-        this.closePopup();
-      });
-    });
-
-    function stylecases(feature) {
-      return {
-        fillColor: getColorcases(parseFloat(initial_data_obj[feature.properties.COUNTRY][1].split(",").join(""))),
-        weight: 1,
-        opacity: 1,
-        color: 'black',
-        dashArray: '0',
-        fillOpacity: 1
-      };
-    }
-    addLegend([1, 100, 500, 1000, 2000, 3000, 4500], getColorcases, "Cases");
-
-    $("#homeSubmenu5").attr("class", "list-unstyled collapse show")
-    $("a[onclick='cases_layer(this);']")[0].setAttribute("style", "color: #f8b739;")
+    $("a").filter(function() {
+      return $(this).text() === "Cases";
+    }).click()
+    
+    $("#homeSubmenu0").attr("class", "list-unstyled collapse show")
+    $("a[onclick='add_layer(this);']")[0].setAttribute("style", "color: #f8b739;")
 
   })

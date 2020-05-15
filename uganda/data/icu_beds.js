@@ -1,0 +1,13 @@
+var icu_beds = {
+"type": "FeatureCollection",
+"name": "icu_beds",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:EPSG::21096" } },
+"features": [
+{ "type": "Feature", "properties": { "Name": "Hoima Referral Hospital\n", "ownership": "Public\n", "services": "General service, dental, HIV test, Malaria Test ect\n", "location": "Hoima\n", "referral": "Teritiary\n", "beds": 160 }, "geometry": { "type": "Point", "coordinates": [ 316937.00400541012641, 158208.955423779028933 ] } },
+{ "type": "Feature", "properties": { "Name": "Azur Christian Healthcare Center\n", "ownership": "Private\n", "services": "General service, dental, HIV test, Malaria Test ect\n", "location": "Bugambe Road", "referral": "Secondary\n", "beds": 40 }, "geometry": { "type": "Point", "coordinates": [ 315464.550694868608844, 159387.325502830120968 ] } },
+{ "type": "Feature", "properties": { "Name": "Naguru China Aid Hospital\n", "ownership": "Public\n", "services": "General service, dental, HIV test, Malaria Test ect\n", "location": "Naguru\n", "referral": "Teritiary\n", "beds": 151 }, "geometry": { "type": "Point", "coordinates": [ 456091.946612593892496, 36714.425103842135286 ] } },
+{ "type": "Feature", "properties": { "Name": "Kampala International Hospital\n", "ownership": "Private\n", "services": "General service, dental, HIV test, Malaria Test ect\n", "location": "Kampala\n", "referral": "Teritiary\n", "beds": 111 }, "geometry": { "type": "Point", "coordinates": [ 456655.564007809502073, 33991.44275034830207 ] } },
+{ "type": "Feature", "properties": { "Name": "Entebbe Grade A Hospital\n", "ownership": "Private\n", "services": "Preventive health services, out-patient curative services, outreach care, maternity, peadiatrics, ART, gynaecology, in-patient health services, laboratory services, emergencies, blood transfusion, consultation, research, psychiatry, Ear, Nose and Throat,", "location": "Wakiso\n", "referral": "Teritiary\n", "beds": 12 }, "geometry": { "type": "Point", "coordinates": [ 440596.646173801505938, 6645.651869414825342 ] } },
+{ "type": "Feature", "properties": { "Name": "Entebbe Grade B Hospital\n", "ownership": "Public\n", "services": "Preventive health services, out-patient curative services, outreach care, maternity, peadiatrics, ART, gynaecology, in-patient health services, laboratory services, emergencies, blood transfusion, consultation, research, psychiatry, Ear, Nose and Throat,", "location": "Wakiso\n", "referral": "Teritiary\n", "beds": 149 }, "geometry": { "type": "Point", "coordinates": [ 441061.795469875971321, 6836.902421508504631 ] } }
+]
+};

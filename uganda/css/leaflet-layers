@@ -1,0 +1,8 @@
+.leaflet-control-layers-expanded {
+  background: none !important;
+  box-shadow: none !important;
+  color: white;
+  font-size: 18px;
+  left: -1em;
+  padding-top: 1px;
+}
