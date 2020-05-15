@@ -195,7 +195,7 @@ function stylegdp(feature) {
 
 
   let overlayLayers = {
-    "Border Points": [border_points, "yellow"],
+    "Border Points": [border_points, "#cccc09"],
     "Health Centers": [health_centers, "red"],
     "ICU Beds Per Health Center": [icu_beds, "orange"],
     "Market Places": [markets, "green"],
@@ -203,14 +203,14 @@ function stylegdp(feature) {
   };
   
   let ugandaLayers = {
-    "Contacts": [[[5000, 150000, 250000, 350000, 2000000], getColorpop, "Population"], {
+    "Population": [[[5000, 150000, 250000, 350000, 2000000], getColorpop, "Population"], stylepop],
+    "Contacts": [[[],, "Hover over district <br> for contact information"], {
       weight: 2,
       opacity: 2,
       color: '#000000b8',
       fillOpacity: 2.5,
       fillColor: '#AAA583'
     }],
-    "Population": [[[5000, 150000, 250000, 350000, 2000000], getColorpop, "Population"], stylepop], //pop,
     "Population Density": [[[7, 100, 500, 1000, 7500], getColorden, "Population Density"], styleden],
     "Poverty Rate": [[[0.3, 2, 3, 5, 15], getColorpov, "Household Poverty Rates"], stylepov],
     "Elderly(Over 60 in age)": [[[950, 10000, 20000, 30000, 45000], getColorelderly, "Elderly Rates"], styleelderly],
@@ -225,10 +225,11 @@ function stylegdp(feature) {
     let layers = [];
   
     Object.keys(overlayLayers).forEach(element => {
+
       layers[element] = L.geoJson(overlayLayers[element], {
         pointToLayer: function (feature, latlng) {
           return new L.CircleMarker(latlng, {
-            radius: 5,
+            radius: 4,
             fillOpacity: 1,
             color: 'black',
             fillColor: overlayLayers[element][1],
@@ -275,22 +276,27 @@ function stylegdp(feature) {
   
   let countrylayers = createCountryLayers();
   
-  
-  let layMaps = {
-    "Border Points": border_points,
-    "Health Centers": health_centers,
-    "ICU Beds Per Health Center": icu_beds,
-    "Market Places": markets,
-    "Water Access Points": water_points,
-  };
-  
   function add_overlay(element) {
     let layer_ = element.text
     highlight_button(element)
-    Object.keys(layMaps).forEach(element => {
+    Object.keys(overlayLayers).forEach(element => {
       map.removeLayer(layers[element]);
     });
     layers[layer_].addTo(map)
+    Object.keys(layers[layer_]._layers).forEach(element => {
+        let l = layers[layer_]._layers[element];
+        OEF(l, layer_)
+        border_sheet_data.forEach(element => {
+            if (element.Border_cases != "" && element.Border == l.feature.properties.Name) {
+                l.setStyle({
+                    radius : element.Border_cases / 3,
+                    color: 'red',
+                    fillOpacity: 0,
+                    weight: 3,
+                })
+            }
+        });
+      });
   }
   
   function add_ug_layer(element) {
@@ -303,6 +309,10 @@ function stylegdp(feature) {
       }
     });
     countrylayers[layer_].addTo(map)
+    Object.keys(countrylayers[layer_]._layers).forEach(element => {
+        let l = countrylayers[layer_]._layers[element];
+        OEF(l, layer_)
+      });
   }
   
   let overlays = $('#infrastructure');

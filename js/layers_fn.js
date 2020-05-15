@@ -81,11 +81,16 @@ function switch_map(map) {
     $("#create-sidebar-list").empty()
     create_sidepanel(ugandan_sidepanel_text)
 
-    // $("a").filter(function() {
-    //   return $(this).text() === "Border Points";
-    // }).click()
+
+    $("a").filter(function() {
+      return $(this).text() === "Population";
+    }).click()
+    $("a").filter(function() {
+      return $(this).text() === "Border Points";
+    }).click()
     
     $("#homeSubmenu0").attr("class", "list-unstyled collapse show")
+    $("#homeSubmenu1").attr("class", "list-unstyled collapse show")
     $("a[onclick='add_ug_layer(this);']")[0].setAttribute("style", "color: #f8b739;")
 
     $("a[onclick='switch_map(map);']").text('AFRICA')
