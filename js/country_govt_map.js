@@ -24,7 +24,8 @@ let govt_intervention_layer = (element) => {
         object_["POP"],
         object_["Intro"],
         object_["Fiscal"],
-        object_["Fiscal2"]
+        object_["Fiscal2"],
+        object_["Source1"],
       ]
     })
 
@@ -57,7 +58,9 @@ let govt_intervention_layer = (element) => {
         document.getElementById("info").innerHTML = `<strong>Country: </strong>\
         ${country_}<br><strong>Population: </strong>${govt_intervention_obj[country_][0]}\
         <br><strong>Introduction: </strong>${govt_intervention_obj[country_][1]}<br>\
-        <strong>Fiscal Policy: </strong>${govt_intervention_obj[country_][2]}`;
+        <strong>Fiscal Policy: </strong>${govt_intervention_obj[country_][2]}
+        <br><strong>Source: </strong>\
+        <a href=${govt_intervention_obj[country_][4]} target='_blank' class='text-white'><u>IMF DATA</u></a>`;
       });
     });
 
@@ -81,7 +84,8 @@ let govt_intervention_layer = (element) => {
         object_["POP"],
         object_["Intro"],
         object_["Monetary_and_Macro_financial"],
-        object_["Monetary"]
+        object_["Monetary"],
+        object_["Source1"],
       ]
     })
 
@@ -114,7 +118,9 @@ let govt_intervention_layer = (element) => {
         document.getElementById("info").innerHTML = `<strong>Country: </strong>\
         ${country_}<br><strong>Population: </strong>${govt_intervention_obj[country_][0]}\
         <br><strong>Introduction: </strong>${govt_intervention_obj[country_][1]}<br><strong>\
-        Monetary and Macro financial: </strong>${govt_intervention_obj[country_][2]}`;
+        Monetary and Macro financial: </strong>${govt_intervention_obj[country_][2]}
+        <br><strong>Source: </strong>\
+        <a href=${govt_intervention_obj[country_][4]} target='_blank' class='text-white'><u>IMF DATA</u></a>`;
       });
     });
 
