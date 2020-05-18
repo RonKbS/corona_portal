@@ -139,7 +139,8 @@ let govt_intervention_layer = (element) => {
         object_["POP"],
         object_["Intro"],
         object_["Exchange_rate_and_balance_of_payments"],
-        object_["Exchange"]
+        object_["Exchange"],
+        object_["Source1"],
       ]
     })
 
@@ -174,7 +175,9 @@ let govt_intervention_layer = (element) => {
         document.getElementById("info").innerHTML = `<strong>Country: </strong>${country_}\
         <br><strong>Population: </strong>${govt_intervention_obj[country_][0]}<br><strong>\
         Introduction: </strong>${govt_intervention_obj[country_][1]}<br>\
-        <strong>Exchange rate and balance of payments: </strong>${govt_intervention_obj[country_][2]}`;
+        <strong>Exchange rate and balance of payments: </strong>${govt_intervention_obj[country_][2]}
+        <br><strong>Source: </strong>\
+        <a href=${govt_intervention_obj[country_][4]} target='_blank' class='text-white'><u>IMF DATA</u></a>`;
       });
     });
 
@@ -202,6 +205,7 @@ let govt_intervention_layer = (element) => {
         object_["Public_health_measures"],
         object_["Social_and_economic_measures"],
         object_["Social_distancing"],
+        object_["Source2"],
       ]
     })
 
@@ -246,7 +250,9 @@ let govt_intervention_layer = (element) => {
         Movement Restrictions: </strong>${country_intervention_obj[country_][3]}<br>\
         <strong>Public health measures: </strong>${country_intervention_obj[country_][4]}<br>\
         <strong>Social and economic measures: </strong>${country_intervention_obj[country_][5]}\
-        <br><strong>Social distancing: </strong>${country_intervention_obj[country_][6]}`;
+        <br><strong>Social distancing: </strong>${country_intervention_obj[country_][6]}\
+        <br><strong>Source: </strong>\
+        <a href=${country_intervention_obj[country_][7]} target='_blank' class='text-white'><u>ACAPS DATASET</u></a>`;
       });
     });
     // favicon is missing in staging
