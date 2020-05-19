@@ -75,23 +75,26 @@ function switch_map(map) {
     });
     $("#sidebar").attr("class", "sidebar sidebar-left leaflet-touch collapsed")
     setTimeout(function() {
+      // open sidebar and add layer after 1 second
       $("#sidebar").attr("class", "sidebar sidebar-left leaflet-touch")
+      $("a").filter(function() {
+        return $(this).text() === "Poverty Rate";
+      }).click()
+      $("a").filter(function() {
+        return $(this).text() === "Border Points";
+      }).click()
     }, 1000)
     
-    $("#create-sidebar-list").empty()
-    create_sidepanel(ugandan_sidepanel_text)
+    setTimeout(function(){
+      // replace text just before reopening sidepanel
+      $("#create-sidebar-list").empty()
+      create_sidepanel(ugandan_sidepanel_text)
+      
+      $("#homeSubmenu0").attr("class", "list-unstyled collapse show")
+      $("#homeSubmenu1").attr("class", "list-unstyled collapse show")
+      $("a[onclick='add_ug_layer(this);']")[0].setAttribute("style", "color: #f8b739;")
+    }, 500)
 
-
-    $("a").filter(function() {
-      return $(this).text() === "Poverty Rate";
-    }).click()
-    $("a").filter(function() {
-      return $(this).text() === "Border Points";
-    }).click()
-    
-    $("#homeSubmenu0").attr("class", "list-unstyled collapse show")
-    $("#homeSubmenu1").attr("class", "list-unstyled collapse show")
-    $("a[onclick='add_ug_layer(this);']")[0].setAttribute("style", "color: #f8b739;")
 
     $("a[onclick='switch_map(map);']").text('AFRICA')
   
@@ -114,18 +117,22 @@ function switch_map(map) {
     });
     $("#sidebar").attr("class", "sidebar sidebar-left leaflet-touch collapsed")
     setTimeout(function() {
+      // open sidebar and add layer after 1 second
       $("#sidebar").attr("class", "sidebar sidebar-left leaflet-touch")
+      $("a").filter(function() {
+        return $(this).text() === "Cases";
+      }).click()
     }, 1000)
     
-    $("#create-sidebar-list").empty()
-    create_sidepanel(african_sidepanel_text)
+    setTimeout(function(){
+      // replace text just before reopening sidepanel
+      $("#create-sidebar-list").empty()
+      create_sidepanel(african_sidepanel_text)
+      
+      $("#homeSubmenu0").attr("class", "list-unstyled collapse show")
+      $("a[onclick='add_layer(this);']")[0].setAttribute("style", "color: #f8b739;")
+    }, 500)
 
-    $("a").filter(function() {
-      return $(this).text() === "Cases";
-    }).click()
-    
-    $("#homeSubmenu0").attr("class", "list-unstyled collapse show")
-    $("a[onclick='add_layer(this);']")[0].setAttribute("style", "color: #f8b739;")
 
     $("a[onclick='switch_map(map);']").text('UGANDA')
 
