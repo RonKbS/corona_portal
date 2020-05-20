@@ -66,6 +66,7 @@ function add_layer(element) {
 function switch_map(map) {
 
   if (map.options.minZoom === 3) {
+    // zoom into uganda
     map.removeLayer(african_data)
     map.options.minZoom = 7;
     map.options.maxZoom = 7;
@@ -76,7 +77,9 @@ function switch_map(map) {
     $("#sidebar").attr("class", "sidebar sidebar-left leaflet-touch collapsed")
     setTimeout(function() {
       // open sidebar and add layer after 1 second
-      $("#sidebar").attr("class", "sidebar sidebar-left leaflet-touch")
+      // $("#sidebar").attr("class", "sidebar sidebar-left leaflet-touch")
+      sidebar.open("layers")
+      // sidebar.disablePanel("profile")
       $("a").filter(function() {
         return $(this).text() === "Poverty Rate";
       }).click()
@@ -118,7 +121,10 @@ function switch_map(map) {
     $("#sidebar").attr("class", "sidebar sidebar-left leaflet-touch collapsed")
     setTimeout(function() {
       // open sidebar and add layer after 1 second
-      $("#sidebar").attr("class", "sidebar sidebar-left leaflet-touch")
+      // $("#sidebar").attr("class", "sidebar sidebar-left leaflet-touch")
+      sidebar.open("layers")
+      // sidebar.enablePanel("profile")
+      
       $("a").filter(function() {
         return $(this).text() === "Cases";
       }).click()
